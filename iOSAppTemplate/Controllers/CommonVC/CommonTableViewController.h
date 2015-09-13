@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  CommonTableViewController.h
 //  iOSAppTemplate
 //
 //  Created by h1r0 on 15/9/13.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface CommonTableViewController : UITableViewController
 
 @end
-
