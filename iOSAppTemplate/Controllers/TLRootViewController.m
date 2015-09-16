@@ -9,9 +9,8 @@
 #import "TLRootViewController.h"
 
 #import "TLNavigationController.h"
-#import "TLFirstViewController.h"
-#import "TLSecondViewController.h"
-
+#import "TLConversationViewController.h"
+#import "TLFriendsViewController.h"
 
 @interface TLRootViewController ()
 
@@ -21,8 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self.view setBackgroundColor:[UIColor whiteColor]];
+    [self.tabBar setTintColor:DEFAULT_PINK_COLOR];
+    [self.tabBar setTranslucent:NO];
     
     [self initChildViewControllers];
 }
@@ -35,16 +35,30 @@
 - (void) initChildViewControllers
 {
     NSMutableArray *childVCArray = [[NSMutableArray alloc] initWithCapacity:5];
+
+    TLConversationViewController *conversationVC = [[TLConversationViewController alloc] init];
+    [conversationVC.tabBarItem setTitle:@"消息"];
+    [conversationVC.tabBarItem setImage:[UIImage imageNamed:@"tabbar_mainframeHL"]];
+    TLNavigationController *convNavC = [[TLNavigationController alloc] initWithRootViewController:conversationVC];
+    [childVCArray addObject:convNavC];
     
-    TLFirstViewController *firstVC = [[TLFirstViewController alloc] init];
-    [firstVC.tabBarItem setTitle:@"first"];
-    TLNavigationController *firstNavC = [[TLNavigationController alloc] initWithRootViewController:firstVC];
-    [childVCArray addObject:firstNavC];
+    TLFriendsViewController *friendsVC = [[TLFriendsViewController alloc] init];
+    [friendsVC.tabBarItem setTitle:@"通讯录"];
+    [friendsVC.tabBarItem setImage:[UIImage imageNamed:@"tabbar_contactsHL"]];
+    TLNavigationController *friendNavC = [[TLNavigationController alloc] initWithRootViewController:friendsVC];
+    [childVCArray addObject:friendNavC];
     
-    TLSecondViewController *secondVC = [[TLSecondViewController alloc] init];
-    [self.tabBarItem setTitle:@"second"];
-    TLNavigationController *secondNavC = [[TLNavigationController alloc] initWithRootViewController:secondVC];
-    [childVCArray addObject:secondNavC];
+    UIViewController *discoverVC = [[UIViewController alloc] init];
+    [discoverVC.tabBarItem setTitle:@"发现"];
+    [discoverVC.tabBarItem setImage:[UIImage imageNamed:@"tabbar_discoverHL"]];
+    TLNavigationController *discoverNavC = [[TLNavigationController alloc] initWithRootViewController:discoverVC];
+    [childVCArray addObject:discoverNavC];
+    
+    UIViewController *mineVC = [[UIViewController alloc] init];
+    [mineVC.tabBarItem setTitle:@"发现"];
+    [mineVC.tabBarItem setImage:[UIImage imageNamed:@"tabbar_meHL"]];
+    TLNavigationController *mineNavC = [[TLNavigationController alloc] initWithRootViewController:mineVC];
+    [childVCArray addObject:mineNavC];
     
     [self setViewControllers:childVCArray];
 }

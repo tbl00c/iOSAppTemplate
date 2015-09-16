@@ -1,0 +1,21 @@
+//
+//  PrefixHeader.pch
+//  iOSAppTemplate
+//
+//  Created by 李伯坤 on 15/9/16.
+//  Copyright (c) 2015年 lbk. All rights reserved.
+//
+
+#ifndef iOSAppTemplate_PrefixHeader_pch
+#define iOSAppTemplate_PrefixHeader_pch
+
+#import "macros.h"
+#import "common.h"
+
+#pragma mark - Category
+#import "NSString+TL.h"
+#import "UIDevice+TL.h"
+#import "UIImage+TL.h"
+#import "UIView+TL.h"
+
+#endif

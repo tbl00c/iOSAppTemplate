@@ -14,13 +14,18 @@
 
 @implementation CommonViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void) viewDidLoad
+{
+    [self.view setBackgroundColor:DEFAULT_BACKGROUND_COLOR];
+    
+    [self setHidesBottomBarWhenPushed:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
-
 
 @end

@@ -1,22 +1,22 @@
 //
-//  TLSecondViewController.m
+//  TLAddFriendViewController.m
 //  iOSAppTemplate
 //
-//  Created by h1r0 on 15/9/13.
+//  Created by 李伯坤 on 15/9/16.
 //  Copyright (c) 2015年 lbk. All rights reserved.
 //
 
-#import "TLSecondViewController.h"
+#import "TLAddFriendViewController.h"
 
-@interface TLSecondViewController ()
+@interface TLAddFriendViewController ()
 
 @end
 
-@implementation TLSecondViewController
+@implementation TLAddFriendViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationItem setTitle:@"SecondVC"];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

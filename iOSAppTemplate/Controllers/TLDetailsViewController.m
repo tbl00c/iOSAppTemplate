@@ -1,22 +1,22 @@
 //
-//  TLFirstViewController.m
+//  TLDetailsViewController.m
 //  iOSAppTemplate
 //
-//  Created by h1r0 on 15/9/13.
+//  Created by 李伯坤 on 15/9/16.
 //  Copyright (c) 2015年 lbk. All rights reserved.
 //
 
-#import "TLFirstViewController.h"
+#import "TLDetailsViewController.h"
 
-@interface TLFirstViewController ()
+@interface TLDetailsViewController ()
 
 @end
 
-@implementation TLFirstViewController
+@implementation TLDetailsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationItem setTitle:@"FirstVC"];
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {

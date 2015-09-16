@@ -14,14 +14,22 @@
 
 @implementation CommonTableViewController
 
-- (void)viewDidLoad {
+- (void) viewDidLoad
+{
     [super viewDidLoad];
+    
+    [self.tableView setTableFooterView:[UIView new]];
+    [self.view setBackgroundColor:DEFAULT_BACKGROUND_COLOR];
+    [self.tableView setBackgroundColor:DEFAULT_BACKGROUND_COLOR];
+    
+    [self setHidesBottomBarWhenPushed:YES];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
-
-
 
 @end
