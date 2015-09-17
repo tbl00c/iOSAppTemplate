@@ -10,4 +10,6 @@
 
 @interface TLConversationViewController : CommonTableViewController
 
+@property (nonatomic, strong) NSMutableArray *data;      // 消息列表数据
+
 @end

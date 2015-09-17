@@ -24,11 +24,11 @@
 
 - (void) layoutSubviews
 {
-    self.leftFreeSpace = self.frameHeight * 0.17;
+    self.leftFreeSpace = self.frameHeight * 0.18;
     [super layoutSubviews];
     
-    float spaceX = self.frameHeight * 0.17;
-    float spaceY = self.frameHeight * 0.16;
+    float spaceX = self.frameHeight * 0.18;
+    float spaceY = self.frameHeight * 0.17;
     float imageWidth = self.frameHeight - spaceY * 2;
     [_avatarImageView setFrame:CGRectMake(spaceX, spaceY, imageWidth, imageWidth)];
     

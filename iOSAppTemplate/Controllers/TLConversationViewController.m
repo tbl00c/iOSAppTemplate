@@ -16,8 +16,7 @@
 
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) TLFriendSearchViewController *searchVC;
-
-@property (nonatomic, strong) NSMutableArray *data;
+@property (nonatomic, strong) UIBarButtonItem *navRightButton;
 
 @end
 
@@ -43,16 +42,20 @@
 {
     NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:20];
     
-    for (int i = 0; i<14; i++) {
-        TLConversation *item = [[TLConversation alloc] init];
-        item.from = [NSString stringWithFormat:@"张三疯"];
-        item.message = @"人生得意须尽欢，莫使金樽空对月!";
-        item.avatarURL = [NSURL URLWithString:@"3.jpg"];
-        item.messageCount = 0;
-        item.date = [NSDate date];
-        [models addObject:item];
-    }
+    TLConversation *item = [[TLConversation alloc] init];
+    item.from = [NSString stringWithFormat:@"张三疯"];
+    item.message = @"人生得意须尽欢，莫使金樽空对月!";
+    item.avatarURL = [NSURL URLWithString:@"8.jpg"];
+    item.messageCount = 0;
+    item.date = [NSDate date];
+    [models addObject:item];
+    
     return models;
+}
+
+- (void) navRightButtonDown
+{
+
 }
 
 #pragma mark - UITableView
@@ -120,6 +123,9 @@
     [self.tabBarController.tabBar setHidden:NO];
 }
 
+/**
+ *  初始化子视图
+ */
 - (void) initSubViews
 {
     [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
@@ -136,6 +142,10 @@
     [_searchController.searchBar.layer setBorderWidth:0.5f];
     [_searchController.searchBar.layer setBorderColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0].CGColor];
     [self.tableView setTableHeaderView:_searchController.searchBar];
+    
+    // navBar 右按钮
+    _navRightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"barbuttonicon_add"] style:UIBarButtonItemStylePlain target:self action:@selector(navRightButtonDown)];
+    [self.navigationItem setRightBarButtonItem:_navRightButton];
 }
 
 @end

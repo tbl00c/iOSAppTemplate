@@ -11,6 +11,7 @@
 @interface TLUser : NSObject
 
 @property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *userID;
 @property (nonatomic, strong) NSURL *avatarURL;
 @property (nonatomic, strong) NSString *motto;
 @property (nonatomic, strong) NSString *phoneNumber;

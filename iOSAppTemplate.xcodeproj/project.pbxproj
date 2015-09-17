@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D1B0E451BAB017600AE423F /* TLDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B0E441BAB017600AE423F /* TLDiscoverViewController.m */; };
+		2D1B0E4A1BAB204400AE423F /* TLFounctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B0E491BAB204400AE423F /* TLFounctionCell.m */; };
+		2D1B0E4E1BAB280A00AE423F /* TLMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B0E4D1BAB280A00AE423F /* TLMineViewController.m */; };
+		2D1B0E521BAB2E2F00AE423F /* TLMineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B0E511BAB2E2F00AE423F /* TLMineCell.m */; };
+		2D1B0E551BAB343300AE423F /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E531BAB343300AE423F /* 3.png */; };
+		2D1B0E581BAB356400AE423F /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E571BAB356400AE423F /* 5.jpg */; };
+		2D1B0E5A1BAB35AC00AE423F /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E591BAB35AC00AE423F /* 1.jpg */; };
+		2D1B0E5C1BAB362800AE423F /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E5B1BAB362800AE423F /* 2.jpg */; };
+		2D1B0E5E1BAB367700AE423F /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E5D1BAB367700AE423F /* 6.jpg */; };
+		2D1B0E601BAB369500AE423F /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E5F1BAB369500AE423F /* 4.jpg */; };
+		2D1B0E621BAB36B800AE423F /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E611BAB36B800AE423F /* 8.jpg */; };
+		2D1B0E641BAB36CC00AE423F /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E631BAB36CC00AE423F /* 7.jpg */; };
 		2D1BA7121BA578D2009BB687 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BA7111BA578D2009BB687 /* main.m */; };
 		2D1BA7151BA578D2009BB687 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BA7141BA578D2009BB687 /* AppDelegate.m */; };
 		2D1BA72F1BA578D2009BB687 /* iOSAppTemplateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BA72E1BA578D2009BB687 /* iOSAppTemplateTests.m */; };
@@ -24,17 +36,6 @@
 		C24769901BA967D9007DC0ED /* UIImage+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = C247698B1BA967D9007DC0ED /* UIImage+TL.m */; };
 		C24769911BA967D9007DC0ED /* UIView+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = C247698D1BA967D9007DC0ED /* UIView+TL.m */; };
 		C24769961BA969E3007DC0ED /* IAT.plist in Resources */ = {isa = PBXBuildFile; fileRef = C24769951BA969E3007DC0ED /* IAT.plist */; };
-		C24769A41BA96A23007DC0ED /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = C24769991BA96A23007DC0ED /* 0.png */; };
-		C24769A51BA96A23007DC0ED /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C247699A1BA96A23007DC0ED /* 1.jpg */; };
-		C24769A61BA96A23007DC0ED /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C247699B1BA96A23007DC0ED /* 2.jpg */; };
-		C24769A71BA96A23007DC0ED /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C247699C1BA96A23007DC0ED /* 3.jpg */; };
-		C24769A81BA96A23007DC0ED /* gengduozhanghao.png in Resources */ = {isa = PBXBuildFile; fileRef = C247699D1BA96A23007DC0ED /* gengduozhanghao.png */; };
-		C24769A91BA96A23007DC0ED /* mima.png in Resources */ = {isa = PBXBuildFile; fileRef = C247699E1BA96A23007DC0ED /* mima.png */; };
-		C24769AA1BA96A23007DC0ED /* phonenumbg.png in Resources */ = {isa = PBXBuildFile; fileRef = C247699F1BA96A23007DC0ED /* phonenumbg.png */; };
-		C24769AB1BA96A23007DC0ED /* registerbg1.png in Resources */ = {isa = PBXBuildFile; fileRef = C24769A01BA96A23007DC0ED /* registerbg1.png */; };
-		C24769AC1BA96A23007DC0ED /* registerbg2.png in Resources */ = {isa = PBXBuildFile; fileRef = C24769A11BA96A23007DC0ED /* registerbg2.png */; };
-		C24769AD1BA96A23007DC0ED /* shoujihao.png in Resources */ = {isa = PBXBuildFile; fileRef = C24769A21BA96A23007DC0ED /* shoujihao.png */; };
-		C24769AE1BA96A23007DC0ED /* wenhao.png in Resources */ = {isa = PBXBuildFile; fileRef = C24769A31BA96A23007DC0ED /* wenhao.png */; };
 		C24769B11BA96A5B007DC0ED /* TLFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769B01BA96A5B007DC0ED /* TLFriendsViewController.m */; };
 		C24769B61BA96ACC007DC0ED /* TLFriendSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769B51BA96ACC007DC0ED /* TLFriendSearchViewController.m */; };
 		C24769BA1BA96B23007DC0ED /* TLAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769B91BA96B23007DC0ED /* TLAddFriendViewController.m */; };
@@ -59,6 +60,22 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D1B0E431BAB017600AE423F /* TLDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDiscoverViewController.h; sourceTree = "<group>"; };
+		2D1B0E441BAB017600AE423F /* TLDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDiscoverViewController.m; sourceTree = "<group>"; };
+		2D1B0E481BAB204400AE423F /* TLFounctionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLFounctionCell.h; sourceTree = "<group>"; };
+		2D1B0E491BAB204400AE423F /* TLFounctionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFounctionCell.m; sourceTree = "<group>"; };
+		2D1B0E4C1BAB280A00AE423F /* TLMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMineViewController.h; sourceTree = "<group>"; };
+		2D1B0E4D1BAB280A00AE423F /* TLMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMineViewController.m; sourceTree = "<group>"; };
+		2D1B0E501BAB2E2F00AE423F /* TLMineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMineCell.h; sourceTree = "<group>"; };
+		2D1B0E511BAB2E2F00AE423F /* TLMineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMineCell.m; sourceTree = "<group>"; };
+		2D1B0E531BAB343300AE423F /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		2D1B0E571BAB356400AE423F /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
+		2D1B0E591BAB35AC00AE423F /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
+		2D1B0E5B1BAB362800AE423F /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		2D1B0E5D1BAB367700AE423F /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
+		2D1B0E5F1BAB369500AE423F /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
+		2D1B0E611BAB36B800AE423F /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
+		2D1B0E631BAB36CC00AE423F /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
 		2D1BA70C1BA578D2009BB687 /* iOSAppTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSAppTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1BA7101BA578D2009BB687 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D1BA7111BA578D2009BB687 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -94,17 +111,6 @@
 		C247698C1BA967D9007DC0ED /* UIView+TL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TL.h"; sourceTree = "<group>"; };
 		C247698D1BA967D9007DC0ED /* UIView+TL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TL.m"; sourceTree = "<group>"; };
 		C24769951BA969E3007DC0ED /* IAT.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = IAT.plist; sourceTree = "<group>"; };
-		C24769991BA96A23007DC0ED /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
-		C247699A1BA96A23007DC0ED /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
-		C247699B1BA96A23007DC0ED /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
-		C247699C1BA96A23007DC0ED /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
-		C247699D1BA96A23007DC0ED /* gengduozhanghao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gengduozhanghao.png; sourceTree = "<group>"; };
-		C247699E1BA96A23007DC0ED /* mima.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mima.png; sourceTree = "<group>"; };
-		C247699F1BA96A23007DC0ED /* phonenumbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phonenumbg.png; sourceTree = "<group>"; };
-		C24769A01BA96A23007DC0ED /* registerbg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registerbg1.png; sourceTree = "<group>"; };
-		C24769A11BA96A23007DC0ED /* registerbg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = registerbg2.png; sourceTree = "<group>"; };
-		C24769A21BA96A23007DC0ED /* shoujihao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shoujihao.png; sourceTree = "<group>"; };
-		C24769A31BA96A23007DC0ED /* wenhao.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wenhao.png; sourceTree = "<group>"; };
 		C24769AF1BA96A5B007DC0ED /* TLFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLFriendsViewController.h; sourceTree = "<group>"; };
 		C24769B01BA96A5B007DC0ED /* TLFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFriendsViewController.m; sourceTree = "<group>"; };
 		C24769B41BA96ACC007DC0ED /* TLFriendSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLFriendSearchViewController.h; sourceTree = "<group>"; };
@@ -155,6 +161,42 @@
 				38431F7BA1B753F37D7C06FD /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2D1B0E421BAB014B00AE423F /* DiscoverVC */ = {
+			isa = PBXGroup;
+			children = (
+				2D1B0E431BAB017600AE423F /* TLDiscoverViewController.h */,
+				2D1B0E441BAB017600AE423F /* TLDiscoverViewController.m */,
+			);
+			name = DiscoverVC;
+			sourceTree = "<group>";
+		};
+		2D1B0E471BAB19D300AE423F /* FounctionCell */ = {
+			isa = PBXGroup;
+			children = (
+				2D1B0E481BAB204400AE423F /* TLFounctionCell.h */,
+				2D1B0E491BAB204400AE423F /* TLFounctionCell.m */,
+			);
+			name = FounctionCell;
+			sourceTree = "<group>";
+		};
+		2D1B0E4B1BAB27F300AE423F /* MineVC */ = {
+			isa = PBXGroup;
+			children = (
+				2D1B0E4C1BAB280A00AE423F /* TLMineViewController.h */,
+				2D1B0E4D1BAB280A00AE423F /* TLMineViewController.m */,
+			);
+			name = MineVC;
+			sourceTree = "<group>";
+		};
+		2D1B0E4F1BAB2E1E00AE423F /* MineCell */ = {
+			isa = PBXGroup;
+			children = (
+				2D1B0E501BAB2E2F00AE423F /* TLMineCell.h */,
+				2D1B0E511BAB2E2F00AE423F /* TLMineCell.m */,
+			);
+			name = MineCell;
 			sourceTree = "<group>";
 		};
 		2D1BA7031BA578D2009BB687 = {
@@ -229,6 +271,8 @@
 				2DAF769A1BA57FFB0047E869 /* CommonVC */,
 				C24769CA1BA96E34007DC0ED /* ConversationVC */,
 				C24769B21BA96A61007DC0ED /* FriendListVC */,
+				2D1B0E421BAB014B00AE423F /* DiscoverVC */,
+				2D1B0E4B1BAB27F300AE423F /* MineVC */,
 				C24769BB1BA96B6C007DC0ED /* DetailsVC */,
 			);
 			path = Controllers;
@@ -291,9 +335,11 @@
 		C24769801BA96734007DC0ED /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2D1B0E4F1BAB2E1E00AE423F /* MineCell */,
 				C24769C31BA96C50007DC0ED /* Common */,
-				C24769C21BA96C30007DC0ED /* Friends */,
-				C24769D11BA96F0D007DC0ED /* Conversation */,
+				C24769C21BA96C30007DC0ED /* FriendsCel */,
+				C24769D11BA96F0D007DC0ED /* ConversationCell */,
+				2D1B0E471BAB19D300AE423F /* FounctionCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -343,17 +389,14 @@
 		C24769981BA96A23007DC0ED /* images@2x */ = {
 			isa = PBXGroup;
 			children = (
-				C24769991BA96A23007DC0ED /* 0.png */,
-				C247699A1BA96A23007DC0ED /* 1.jpg */,
-				C247699B1BA96A23007DC0ED /* 2.jpg */,
-				C247699C1BA96A23007DC0ED /* 3.jpg */,
-				C247699D1BA96A23007DC0ED /* gengduozhanghao.png */,
-				C247699E1BA96A23007DC0ED /* mima.png */,
-				C247699F1BA96A23007DC0ED /* phonenumbg.png */,
-				C24769A01BA96A23007DC0ED /* registerbg1.png */,
-				C24769A11BA96A23007DC0ED /* registerbg2.png */,
-				C24769A21BA96A23007DC0ED /* shoujihao.png */,
-				C24769A31BA96A23007DC0ED /* wenhao.png */,
+				2D1B0E591BAB35AC00AE423F /* 1.jpg */,
+				2D1B0E5B1BAB362800AE423F /* 2.jpg */,
+				2D1B0E5F1BAB369500AE423F /* 4.jpg */,
+				2D1B0E5D1BAB367700AE423F /* 6.jpg */,
+				2D1B0E631BAB36CC00AE423F /* 7.jpg */,
+				2D1B0E571BAB356400AE423F /* 5.jpg */,
+				2D1B0E611BAB36B800AE423F /* 8.jpg */,
+				2D1B0E531BAB343300AE423F /* 3.png */,
 			);
 			path = "images@2x";
 			sourceTree = "<group>";
@@ -396,13 +439,13 @@
 			name = DetailsVC;
 			sourceTree = "<group>";
 		};
-		C24769C21BA96C30007DC0ED /* Friends */ = {
+		C24769C21BA96C30007DC0ED /* FriendsCel */ = {
 			isa = PBXGroup;
 			children = (
 				C24769C71BA96CCC007DC0ED /* TLFriendCell.h */,
 				C24769C81BA96CCC007DC0ED /* TLFriendCell.m */,
 			);
-			name = Friends;
+			name = FriendsCel;
 			sourceTree = "<group>";
 		};
 		C24769C31BA96C50007DC0ED /* Common */ = {
@@ -423,13 +466,13 @@
 			name = ConversationVC;
 			sourceTree = "<group>";
 		};
-		C24769D11BA96F0D007DC0ED /* Conversation */ = {
+		C24769D11BA96F0D007DC0ED /* ConversationCell */ = {
 			isa = PBXGroup;
 			children = (
 				C24769D21BA96F29007DC0ED /* TLConversationCell.h */,
 				C24769D31BA96F29007DC0ED /* TLConversationCell.m */,
 			);
-			name = Conversation;
+			name = ConversationCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -514,19 +557,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C24769A41BA96A23007DC0ED /* 0.png in Resources */,
-				C24769AB1BA96A23007DC0ED /* registerbg1.png in Resources */,
-				C24769AC1BA96A23007DC0ED /* registerbg2.png in Resources */,
-				C24769A51BA96A23007DC0ED /* 1.jpg in Resources */,
-				C24769AE1BA96A23007DC0ED /* wenhao.png in Resources */,
-				C24769A81BA96A23007DC0ED /* gengduozhanghao.png in Resources */,
-				C24769AA1BA96A23007DC0ED /* phonenumbg.png in Resources */,
-				C24769AD1BA96A23007DC0ED /* shoujihao.png in Resources */,
-				C24769A61BA96A23007DC0ED /* 2.jpg in Resources */,
-				C24769A71BA96A23007DC0ED /* 3.jpg in Resources */,
+				2D1B0E5C1BAB362800AE423F /* 2.jpg in Resources */,
+				2D1B0E551BAB343300AE423F /* 3.png in Resources */,
+				2D1B0E5A1BAB35AC00AE423F /* 1.jpg in Resources */,
+				2D1B0E641BAB36CC00AE423F /* 7.jpg in Resources */,
+				2D1B0E581BAB356400AE423F /* 5.jpg in Resources */,
+				2D1B0E601BAB369500AE423F /* 4.jpg in Resources */,
 				2D1BA7431BA57BA9009BB687 /* Images.xcassets in Resources */,
+				2D1B0E5E1BAB367700AE423F /* 6.jpg in Resources */,
+				2D1B0E621BAB36B800AE423F /* 8.jpg in Resources */,
 				C24769961BA969E3007DC0ED /* IAT.plist in Resources */,
-				C24769A91BA96A23007DC0ED /* mima.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,9 +620,12 @@
 				C247698E1BA967D9007DC0ED /* NSString+TL.m in Sources */,
 				C24769911BA967D9007DC0ED /* UIView+TL.m in Sources */,
 				2D1BA7151BA578D2009BB687 /* AppDelegate.m in Sources */,
+				2D1B0E4E1BAB280A00AE423F /* TLMineViewController.m in Sources */,
 				C24769B61BA96ACC007DC0ED /* TLFriendSearchViewController.m in Sources */,
+				2D1B0E451BAB017600AE423F /* TLDiscoverViewController.m in Sources */,
 				2D1BA7121BA578D2009BB687 /* main.m in Sources */,
 				C24769BE1BA96B87007DC0ED /* TLDetailsViewController.m in Sources */,
+				2D1B0E521BAB2E2F00AE423F /* TLMineCell.m in Sources */,
 				C24769C61BA96C83007DC0ED /* CommonTableViewCell.m in Sources */,
 				C24769751BA96623007DC0ED /* common.m in Sources */,
 				C24769D01BA96EF1007DC0ED /* TLConversation.m in Sources */,
@@ -601,6 +644,7 @@
 				C24769D41BA96F29007DC0ED /* TLConversationCell.m in Sources */,
 				C24769841BA9674B007DC0ED /* TLUser.m in Sources */,
 				2DAF76BE1BA583670047E869 /* TLNavigationController.m in Sources */,
+				2D1B0E4A1BAB204400AE423F /* TLFounctionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

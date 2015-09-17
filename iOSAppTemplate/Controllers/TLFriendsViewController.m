@@ -17,10 +17,6 @@
 
 @interface TLFriendsViewController () <UISearchBarDelegate>
 
-@property (nonatomic, strong) NSMutableArray *friendsArray;
-@property (nonatomic, strong) NSMutableArray *data;
-@property (nonatomic, strong) NSMutableArray *section;
-
 @property (nonatomic, strong) UIBarButtonItem *addFriendButton;
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) UILabel *footerLabel;
@@ -37,54 +33,11 @@
     [super viewDidLoad];
     [self.navigationItem setTitle:@"通讯录"];
     [self setHidesBottomBarWhenPushed:NO];
+    [self.tableView setShowsVerticalScrollIndicator:NO];
     [self.tableView registerClass:[TLFriendCell class] forCellReuseIdentifier:@"FriendCell"];
     
     [self initSubViews];
-    
-    // 测试
-    _friendsArray = [[NSMutableArray alloc] initWithCapacity:3];
-    TLUser *user1 = [[TLUser alloc] init];
-    user1.username = @"马云";
-    user1.avatarURL = [NSURL URLWithString:@"1.jpg"];
-    [_friendsArray addObject:user1];
-    TLUser *user2 = [[TLUser alloc] init];
-    user2.username = @"李彦宏";
-    user2.avatarURL = [NSURL URLWithString:@"2.jpg"];
-    [_friendsArray addObject:user2];
-    TLUser *user3 = [[TLUser alloc] init];
-    user3.username = @"马化腾";
-    user3.avatarURL = [NSURL URLWithString:@"3.jpg"];
-    [_friendsArray addObject:user3];
-    TLUser *user4 = [[TLUser alloc] init];
-    user4.username = @"123";
-    user4.avatarURL = [NSURL URLWithString:@"1.jpg"];
-    [_friendsArray addObject:user4];
-    TLUser *user5 = [[TLUser alloc] init];
-    user5.username = @"刘强东";
-    user5.avatarURL = [NSURL URLWithString:@"1.jpg"];
-    [_friendsArray addObject:user5];
-    TLUser *user6 = [[TLUser alloc] init];
-    user6.username = @"乔布斯";
-    user6.avatarURL = [NSURL URLWithString:@"3.jpg"];
-    [_friendsArray addObject:user6];
-    TLUser *user7 = [[TLUser alloc] init];
-    user7.username = @"李开复";
-    user7.avatarURL = [NSURL URLWithString:@"2.jpg"];
-    [_friendsArray addObject:user7];
-    TLUser *user8 = [[TLUser alloc] init];
-    user8.username = @"比尔·盖茨";
-    user8.avatarURL = [NSURL URLWithString:@"1.jpg"];
-    [_friendsArray addObject:user8];
-    
-    _data = [TLDataHelper getFriendListDataBy:_friendsArray];
-    _section = [TLDataHelper getFriendListSectionBy:_data];
-    [_footerLabel setText:[NSString stringWithFormat:@"%lu位联系人", (unsigned long)_friendsArray.count]];
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
+    [self initTestData];        // 测试
 }
 
 - (void)didReceiveMemoryWarning {
@@ -111,7 +64,7 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 1;
+        return _functionData.count;
     }
     NSArray *array = [_data objectAtIndex:section - 1];
     return array.count;
@@ -138,12 +91,13 @@
 {
     TLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FriendCell"];
     if (indexPath.section == 0) {
+        NSDictionary *dic = [_functionData objectAtIndex:indexPath.row];
         TLUser *user = [[TLUser alloc] init];
-        user.username = @"最近联系过的Banker";
-        user.avatarURL = [NSURL URLWithString:@"0.png"];
+        user.username = [dic objectForKey:@"title"];
+        user.avatarURL = [dic objectForKey:@"image"];
         [cell setUser:user];
         [cell setTopLineStyle:CellLineStyleNone];
-        if (indexPath.row == 0) {
+        if (indexPath.row == _functionData.count - 1) {
             [cell setBottomLineStyle:CellLineStyleNone];
         }
         else {
@@ -231,6 +185,7 @@
     [self.tabBarController.tabBar setHidden:NO];
 }
 
+#pragma mark - 初始化
 - (void) initSubViews
 {
     [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
@@ -263,5 +218,61 @@
     [self.tableView setTableFooterView:_footerLabel];
 }
 
+- (void) initTestData
+{
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        _friendsArray = [[NSMutableArray alloc] initWithCapacity:3];
+        TLUser *user1 = [[TLUser alloc] init];
+        user1.username = @"马云";
+        user1.avatarURL = [NSURL URLWithString:@"1.jpg"];
+        [_friendsArray addObject:user1];
+        TLUser *user2 = [[TLUser alloc] init];
+        user2.username = @"李彦宏";
+        user2.avatarURL = [NSURL URLWithString:@"3.png"];
+        [_friendsArray addObject:user2];
+        TLUser *user3 = [[TLUser alloc] init];
+        user3.username = @"马化腾";
+        user3.avatarURL = [NSURL URLWithString:@"4.jpg"];
+        [_friendsArray addObject:user3];
+        TLUser *user4 = [[TLUser alloc] init];
+        user4.username = @"123";
+        user4.avatarURL = [NSURL URLWithString:@"8.jpg"];
+        [_friendsArray addObject:user4];
+        TLUser *user5 = [[TLUser alloc] init];
+        user5.username = @"刘强东";
+        user5.avatarURL = [NSURL URLWithString:@"2.jpg"];
+        [_friendsArray addObject:user5];
+        TLUser *user6 = [[TLUser alloc] init];
+        user6.username = @"库克";
+        user6.avatarURL = [NSURL URLWithString:@"7.jpg"];
+        [_friendsArray addObject:user6];
+        TLUser *user7 = [[TLUser alloc] init];
+        user7.username = @"李开复";
+        user7.avatarURL = [NSURL URLWithString:@"6.jpg"];
+        [_friendsArray addObject:user7];
+        TLUser *user8 = [[TLUser alloc] init];
+        user8.username = @"Bill";
+        user8.avatarURL = [NSURL URLWithString:@"5.jpg"];
+        [_friendsArray addObject:user8];
+        
+        NSDictionary *dic1 = @{@"image" : @"plugins_FriendNotify",
+                               @"title" : @"新的朋友"};
+        NSDictionary *dic2 = @{@"image" : @"add_friend_icon_addgroup",
+                               @"title" : @"群聊"};
+        NSDictionary *dic3 = @{@"image" : @"Contact_icon_ContactTag",
+                               @"title" : @"标签"};
+        NSDictionary *dic4 = @{@"image" : @"add_friend_icon_offical",
+                               @"title" : @"公众号"};
+        _functionData = [[NSMutableArray alloc] initWithObjects:dic1, dic2, dic3, dic4, nil];
+        
+        _data = [TLDataHelper getFriendListDataBy:_friendsArray];
+        _section = [TLDataHelper getFriendListSectionBy:_data];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+            [_footerLabel setText:[NSString stringWithFormat:@"%lu位联系人", (unsigned long)_friendsArray.count]];
+        });
+    });
+}
 
 @end
