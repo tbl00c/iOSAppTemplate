@@ -17,8 +17,6 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    //    [self.navigationBar setTranslucent:NO];
-    [self.navigationBar setBackgroundColor:DEFAULT_NAVBAR_COLOR];
     [self.navigationBar setBarTintColor:DEFAULT_NAVBAR_COLOR];
     [self.navigationBar setTintColor:[UIColor whiteColor]];
     [self.view setBackgroundColor:DEFAULT_BACKGROUND_COLOR];

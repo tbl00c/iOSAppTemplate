@@ -1,2 +1,2 @@
 # iOSAppTemplate
-iOS应用开发模板，个人总结。
+仿微信，iOS应用开发模板。

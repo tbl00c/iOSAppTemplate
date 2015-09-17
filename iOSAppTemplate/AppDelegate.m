@@ -17,9 +17,9 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     
     TLRootViewController *rootVC = [[TLRootViewController alloc] init];
-    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setRootViewController:rootVC];
     [self.window addSubview:rootVC.view];

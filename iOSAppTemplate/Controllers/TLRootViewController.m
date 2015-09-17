@@ -21,7 +21,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self.tabBar setTintColor:DEFAULT_PINK_COLOR];
+    [self.tabBar setBackgroundColor:DEFAULT_SEARCHBAR_COLOR];
+    [self.tabBar setTintColor:DEFAULT_GREEN_COLOR];
     [self.tabBar setTranslucent:NO];
     
     [self initChildViewControllers];
@@ -29,7 +30,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-
 }
 
 - (void) initChildViewControllers
