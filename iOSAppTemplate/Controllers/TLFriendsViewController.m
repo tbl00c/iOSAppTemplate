@@ -76,7 +76,7 @@
         return nil;
     }
     
-    UILabel *label = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerView"];
+    id label = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerView"];
     if (label == nil) {
         label = [[UILabel alloc] init];
         [label setFont:[UIFont systemFontOfSize:14.5f]];

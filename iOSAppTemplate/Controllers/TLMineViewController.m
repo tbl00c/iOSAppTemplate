@@ -8,7 +8,7 @@
 
 #import "TLMineViewController.h"
 #import "TLFounctionCell.h"
-#import "TLMineCell.h"
+#import "TLUserDetailCell.h"
 
 @implementation TLMineViewController
 
@@ -19,7 +19,7 @@
     [self.navigationItem setTitle:@"我"];
     [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
     [self.tableView registerClass:[TLFounctionCell class] forCellReuseIdentifier:@"FunctionCell"];
-    [self.tableView registerClass:[TLMineCell class] forCellReuseIdentifier:@"MineCell"];
+    [self.tableView registerClass:[TLUserDetailCell class] forCellReuseIdentifier:@"UserDetailCell"];
     
     [self initTestData];
 }
@@ -56,8 +56,9 @@
         [cell setTopLineStyle:CellLineStyleNone];
     }
     else if ([dic objectForKey:@"mine"] != nil) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"MineCell" forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"UserDetailCell" forIndexPath:indexPath];
         [cell setUser:_user];
+        [cell setCellType:UserDetailCellTypeMine];
         [cell setBackgroundColor:[UIColor whiteColor]];
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         [cell setBottomLineStyle:CellLineStyleFill];

@@ -2,9 +2,12 @@
 //  TLFounctionCell.m
 //  iOSAppTemplate
 //
-//  Created by h1r0 on 15/9/18.
-//  Copyright (c) 2015年 lbk. All rights reserved.
+//  Created by 李伯坤 on 15/9/18.
+//  Copyright © 2015年 lbk. All rights reserved.
 //
+
+#import "TLFounctionCell.h"
+#import "TLFriendCell.h"
 
 #import "TLFounctionCell.h"
 

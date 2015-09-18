@@ -8,11 +8,14 @@
 
 #import "CommonTableViewCell.h"
 
-@interface TLFounctionCell : CommonTableViewCell
+@interface TLDetailFounctionCell : CommonTableViewCell
 
-@property (nonatomic, strong) NSString *imageName;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subTitle;
-@property (nonatomic, strong) NSString *subImageName;
+@property (nonatomic, strong) NSString *beforeSubImage;
+@property (nonatomic, strong) NSString *afterSubImage;
+
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UILabel *subTitleLabel;
 
 @end
