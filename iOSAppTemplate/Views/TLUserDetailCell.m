@@ -88,7 +88,7 @@
         default:
             break;
     }
-    [self layoutSubviews];
+    [self sizeToFit];
 }
 
 - (void) setUser:(TLUser *)user

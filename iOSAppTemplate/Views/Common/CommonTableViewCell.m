@@ -20,6 +20,7 @@
 
 - (void) layoutSubviews
 {
+    [super layoutSubviews];
     [self.bottomLine setOriginY:self.frameHeight - _bottomLine.frameHeight];
     [self.topLine setFrameWidth:self.frameWidth];
     [self setBottomLineStyle:_bottomLineStyle];

@@ -7,9 +7,13 @@
 //
 
 #import "TLDiscoverViewController.h"
+#import "TLWebViewController.h"
+
 #import "TLFounctionCell.h"
 
 @interface TLDiscoverViewController ()
+
+@property (nonatomic, strong) TLWebViewController *webVC;
 
 @end
 
@@ -46,7 +50,7 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TLFounctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell" forIndexPath:indexPath];
+    TLFounctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
     NSDictionary *dic = [_data objectAtIndex:indexPath.row];
     
     if ([dic objectForKey:@"empty"] != nil) {
@@ -105,7 +109,25 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSDictionary *dic = [_data objectAtIndex:indexPath.row];
+    NSString *title = [dic objectForKey:@"title"];
+    
+    [self setHidesBottomBarWhenPushed:YES];
+    if ([title isEqualToString:@"购物"]) {
+        [self.webVC setUrlString:@"http://wq.jd.com"];
+        [self.navigationController pushViewController:self.webVC animated:YES];
+    }
+    [self setHidesBottomBarWhenPushed:NO];
+
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+- (TLWebViewController *) webVC
+{
+    if (_webVC == nil) {
+        _webVC = [[TLWebViewController alloc] init];
+    }
+    return _webVC;
 }
 
 #pragma mark - 初始化

@@ -24,12 +24,6 @@
     [self initTestData];
 }
 
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-}
-
 #pragma mark - UITableView
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -48,7 +42,7 @@
  
     id cell = nil;
     if ([dic objectForKey:@"empty"] != nil) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell" forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
         [cell setBackgroundColor:DEFAULT_BACKGROUND_COLOR];
         [cell setUserInteractionEnabled:NO];
         [cell setAccessoryType:UITableViewCellAccessoryNone];
@@ -56,16 +50,16 @@
         [cell setTopLineStyle:CellLineStyleNone];
     }
     else if ([dic objectForKey:@"mine"] != nil) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"UserDetailCell" forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"UserDetailCell"];
         [cell setUser:_user];
         [cell setCellType:UserDetailCellTypeMine];
         [cell setBackgroundColor:[UIColor whiteColor]];
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
         [cell setBottomLineStyle:CellLineStyleFill];
         [cell setTopLineStyle:CellLineStyleFill];
     }
     else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell" forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
         [cell setImageName:[dic objectForKey:@"image"]];
         [cell setTitle:[dic objectForKey:@"title"]];
         [cell setBackgroundColor:[UIColor whiteColor]];

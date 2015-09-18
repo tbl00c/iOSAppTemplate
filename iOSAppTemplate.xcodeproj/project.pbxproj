@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D01200E1BAC76A500CC9988 /* TLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D01200D1BAC76A500CC9988 /* TLWebViewController.m */; };
 		2D1B0E451BAB017600AE423F /* TLDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B0E441BAB017600AE423F /* TLDiscoverViewController.m */; };
 		2D1B0E4E1BAB280A00AE423F /* TLMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B0E4D1BAB280A00AE423F /* TLMineViewController.m */; };
 		2D1B0E521BAB2E2F00AE423F /* TLUserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B0E511BAB2E2F00AE423F /* TLUserDetailCell.m */; };
@@ -27,7 +28,7 @@
 		2DAF76BB1BA582E80047E869 /* TLRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DAF76BA1BA582E80047E869 /* TLRootViewController.m */; };
 		2DAF76BE1BA583670047E869 /* TLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DAF76BD1BA583670047E869 /* TLNavigationController.m */; };
 		7F9BFFFCBF4DB85D4C25D242 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431F7BA1B753F37D7C06FD /* libPods.a */; };
-		C21A31C51BABDFCC0017189D /* TLDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C21A31C41BABDFCC0017189D /* TLDetailInfoCell.m */; settings = {ASSET_TAGS = (); }; };
+		C21A31C51BABDFCC0017189D /* TLDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C21A31C41BABDFCC0017189D /* TLDetailInfoCell.m */; };
 		C24769751BA96623007DC0ED /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769741BA96623007DC0ED /* common.m */; };
 		C247697F1BA96714007DC0ED /* iOSAppTemplate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C247697D1BA96714007DC0ED /* iOSAppTemplate.xcdatamodeld */; };
 		C24769841BA9674B007DC0ED /* TLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769831BA9674B007DC0ED /* TLUser.m */; };
@@ -47,9 +48,8 @@
 		C24769D01BA96EF1007DC0ED /* TLConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769CF1BA96EF1007DC0ED /* TLConversation.m */; };
 		C24769D41BA96F29007DC0ED /* TLConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769D31BA96F29007DC0ED /* TLConversationCell.m */; };
 		C24769D81BA97DE1007DC0ED /* TLConfigration.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769D71BA97DE1007DC0ED /* TLConfigration.m */; };
-		C2867FF31BABEDD600F56B99 /* TLFounctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2867FF11BABED4800F56B99 /* TLFounctionCell.m */; settings = {ASSET_TAGS = (); }; };
-		C2867FF61BABFD2A00F56B99 /* TLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2867FF51BABFD2A00F56B99 /* TLButtonCell.m */; settings = {ASSET_TAGS = (); }; };
-		C288F2B31BABE9B600D1C33B /* TLDetailFounctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C288F2B21BABE9B600D1C33B /* TLDetailFounctionCell.m */; settings = {ASSET_TAGS = (); }; };
+		C2867FF31BABEDD600F56B99 /* TLFounctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2867FF11BABED4800F56B99 /* TLFounctionCell.m */; };
+		C2867FF61BABFD2A00F56B99 /* TLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2867FF51BABFD2A00F56B99 /* TLButtonCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D01200C1BAC76A500CC9988 /* TLWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLWebViewController.h; sourceTree = "<group>"; };
+		2D01200D1BAC76A500CC9988 /* TLWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLWebViewController.m; sourceTree = "<group>"; };
 		2D1B0E431BAB017600AE423F /* TLDiscoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDiscoverViewController.h; sourceTree = "<group>"; };
 		2D1B0E441BAB017600AE423F /* TLDiscoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDiscoverViewController.m; sourceTree = "<group>"; };
 		2D1B0E4C1BAB280A00AE423F /* TLMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLMineViewController.h; sourceTree = "<group>"; };
@@ -140,8 +142,6 @@
 		C2867FF11BABED4800F56B99 /* TLFounctionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFounctionCell.m; sourceTree = "<group>"; };
 		C2867FF41BABFD2900F56B99 /* TLButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLButtonCell.h; sourceTree = "<group>"; };
 		C2867FF51BABFD2A00F56B99 /* TLButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLButtonCell.m; sourceTree = "<group>"; };
-		C288F2B11BABE9B600D1C33B /* TLDetailFounctionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDetailFounctionCell.h; sourceTree = "<group>"; };
-		C288F2B21BABE9B600D1C33B /* TLDetailFounctionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDetailFounctionCell.m; sourceTree = "<group>"; };
 		DCCD342CB6E933ACE2862878 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +170,15 @@
 				38431F7BA1B753F37D7C06FD /* libPods.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2D01200F1BAC76AC00CC9988 /* WebVC */ = {
+			isa = PBXGroup;
+			children = (
+				2D01200C1BAC76A500CC9988 /* TLWebViewController.h */,
+				2D01200D1BAC76A500CC9988 /* TLWebViewController.m */,
+			);
+			name = WebVC;
 			sourceTree = "<group>";
 		};
 		2D1B0E421BAB014B00AE423F /* DiscoverVC */ = {
@@ -206,8 +215,6 @@
 				2D1B0E511BAB2E2F00AE423F /* TLUserDetailCell.m */,
 				C21A31C31BABDFCC0017189D /* TLDetailInfoCell.h */,
 				C21A31C41BABDFCC0017189D /* TLDetailInfoCell.m */,
-				C288F2B11BABE9B600D1C33B /* TLDetailFounctionCell.h */,
-				C288F2B21BABE9B600D1C33B /* TLDetailFounctionCell.m */,
 				C2867FF41BABFD2900F56B99 /* TLButtonCell.h */,
 				C2867FF51BABFD2A00F56B99 /* TLButtonCell.m */,
 			);
@@ -289,6 +296,7 @@
 				2D1B0E421BAB014B00AE423F /* DiscoverVC */,
 				2D1B0E4B1BAB27F300AE423F /* MineVC */,
 				C24769BB1BA96B6C007DC0ED /* DetailsVC */,
+				2D01200F1BAC76AC00CC9988 /* WebVC */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -645,7 +653,7 @@
 				C24769C61BA96C83007DC0ED /* CommonTableViewCell.m in Sources */,
 				C24769751BA96623007DC0ED /* common.m in Sources */,
 				C2867FF31BABEDD600F56B99 /* TLFounctionCell.m in Sources */,
-				C288F2B31BABE9B600D1C33B /* TLDetailFounctionCell.m in Sources */,
+				2D01200E1BAC76A500CC9988 /* TLWebViewController.m in Sources */,
 				C24769D01BA96EF1007DC0ED /* TLConversation.m in Sources */,
 				C24769BA1BA96B23007DC0ED /* TLAddFriendViewController.m in Sources */,
 				C21A31C51BABDFCC0017189D /* TLDetailInfoCell.m in Sources */,

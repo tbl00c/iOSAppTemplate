@@ -8,7 +8,14 @@
 
 #import "CommonTableViewCell.h"
 
+typedef NS_ENUM(NSInteger, TLDetailInfoCellType) {
+    TLDetailInfoCellLeft,
+    TLDetailInfoCellRight,
+};
+
 @interface TLDetailInfoCell : CommonTableViewCell
+
+@property (nonatomic, assign) TLDetailInfoCellType cellType;
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *subTitle;

@@ -9,7 +9,6 @@
 #import "TLDetailsViewController.h"
 #import "TLUserDetailCell.h"
 #import "TLDetailInfoCell.h"
-#import "TLDetailFounctionCell.h"
 #import "TLButtonCell.h"
 
 @interface TLDetailsViewController ()
@@ -28,7 +27,6 @@
     [self.tableView registerClass:[TLUserDetailCell class] forCellReuseIdentifier:@"UserDetailCell"];
     [self.tableView registerClass:[TLDetailInfoCell class] forCellReuseIdentifier:@"DetailInfoCell"];
     [self.tableView registerClass:[TLButtonCell class] forCellReuseIdentifier:@"ButtonCell"];
-    [self.tableView registerClass:[TLDetailFounctionCell class] forCellReuseIdentifier:@"DetailFounctionCell"];
     [self initTestData];
 }
 
@@ -54,14 +52,14 @@
     NSDictionary *dic = [_data objectAtIndex:indexPath.row];
     
     if ([dic objectForKey:@"empty"] != nil) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell" forIndexPath:indexPath];
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"EmptyCell"];
         [cell setBackgroundColor:DEFAULT_BACKGROUND_COLOR];
         [cell setUserInteractionEnabled:NO];
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         return cell;
     }
     else if ([dic objectForKey:@"user"] != nil) {
-        TLUserDetailCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UserDetailCell" forIndexPath:indexPath];
+        TLUserDetailCell * cell = [tableView dequeueReusableCellWithIdentifier:@"UserDetailCell"];
         [cell setUser:_user];
         [cell setCellType:UserDetailCellTypeFriends];
         [cell setBackgroundColor:[UIColor whiteColor]];
@@ -80,22 +78,14 @@
         return cell;
     }
     else {
-        id cell = nil;
-        if ([dic objectForKey:@"founction"] != nil) {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"DetailFounctionCell" forIndexPath:indexPath];
-        }
-        else {
-            cell = [tableView dequeueReusableCellWithIdentifier:@"DetailInfoCell" forIndexPath:indexPath];
-            [cell setSubTitle:[dic objectForKey:@"detail"]];
-        }
+        TLDetailInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DetailInfoCell"];
+        [cell setCellType: ([dic objectForKey:@"founction"] == nil ? TLDetailInfoCellLeft : TLDetailInfoCellRight)];
         [cell setTitle:[dic objectForKey:@"title"]];
-        if ([dic objectForKey:@"images"]) {
-            [cell setImagesArray:[dic objectForKey:@"images"]];
-        }
+        [cell setSubTitle:[dic objectForKey:@"detail"]];
+        [cell setImagesArray:[dic objectForKey:@"images"]];
         [cell setBackgroundColor:[UIColor whiteColor]];
         [cell setUserInteractionEnabled:YES];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-            
         
         if (indexPath.row > 0) {
             NSDictionary *preDic = [_data objectAtIndex:indexPath.row - 1];
