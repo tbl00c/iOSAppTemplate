@@ -28,35 +28,37 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return _data.count;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _data.count;
+    NSArray *array = [_data objectAtIndex:section];
+    return array.count;
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
+    if (view == nil) {
+        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
+        [view setBackgroundView:[UIView new]];
+    }
+    return view;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *dic = [_data objectAtIndex:indexPath.row];
+    NSArray *array = [_data objectAtIndex:indexPath.section];
+    NSDictionary *dic = [array objectAtIndex:indexPath.row];
  
     id cell = nil;
-    if ([dic objectForKey:@"empty"] != nil) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
-        [cell setBackgroundColor:DEFAULT_BACKGROUND_COLOR];
-        [cell setUserInteractionEnabled:NO];
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
-        [cell setBottomLineStyle:CellLineStyleNone];
-        [cell setTopLineStyle:CellLineStyleNone];
-    }
-    else if ([dic objectForKey:@"mine"] != nil) {
+    if ([dic objectForKey:@"mine"] != nil) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"UserDetailCell"];
         [cell setUser:_user];
         [cell setCellType:UserDetailCellTypeMine];
         [cell setBackgroundColor:[UIColor whiteColor]];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        [cell setBottomLineStyle:CellLineStyleFill];
-        [cell setTopLineStyle:CellLineStyleFill];
     }
     else {
         cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
@@ -65,28 +67,19 @@
         [cell setBackgroundColor:[UIColor whiteColor]];
         [cell setUserInteractionEnabled:YES];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        
-        if (indexPath.row > 0) {
-            NSDictionary *preDic = [_data objectAtIndex:indexPath.row - 1];
-            if ([preDic objectForKey:@"empty"] != nil) {
-                [cell setTopLineStyle:CellLineStyleFill];
-            }
-            else {
-                [cell setTopLineStyle:CellLineStyleNone];
-            }
-        }
-        if (indexPath.row == _data.count - 1) {
-            [cell setBottomLineStyle:CellLineStyleFill];
-        }
-        else {
-            NSDictionary *nextDic = [_data objectAtIndex:indexPath.row + 1];
-            if ([nextDic objectForKey:@"empty"] != nil) {
-                [cell setBottomLineStyle:CellLineStyleFill];
-            }
-            else {
-                [cell setBottomLineStyle:CellLineStyleDefault];
-            }
-        }
+    }
+    
+    if (indexPath.row == 0) {
+        [cell setTopLineStyle:CellLineStyleFill];
+        [cell setBottomLineStyle:CellLineStyleDefault];
+    }
+    if (indexPath.row == array.count - 1) {
+        [cell setTopLineStyle:CellLineStyleNone];
+        [cell setBottomLineStyle:CellLineStyleFill];
+    }
+    else {
+        [cell setTopLineStyle:CellLineStyleNone];
+        [cell setBottomLineStyle:CellLineStyleDefault];
     }
     
     return cell;
@@ -94,19 +87,22 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDictionary *dic = [_data objectAtIndex:indexPath.row];;
-    if (indexPath.row == 0) {
-        return 15.0f;
-    }
-    if ([dic objectForKey:@"empty"] != nil) {
-        return 20.0f;
-    }
-    else if ([dic objectForKey:@"mine"] != nil) {
+    NSArray *array = [_data objectAtIndex:indexPath.section];
+    NSDictionary *dic = [array objectAtIndex:indexPath.row];;
+    if ([dic objectForKey:@"mine"] != nil) {
         return 90.0f;
     }
     else {
         return 43.0f;
     }
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 15.0f;
+    }
+    return 20.0f;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -130,9 +126,8 @@
                            @"image" : @"MoreExpressionShops"};
     NSDictionary *dic6 = @{@"title" : @"设置",
                            @"image" : @"MoreSetting"};
-    NSDictionary *empty = @{@"empty" : @"YES"};
     
-    _data = [[NSMutableArray alloc] initWithObjects:empty, dic, empty, dic1, dic2, dic3, dic4, empty, dic5, empty, dic6, nil];
+    _data = [[NSMutableArray alloc] initWithObjects:@[], @[dic], @[dic1, dic2, dic3, dic4], @[dic5], @[dic6], nil];
     
     _user = [[TLUser alloc] init];
     _user.username = @"Bay、栢";

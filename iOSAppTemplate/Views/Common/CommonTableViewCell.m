@@ -14,6 +14,8 @@
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setBackgroundColor:[UIColor whiteColor]];
+        _topLineStyle = CellLineStyleNone;
+        _bottomLineStyle = CellLineStyleDefault;
     }
     return self;
 }
@@ -21,8 +23,8 @@
 - (void) layoutSubviews
 {
     [super layoutSubviews];
+    [self.topLine setOriginY:0];
     [self.bottomLine setOriginY:self.frameHeight - _bottomLine.frameHeight];
-    [self.topLine setFrameWidth:self.frameWidth];
     [self setBottomLineStyle:_bottomLineStyle];
     [self setTopLineStyle:_topLineStyle];
 }
@@ -31,11 +33,13 @@
 {
     _topLineStyle = style;
     if (style == CellLineStyleDefault) {
-        [self addTopLineForm:_leftFreeSpace length:self.frameWidth - _leftFreeSpace];
+        [self.topLine setOriginX:_leftFreeSpace];
+        [self.topLine setFrameWidth:self.frameWidth - _leftFreeSpace];
         [self.topLine setHidden:NO];
     }
     else if (style == CellLineStyleFill) {
-        [self addTopLineForm:0 length:self.frameWidth];
+        [self.topLine setOriginX:0];
+        [self.topLine setFrameWidth:self.frameWidth];
         [self.topLine setHidden:NO];
     }
     else if (style == CellLineStyleNone) {
@@ -47,11 +51,13 @@
 {
     _bottomLineStyle = style;
     if (style == CellLineStyleDefault) {
-        [self addBottomLineForm:_leftFreeSpace length:self.frameWidth - _leftFreeSpace];
+        [self.bottomLine setOriginX:_leftFreeSpace];
+        [self.bottomLine setFrameWidth:self.frameWidth - _leftFreeSpace];
         [self.bottomLine setHidden:NO];
     }
     else if (style == CellLineStyleFill) {
-        [self addBottomLineForm:0 length:self.frameWidth];
+        [self.bottomLine setOriginX:0];
+        [self.bottomLine setFrameWidth:self.frameWidth];
         [self.bottomLine setHidden:NO];
     }
     else if (style == CellLineStyleNone) {
@@ -59,26 +65,14 @@
     }
 }
 
-- (void) addBottomLineForm:(float)start length:(float)length
-{
-    [self.bottomLine setOriginX:start];
-    [self.bottomLine setFrameWidth:length];
-}
-
-- (void) addTopLineForm:(float)start length:(float)length
-{
-    [self.topLine setOriginX:start];
-    [self.topLine setFrameWidth:length];
-}
-
 - (UIView *) bottomLine
 {
     if (_bottomLine == nil) {
         _bottomLine = [[UIView alloc] init];
-        [_bottomLine setFrameHeight:0.5];
+        [_bottomLine setFrameHeight:0.5f];
         [_bottomLine setBackgroundColor:[UIColor grayColor]];
         [_bottomLine setAlpha:0.4];
-        [self addSubview:_bottomLine];
+        [self.contentView addSubview:_bottomLine];
     }
     return _bottomLine;
 }
@@ -87,10 +81,10 @@
 {
     if (_topLine == nil) {
         _topLine = [[UIView alloc] init];
-        [_topLine setFrame:CGRectMake(0, 0, 0, 0.5)];
+        [_topLine setFrameHeight:0.5f];
         [_topLine setBackgroundColor:[UIColor grayColor]];
         [_topLine setAlpha:0.4];
-        [self addSubview:_topLine];
+        [self.contentView addSubview:_topLine];
     }
     return _topLine;
 }

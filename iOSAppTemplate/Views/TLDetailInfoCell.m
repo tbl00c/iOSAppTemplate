@@ -45,8 +45,8 @@
     labelWidth = self.frameWidth - spaceX * 2 - labelX;
     [_subTitleLabel setFrame:CGRectMake(labelX, spaceY, labelWidth, labelHeight)];
     if (_imageData && _imageData.count > 0) {
-        float imageY = self.frameHeight * 0.17;
-        float imageWidth = self.frameHeight * 0.66;
+        float imageY = self.frameHeight * 0.175;
+        float imageWidth = self.frameHeight * 0.65;
         spaceX = 0;
         for (int i = 0; i < _imageData.count && i < 3; i ++) {
             UIImageView *iV = [_imageData objectAtIndex:i];
