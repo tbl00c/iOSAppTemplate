@@ -49,6 +49,7 @@
 		C2A852111BAFEBC300699F2B /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2A852101BAFEBC300699F2B /* 11.jpg */; };
 		C2A8521B1BAFF56A00699F2B /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2A8521A1BAFF56A00699F2B /* 12.jpg */; };
 		C2A8521D1BAFF57A00699F2B /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2A8521C1BAFF57A00699F2B /* 7.jpg */; };
+		C2A8521F1BAFF6D800699F2B /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2A8521E1BAFF6D800699F2B /* 2.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,7 @@
 		C2A852101BAFEBC300699F2B /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
 		C2A8521A1BAFF56A00699F2B /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
 		C2A8521C1BAFF57A00699F2B /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
+		C2A8521E1BAFF6D800699F2B /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		DCCD342CB6E933ACE2862878 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -411,6 +413,7 @@
 			isa = PBXGroup;
 			children = (
 				C2A8521A1BAFF56A00699F2B /* 12.jpg */,
+				C2A8521E1BAFF6D800699F2B /* 2.jpg */,
 				C2A8521C1BAFF57A00699F2B /* 7.jpg */,
 				C2A852101BAFEBC300699F2B /* 11.jpg */,
 				2D1B0E591BAB35AC00AE423F /* 1.jpg */,
@@ -579,6 +582,7 @@
 			files = (
 				2D1B0E5A1BAB35AC00AE423F /* 1.jpg in Resources */,
 				C2A8520F1BAFEB8100699F2B /* 10.jpeg in Resources */,
+				C2A8521F1BAFF6D800699F2B /* 2.jpg in Resources */,
 				C2A8521D1BAFF57A00699F2B /* 7.jpg in Resources */,
 				2D1B0E601BAB369500AE423F /* 4.jpg in Resources */,
 				C2A852111BAFEBC300699F2B /* 11.jpg in Resources */,
