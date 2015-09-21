@@ -244,6 +244,7 @@
         [_friendsArray addObject:user4];
         TLUser *user5 = [[TLUser alloc] init];
         user5.username = @"刘强东";
+        user5.userID = @"dongGe";
         user5.avatarURL = [NSURL URLWithString:@"2.jpg"];
         [_friendsArray addObject:user5];
         TLUser *user6 = [[TLUser alloc] init];
