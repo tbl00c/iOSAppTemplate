@@ -23,11 +23,17 @@
     [super viewDidLoad];
     [self.navigationItem setTitle:@"详细资料"];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"EmptyCell"];
     [self.tableView registerClass:[TLUserDetailCell class] forCellReuseIdentifier:@"UserDetailCell"];
     [self.tableView registerClass:[TLDetailInfoCell class] forCellReuseIdentifier:@"DetailInfoCell"];
     [self.tableView registerClass:[TLButtonCell class] forCellReuseIdentifier:@"ButtonCell"];
     [self initTestData];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,14 +99,14 @@
     
     if (indexPath.row == 0) {
         [cell setTopLineStyle:CellLineStyleFill];
-        [cell setBottomLineStyle:CellLineStyleDefault];
-    }
-    if (indexPath.row == array.count - 1) {
-        [cell setTopLineStyle:CellLineStyleNone];
-        [cell setBottomLineStyle:CellLineStyleFill];
     }
     else {
         [cell setTopLineStyle:CellLineStyleNone];
+    }
+    if (indexPath.row == array.count - 1) {
+        [cell setBottomLineStyle:CellLineStyleFill];
+    }
+    else {
         [cell setBottomLineStyle:CellLineStyleDefault];
     }
     
@@ -163,12 +169,6 @@
                            @"title" : @"视频聊天"};
     
     _data = [[NSMutableArray alloc] initWithObjects:@[], @[dic], @[dic1, dic2], @[dic3, dic4, dic5], @[dic6, dic7], nil];
-    
-    _user = [[TLUser alloc] init];
-    _user.username = @"张三疯";
-    _user.userID = @"zsf001";
-    _user.nikename = @"你是三疯吗";
-    _user.avatarURL = [NSURL URLWithString:@"3.png"];
     
     [self.tableView reloadData];
 }

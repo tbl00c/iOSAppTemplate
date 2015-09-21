@@ -96,14 +96,22 @@
     [_avatarImageView setImage:[UIImage imageNamed:[NSString stringWithFormat: @"%@", user.avatarURL]]];
     if (user.username && user.username.length > 0) {
         [_usernameLabel setText:user.username];
-        [_nikeNameLabel setText:[NSString stringWithFormat:@"昵称：%@", user.nikename]];
+        if (user.nikename && user.nikename.length > 0) {
+            [_nikeNameLabel setText:[NSString stringWithFormat:@"昵称：%@", user.nikename]];
+        }
+        else {
+            [_nikeNameLabel setText:@""];
+        }
     }
-    else {
+    else if (user.nikename && user.nikename.length > 0) {
         [_usernameLabel setText:user.nikename];
     }
     
     if (user.userID && user.userID.length > 0) {
         [_userIDLabel setText:[NSString stringWithFormat:@"微信号：%@", user.userID]];
+    }
+    else {
+        [_userIDLabel setText:@""];
     }
 }
 

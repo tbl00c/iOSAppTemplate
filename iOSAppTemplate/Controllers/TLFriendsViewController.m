@@ -224,14 +224,18 @@
         _friendsArray = [[NSMutableArray alloc] initWithCapacity:3];
         TLUser *user1 = [[TLUser alloc] init];
         user1.username = @"马云";
+        user1.nikename = @"小云云";
+        user1.userID = @"yun";
         user1.avatarURL = [NSURL URLWithString:@"1.jpg"];
         [_friendsArray addObject:user1];
         TLUser *user2 = [[TLUser alloc] init];
         user2.username = @"李彦宏";
+        user2.userID = @"小白2";
         user2.avatarURL = [NSURL URLWithString:@"3.png"];
         [_friendsArray addObject:user2];
         TLUser *user3 = [[TLUser alloc] init];
         user3.username = @"马化腾";
+        user3.userID = @"tengteng";
         user3.avatarURL = [NSURL URLWithString:@"4.jpg"];
         [_friendsArray addObject:user3];
         TLUser *user4 = [[TLUser alloc] init];
@@ -244,6 +248,7 @@
         [_friendsArray addObject:user5];
         TLUser *user6 = [[TLUser alloc] init];
         user6.username = @"库克";
+        user6.userID = @"kukuku";
         user6.avatarURL = [NSURL URLWithString:@"7.jpg"];
         [_friendsArray addObject:user6];
         TLUser *user7 = [[TLUser alloc] init];
@@ -252,6 +257,7 @@
         [_friendsArray addObject:user7];
         TLUser *user8 = [[TLUser alloc] init];
         user8.username = @"Bill";
+        user8.userID = @"Blue";
         user8.avatarURL = [NSURL URLWithString:@"5.jpg"];
         [_friendsArray addObject:user8];
         

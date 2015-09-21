@@ -72,14 +72,14 @@
     
     if (indexPath.row == 0) {
         [cell setTopLineStyle:CellLineStyleFill];
-        [cell setBottomLineStyle:CellLineStyleDefault];
-    }
-    if (indexPath.row == array.count - 1) {
-        [cell setTopLineStyle:CellLineStyleNone];
-        [cell setBottomLineStyle:CellLineStyleFill];
     }
     else {
         [cell setTopLineStyle:CellLineStyleNone];
+    }
+    if (indexPath.row == array.count - 1) {
+        [cell setBottomLineStyle:CellLineStyleFill];
+    }
+    else {
         [cell setBottomLineStyle:CellLineStyleDefault];
     }
     

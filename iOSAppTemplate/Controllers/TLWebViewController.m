@@ -35,6 +35,8 @@
 - (void) setUrlString:(NSString *)urlString
 {
     _urlString = urlString;
+    [MBProgressHUD showHUDAddedTo:self.webView animated:YES];
+    
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [_webView loadRequest:request];
@@ -43,8 +45,14 @@
 #pragma mark - UIWebViewDelegate
 - (void) webViewDidFinishLoad:(UIWebView *)webView
 {
+    [MBProgressHUD hideHUDForView:self.webView animated:YES];
     NSString *title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     [self.navigationItem setTitle:title];
+}
+
+- (void) webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [MBProgressHUD hideHUDForView:self.webView animated:YES];
 }
 
 @end
