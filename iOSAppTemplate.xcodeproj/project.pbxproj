@@ -11,14 +11,9 @@
 		2D1B0E451BAB017600AE423F /* TLDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B0E441BAB017600AE423F /* TLDiscoverViewController.m */; };
 		2D1B0E4E1BAB280A00AE423F /* TLMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B0E4D1BAB280A00AE423F /* TLMineViewController.m */; };
 		2D1B0E521BAB2E2F00AE423F /* TLUserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1B0E511BAB2E2F00AE423F /* TLUserDetailCell.m */; };
-		2D1B0E551BAB343300AE423F /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E531BAB343300AE423F /* 3.png */; };
-		2D1B0E581BAB356400AE423F /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E571BAB356400AE423F /* 5.jpg */; };
 		2D1B0E5A1BAB35AC00AE423F /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E591BAB35AC00AE423F /* 1.jpg */; };
-		2D1B0E5C1BAB362800AE423F /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E5B1BAB362800AE423F /* 2.jpg */; };
-		2D1B0E5E1BAB367700AE423F /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E5D1BAB367700AE423F /* 6.jpg */; };
 		2D1B0E601BAB369500AE423F /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E5F1BAB369500AE423F /* 4.jpg */; };
 		2D1B0E621BAB36B800AE423F /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E611BAB36B800AE423F /* 8.jpg */; };
-		2D1B0E641BAB36CC00AE423F /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 2D1B0E631BAB36CC00AE423F /* 7.jpg */; };
 		2D1BA7121BA578D2009BB687 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BA7111BA578D2009BB687 /* main.m */; };
 		2D1BA7151BA578D2009BB687 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BA7141BA578D2009BB687 /* AppDelegate.m */; };
 		2D1BA72F1BA578D2009BB687 /* iOSAppTemplateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BA72E1BA578D2009BB687 /* iOSAppTemplateTests.m */; };
@@ -50,6 +45,10 @@
 		C24769D81BA97DE1007DC0ED /* TLConfigration.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769D71BA97DE1007DC0ED /* TLConfigration.m */; };
 		C2867FF31BABEDD600F56B99 /* TLFounctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2867FF11BABED4800F56B99 /* TLFounctionCell.m */; };
 		C2867FF61BABFD2A00F56B99 /* TLButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C2867FF51BABFD2A00F56B99 /* TLButtonCell.m */; };
+		C2A8520F1BAFEB8100699F2B /* 10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C2A8520E1BAFEB8100699F2B /* 10.jpeg */; };
+		C2A852111BAFEBC300699F2B /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2A852101BAFEBC300699F2B /* 11.jpg */; };
+		C2A8521B1BAFF56A00699F2B /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2A8521A1BAFF56A00699F2B /* 12.jpg */; };
+		C2A8521D1BAFF57A00699F2B /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C2A8521C1BAFF57A00699F2B /* 7.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,14 +70,9 @@
 		2D1B0E4D1BAB280A00AE423F /* TLMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLMineViewController.m; sourceTree = "<group>"; };
 		2D1B0E501BAB2E2F00AE423F /* TLUserDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLUserDetailCell.h; sourceTree = "<group>"; };
 		2D1B0E511BAB2E2F00AE423F /* TLUserDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLUserDetailCell.m; sourceTree = "<group>"; };
-		2D1B0E531BAB343300AE423F /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
-		2D1B0E571BAB356400AE423F /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
 		2D1B0E591BAB35AC00AE423F /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
-		2D1B0E5B1BAB362800AE423F /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
-		2D1B0E5D1BAB367700AE423F /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
 		2D1B0E5F1BAB369500AE423F /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
 		2D1B0E611BAB36B800AE423F /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
-		2D1B0E631BAB36CC00AE423F /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
 		2D1BA70C1BA578D2009BB687 /* iOSAppTemplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSAppTemplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1BA7101BA578D2009BB687 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2D1BA7111BA578D2009BB687 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -142,6 +136,10 @@
 		C2867FF11BABED4800F56B99 /* TLFounctionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFounctionCell.m; sourceTree = "<group>"; };
 		C2867FF41BABFD2900F56B99 /* TLButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLButtonCell.h; sourceTree = "<group>"; };
 		C2867FF51BABFD2A00F56B99 /* TLButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLButtonCell.m; sourceTree = "<group>"; };
+		C2A8520E1BAFEB8100699F2B /* 10.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpeg; sourceTree = "<group>"; };
+		C2A852101BAFEBC300699F2B /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
+		C2A8521A1BAFF56A00699F2B /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
+		C2A8521C1BAFF57A00699F2B /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
 		DCCD342CB6E933ACE2862878 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -412,14 +410,13 @@
 		C24769981BA96A23007DC0ED /* images@2x */ = {
 			isa = PBXGroup;
 			children = (
+				C2A8521A1BAFF56A00699F2B /* 12.jpg */,
+				C2A8521C1BAFF57A00699F2B /* 7.jpg */,
+				C2A852101BAFEBC300699F2B /* 11.jpg */,
 				2D1B0E591BAB35AC00AE423F /* 1.jpg */,
-				2D1B0E5B1BAB362800AE423F /* 2.jpg */,
+				C2A8520E1BAFEB8100699F2B /* 10.jpeg */,
 				2D1B0E5F1BAB369500AE423F /* 4.jpg */,
-				2D1B0E5D1BAB367700AE423F /* 6.jpg */,
-				2D1B0E631BAB36CC00AE423F /* 7.jpg */,
-				2D1B0E571BAB356400AE423F /* 5.jpg */,
 				2D1B0E611BAB36B800AE423F /* 8.jpg */,
-				2D1B0E531BAB343300AE423F /* 3.png */,
 			);
 			path = "images@2x";
 			sourceTree = "<group>";
@@ -580,14 +577,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D1B0E5C1BAB362800AE423F /* 2.jpg in Resources */,
-				2D1B0E551BAB343300AE423F /* 3.png in Resources */,
 				2D1B0E5A1BAB35AC00AE423F /* 1.jpg in Resources */,
-				2D1B0E641BAB36CC00AE423F /* 7.jpg in Resources */,
-				2D1B0E581BAB356400AE423F /* 5.jpg in Resources */,
+				C2A8520F1BAFEB8100699F2B /* 10.jpeg in Resources */,
+				C2A8521D1BAFF57A00699F2B /* 7.jpg in Resources */,
 				2D1B0E601BAB369500AE423F /* 4.jpg in Resources */,
+				C2A852111BAFEBC300699F2B /* 11.jpg in Resources */,
+				C2A8521B1BAFF56A00699F2B /* 12.jpg in Resources */,
 				2D1BA7431BA57BA9009BB687 /* Images.xcassets in Resources */,
-				2D1B0E5E1BAB367700AE423F /* 6.jpg in Resources */,
 				2D1B0E621BAB36B800AE423F /* 8.jpg in Resources */,
 				C24769961BA969E3007DC0ED /* IAT.plist in Resources */,
 			);

@@ -42,13 +42,13 @@
 {
     NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:20];
     
-    TLConversation *item = [[TLConversation alloc] init];
-    item.from = [NSString stringWithFormat:@"张三疯"];
-    item.message = @"人生得意须尽欢，莫使金樽空对月!";
-    item.avatarURL = [NSURL URLWithString:@"8.jpg"];
-    item.messageCount = 0;
-    item.date = [NSDate date];
-    [models addObject:item];
+    TLConversation *item1 = [[TLConversation alloc] init];
+    item1.from = [NSString stringWithFormat:@"李秀莲"];
+    item1.message = @"开饭了！！";
+    item1.avatarURL = [NSURL URLWithString:@"8.jpg"];
+    item1.messageCount = 0;
+    item1.date = [NSDate date];
+    [models addObject:item1];
     
     return models;
 }
