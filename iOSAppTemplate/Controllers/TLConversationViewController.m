@@ -93,7 +93,6 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     if (_chatVC == nil) {
         _chatVC = [[TLChatViewController alloc] init];
     }
@@ -103,8 +102,10 @@
     user7.nikename = @"小贝";
     user7.avatarURL = [NSURL URLWithString:@"10.jpeg"];
     _chatVC.user = user7;
+    [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:_chatVC animated:YES];
-    
+    [self setHidesBottomBarWhenPushed:NO];
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 - (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

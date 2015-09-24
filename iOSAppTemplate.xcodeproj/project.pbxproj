@@ -23,6 +23,8 @@
 		2DAF76BB1BA582E80047E869 /* TLRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DAF76BA1BA582E80047E869 /* TLRootViewController.m */; };
 		2DAF76BE1BA583670047E869 /* TLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DAF76BD1BA583670047E869 /* TLNavigationController.m */; };
 		7F9BFFFCBF4DB85D4C25D242 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431F7BA1B753F37D7C06FD /* libPods.a */; };
+		C2011C271BB3FF4200DB34B3 /* TLChatMessageViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = C2011C261BB3FF4200DB34B3 /* TLChatMessageViewContrller.m */; };
+		C2011C2A1BB405F600DB34B3 /* TLInputBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2011C291BB405F600DB34B3 /* TLInputBoxViewController.m */; };
 		C21A31C51BABDFCC0017189D /* TLDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C21A31C41BABDFCC0017189D /* TLDetailInfoCell.m */; };
 		C24769751BA96623007DC0ED /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769741BA96623007DC0ED /* common.m */; };
 		C247697F1BA96714007DC0ED /* iOSAppTemplate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C247697D1BA96714007DC0ED /* iOSAppTemplate.xcdatamodeld */; };
@@ -98,6 +100,10 @@
 		2DAF76BD1BA583670047E869 /* TLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLNavigationController.m; sourceTree = "<group>"; };
 		38431F7BA1B753F37D7C06FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D5D1B7652B72A32F8E9A66 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C2011C251BB3FF4200DB34B3 /* TLChatMessageViewContrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatMessageViewContrller.h; sourceTree = "<group>"; };
+		C2011C261BB3FF4200DB34B3 /* TLChatMessageViewContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatMessageViewContrller.m; sourceTree = "<group>"; };
+		C2011C281BB405F600DB34B3 /* TLInputBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLInputBoxViewController.h; sourceTree = "<group>"; };
+		C2011C291BB405F600DB34B3 /* TLInputBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLInputBoxViewController.m; sourceTree = "<group>"; };
 		C21A31C31BABDFCC0017189D /* TLDetailInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDetailInfoCell.h; sourceTree = "<group>"; };
 		C21A31C41BABDFCC0017189D /* TLDetailInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDetailInfoCell.m; sourceTree = "<group>"; };
 		C247696F1BA96589007DC0ED /* macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
@@ -534,6 +540,8 @@
 		C29A31C31BB39F5E00109CFC /* InputBoxVC */ = {
 			isa = PBXGroup;
 			children = (
+				C2011C281BB405F600DB34B3 /* TLInputBoxViewController.h */,
+				C2011C291BB405F600DB34B3 /* TLInputBoxViewController.m */,
 			);
 			name = InputBoxVC;
 			sourceTree = "<group>";
@@ -541,6 +549,8 @@
 		C29A31C41BB39F6700109CFC /* MessageListVC */ = {
 			isa = PBXGroup;
 			children = (
+				C2011C251BB3FF4200DB34B3 /* TLChatMessageViewContrller.h */,
+				C2011C261BB3FF4200DB34B3 /* TLChatMessageViewContrller.m */,
 			);
 			name = MessageListVC;
 			sourceTree = "<group>";
@@ -706,7 +716,9 @@
 				2D01200E1BAC76A500CC9988 /* TLWebViewController.m in Sources */,
 				C24769D01BA96EF1007DC0ED /* TLConversation.m in Sources */,
 				C24769BA1BA96B23007DC0ED /* TLAddFriendViewController.m in Sources */,
+				C2011C2A1BB405F600DB34B3 /* TLInputBoxViewController.m in Sources */,
 				C29A31C21BB39D6900109CFC /* TLChatViewController.m in Sources */,
+				C2011C271BB3FF4200DB34B3 /* TLChatMessageViewContrller.m in Sources */,
 				C21A31C51BABDFCC0017189D /* TLDetailInfoCell.m in Sources */,
 				C24769C91BA96CCC007DC0ED /* TLFriendCell.m in Sources */,
 				C24769901BA967D9007DC0ED /* UIImage+TL.m in Sources */,
