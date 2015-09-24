@@ -10,6 +10,7 @@
 #define iOSAppTemplate_PrefixHeader_pch
 
 #import "macros.h"
+#import "enumerate.h"
 #import "common.h"
 
 #pragma mark - Category

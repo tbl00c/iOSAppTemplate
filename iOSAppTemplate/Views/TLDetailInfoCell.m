@@ -19,7 +19,7 @@
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        _cellType = TLDetailInfoCellLeft;
+        _cellType = TLSettingItemTypeLeft;
         _titleLabel = [[UILabel alloc] init];
         [_titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
         [self addSubview:_titleLabel];
@@ -37,7 +37,7 @@
     
     float spaceX = self.frameWidth * 0.05;
     float spaceY = self.frameHeight * 0.17;
-    float labelWidth = self.frameWidth * (_cellType == TLDetailInfoCellLeft ? 0.21 : 0.4);
+    float labelWidth = self.frameWidth * (_cellType == TLSettingItemTypeLeft ? 0.21 : 0.4);
     float labelHeight = self.frameHeight - spaceY * 2;
     [_titleLabel setFrame:CGRectMake(spaceX, spaceY, labelWidth, labelHeight)];
     
@@ -54,12 +54,6 @@
             spaceX = imageWidth * 0.1;
         }
     }
-}
-
-- (void) setCellType:(TLDetailInfoCellType)cellType
-{
-    _cellType = cellType;
-    [self sizeToFit];
 }
 
 - (void) setTitle:(NSString *)title

@@ -8,8 +8,9 @@
 
 #import "TLDiscoverViewController.h"
 #import "TLWebViewController.h"
-
 #import "TLFounctionCell.h"
+
+#import "TLUIHelper.h"
 
 @interface TLDiscoverViewController ()
 
@@ -24,16 +25,12 @@
     [super viewDidLoad];
     [self setHidesBottomBarWhenPushed:NO];
     [self.navigationItem setTitle:@"发现"];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)];
+    [self.tableView setTableHeaderView:view];
     [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
     [self.tableView registerClass:[TLFounctionCell class] forCellReuseIdentifier:@"FunctionCell"];
     
     [self initTestData];
-}
-
-- (void) viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
- 
 }
 
 #pragma mark - UITableView
@@ -45,8 +42,8 @@
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *array = [_data objectAtIndex:section];
-    return array.count;
+    TLSettingGrounp *group = [_data objectAtIndex:section];
+    return group.itemsCount;
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -61,27 +58,18 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    TLSettingGrounp *group = [_data objectAtIndex:indexPath.section];
+    TLSettingItem *item = [group itemAtIndex:indexPath.row];
+    
     TLFounctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
-    NSArray *array = [_data objectAtIndex:indexPath.section];
-    NSDictionary *dic = [array objectAtIndex:indexPath.row];
-    [cell setImageName:[dic objectForKey:@"image"]];
-    [cell setTitle:[dic objectForKey:@"title"]];
+    [cell setImageName:item.imageName];
+    [cell setTitle:item.title];
     [cell setBackgroundColor:[UIColor whiteColor]];
     [cell setUserInteractionEnabled:YES];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
-    if (indexPath.row == 0) {
-        [cell setTopLineStyle:CellLineStyleFill];
-    }
-    else {
-        [cell setTopLineStyle:CellLineStyleNone];
-    }
-    if (indexPath.row == array.count - 1) {
-        [cell setBottomLineStyle:CellLineStyleFill];
-    }
-    else {
-        [cell setBottomLineStyle:CellLineStyleDefault];
-    }
+    indexPath.row == 0 ? [cell setTopLineStyle:CellLineStyleFill] :[cell setTopLineStyle:CellLineStyleNone];
+    indexPath.row == group.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleFill] : [cell setBottomLineStyle:CellLineStyleDefault];
     
     return cell;
 }
@@ -93,20 +81,16 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 15.0f;
-    }
     return 20.0f;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *array = [_data objectAtIndex:indexPath.section];
-    NSDictionary *dic = [array objectAtIndex:indexPath.row];
-    NSString *title = [dic objectForKey:@"title"];
+    TLSettingGrounp *group = [_data objectAtIndex:indexPath.section];
+    TLSettingItem *item = [group itemAtIndex:indexPath.row];
     
     [self setHidesBottomBarWhenPushed:YES];
-    if ([title isEqualToString:@"购物"]) {
+    if ([item.title isEqualToString:@"购物"]) {
         [self.webVC setUrlString:@"http://wq.jd.com"];
         [self.navigationController pushViewController:self.webVC animated:YES];
     }
@@ -126,21 +110,8 @@
 #pragma mark - 初始化
 - (void) initTestData
 {
-    NSDictionary *dic = @{@"title" : @"朋友圈",
-                          @"image" : @"ff_IconShowAlbum"};
-    NSDictionary *dic1 = @{@"title" : @"扫一扫",
-                          @"image" : @"ff_IconQRCode"};
-    NSDictionary *dic2 = @{@"title" : @"摇一摇",
-                           @"image" : @"ff_IconShake"};
-    NSDictionary *dic3 = @{@"title" : @"附近的人",
-                           @"image" : @"ff_IconLocationService"};
-    NSDictionary *dic4 = @{@"title" : @"漂流瓶",
-                           @"image" : @"ff_IconBottle"};
-    NSDictionary *dic5 = @{@"title" : @"购物",
-                          @"image" : @"CreditCard_ShoppingBag"};
-    NSDictionary *dic6 = @{@"title" : @"游戏",
-                           @"image" : @"MoreGame"};
-    _data = [[NSMutableArray alloc] initWithObjects:@[], @[dic], @[dic1, dic2], @[dic3, dic4], @[dic5, dic6], nil];
+    
+    _data = [TLUIHelper getDiscoverItems];
     
     [self.tableView reloadData];
 }

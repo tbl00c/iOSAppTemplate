@@ -8,6 +8,7 @@
 
 #import "TLFriendsViewController.h"
 #import "TLDataHelper.h"
+#import "TLUIHelper.h"
 
 #import "TLFriendSearchViewController.h"
 #import "TLAddFriendViewController.h"
@@ -16,6 +17,8 @@
 #import "TLFriendCell.h"
 
 @interface TLFriendsViewController () <UISearchBarDelegate>
+
+@property (nonatomic, strong) TLSettingGrounp *functionGroup;     // 功能列表
 
 @property (nonatomic, strong) UIBarButtonItem *addFriendButton;
 @property (nonatomic, strong) UISearchController *searchController;
@@ -64,7 +67,7 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return _functionData.count;
+        return _functionGroup.itemsCount;
     }
     NSArray *array = [_data objectAtIndex:section - 1];
     return array.count;
@@ -91,13 +94,13 @@
 {
     TLFriendCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FriendCell"];
     if (indexPath.section == 0) {
-        NSDictionary *dic = [_functionData objectAtIndex:indexPath.row];
+        TLSettingItem *item = [_functionGroup itemAtIndex:indexPath.row];
         TLUser *user = [[TLUser alloc] init];
-        user.username = [dic objectForKey:@"title"];
-        user.avatarURL = [dic objectForKey:@"image"];
+        user.username = item.title;
+        user.avatarURL = [NSURL URLWithString:item.imageName];
         [cell setUser:user];
         [cell setTopLineStyle:CellLineStyleNone];
-        if (indexPath.row == _functionData.count - 1) {
+        if (indexPath.row == _functionGroup.itemsCount - 1) {
             [cell setBottomLineStyle:CellLineStyleNone];
         }
         else {
@@ -263,15 +266,7 @@
         user7.avatarURL = [NSURL URLWithString:@"10.jpeg"];
         [_friendsArray addObject:user7];
         
-        NSDictionary *dic1 = @{@"image" : @"plugins_FriendNotify",
-                               @"title" : @"新的朋友"};
-        NSDictionary *dic2 = @{@"image" : @"add_friend_icon_addgroup",
-                               @"title" : @"群聊"};
-        NSDictionary *dic3 = @{@"image" : @"Contact_icon_ContactTag",
-                               @"title" : @"标签"};
-        NSDictionary *dic4 = @{@"image" : @"add_friend_icon_offical",
-                               @"title" : @"公众号"};
-        _functionData = [[NSMutableArray alloc] initWithObjects:dic1, dic2, dic3, dic4, nil];
+        _functionGroup = [TLUIHelper getFriensListItemsGroup];
         
         _data = [TLDataHelper getFriendListDataBy:_friendsArray];
         _section = [TLDataHelper getFriendListSectionBy:_data];

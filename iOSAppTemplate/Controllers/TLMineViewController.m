@@ -9,6 +9,7 @@
 #import "TLMineViewController.h"
 #import "TLFounctionCell.h"
 #import "TLUserDetailCell.h"
+#import "TLUIHelper.h"
 
 @implementation TLMineViewController
 
@@ -17,6 +18,8 @@
     [super viewDidLoad];
     [self setHidesBottomBarWhenPushed:NO];
     [self.navigationItem setTitle:@"我"];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)];
+    [self.tableView setTableHeaderView:view];
     [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
     [self.tableView registerClass:[TLFounctionCell class] forCellReuseIdentifier:@"FunctionCell"];
     [self.tableView registerClass:[TLUserDetailCell class] forCellReuseIdentifier:@"UserDetailCell"];
@@ -28,13 +31,16 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _data.count;
+    return _data ? _data.count + 1 : 0;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *array = [_data objectAtIndex:section];
-    return array.count;
+    if (section == 0) {
+        return 1;
+    }
+    TLSettingGrounp *group = [_data objectAtIndex:section - 1];
+    return group.itemsCount;
 }
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -49,59 +55,45 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *array = [_data objectAtIndex:indexPath.section];
-    NSDictionary *dic = [array objectAtIndex:indexPath.row];
- 
-    id cell = nil;
-    if ([dic objectForKey:@"mine"] != nil) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"UserDetailCell"];
+    if (indexPath.section == 0) {
+        TLUserDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserDetailCell"];
         [cell setUser:_user];
         [cell setCellType:UserDetailCellTypeMine];
         [cell setBackgroundColor:[UIColor whiteColor]];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    }
-    else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
-        [cell setImageName:[dic objectForKey:@"image"]];
-        [cell setTitle:[dic objectForKey:@"title"]];
-        [cell setBackgroundColor:[UIColor whiteColor]];
-        [cell setUserInteractionEnabled:YES];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [cell setTopLineStyle:CellLineStyleFill];
+        [cell setBottomLineStyle:CellLineStyleFill];
+        return cell;
     }
     
-    if (indexPath.row == 0) {
-        [cell setTopLineStyle:CellLineStyleFill];
-    }
-    else {
-        [cell setTopLineStyle:CellLineStyleNone];
-    }
-    if (indexPath.row == array.count - 1) {
-        [cell setBottomLineStyle:CellLineStyleFill];
-    }
-    else {
-        [cell setBottomLineStyle:CellLineStyleDefault];
-    }
+    TLSettingGrounp *group = [_data objectAtIndex:indexPath.section - 1];
+    TLSettingItem *item = [group itemAtIndex: indexPath.row];
+    
+    TLFounctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
+    [cell setImageName:item.imageName];
+    [cell setTitle:item.title];
+    [cell setBackgroundColor:[UIColor whiteColor]];
+    [cell setUserInteractionEnabled:YES];
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    
+    indexPath.row == 0 ? [cell setTopLineStyle:CellLineStyleFill] :[cell setTopLineStyle:CellLineStyleNone];
+    indexPath.row == group.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleFill] : [cell setBottomLineStyle:CellLineStyleDefault];
     
     return cell;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *array = [_data objectAtIndex:indexPath.section];
-    NSDictionary *dic = [array objectAtIndex:indexPath.row];;
-    if ([dic objectForKey:@"mine"] != nil) {
+    
+    if (indexPath.section == 0) {
         return 90.0f;
     }
-    else {
-        return 43.0f;
-    }
+
+    return 43.0f;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 15.0f;
-    }
     return 20.0f;
 }
 
@@ -113,26 +105,12 @@
 #pragma mark - 初始化
 - (void) initTestData
 {
-    NSDictionary *dic = @{@"mine" : @"YES"};
-    NSDictionary *dic1 = @{@"title" : @"相册",
-                           @"image" : @"MoreMyAlbum"};
-    NSDictionary *dic2 = @{@"title" : @"收藏",
-                           @"image" : @"MoreMyFavorites"};
-    NSDictionary *dic3 = @{@"title" : @"钱包",
-                           @"image" : @"MoreMyBankCard"};
-    NSDictionary *dic4 = @{@"title" : @"卡包",
-                           @"image" : @"MyCardPackageIcon"};
-    NSDictionary *dic5 = @{@"title" : @"表情",
-                           @"image" : @"MoreExpressionShops"};
-    NSDictionary *dic6 = @{@"title" : @"设置",
-                           @"image" : @"MoreSetting"};
-    
-    _data = [[NSMutableArray alloc] initWithObjects:@[], @[dic], @[dic1, dic2, dic3, dic4], @[dic5], @[dic6], nil];
+    _data = [TLUIHelper getMineVCItems];
     
     _user = [[TLUser alloc] init];
     _user.username = @"Bay、栢";
     _user.userID = @"li-bokun";
-    _user.avatarURL = [NSURL URLWithString:@"3.png"];
+    _user.avatarURL = [NSURL URLWithString:@"0.jpg"];
     
     [self.tableView reloadData];
 }

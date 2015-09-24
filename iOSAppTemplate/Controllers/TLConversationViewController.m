@@ -9,6 +9,7 @@
 #import "TLConversationViewController.h"
 
 #import "TLFriendSearchViewController.h"
+#import "TLChatViewController.h"
 
 #import "TLConversationCell.h"
 
@@ -16,6 +17,7 @@
 
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) TLFriendSearchViewController *searchVC;
+@property (nonatomic, strong) TLChatViewController *chatVC;
 @property (nonatomic, strong) UIBarButtonItem *navRightButton;
 
 @end
@@ -43,9 +45,9 @@
     NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:20];
     
     TLConversation *item1 = [[TLConversation alloc] init];
-    item1.from = [NSString stringWithFormat:@"李秀莲"];
-    item1.message = @"开饭了！！";
-    item1.avatarURL = [NSURL URLWithString:@"8.jpg"];
+    item1.from = [NSString stringWithFormat:@"莫小贝"];
+    item1.message = @"帅哥你好！！";
+    item1.avatarURL = [NSURL URLWithString:@"10.jpeg"];
     item1.messageCount = 0;
     item1.date = [NSDate date];
     [models addObject:item1];
@@ -92,6 +94,17 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    if (_chatVC == nil) {
+        _chatVC = [[TLChatViewController alloc] init];
+    }
+    TLUser *user7 = [[TLUser alloc] init];
+    user7.username = @"莫小贝";
+    user7.userID = @"XB";
+    user7.nikename = @"小贝";
+    user7.avatarURL = [NSURL URLWithString:@"10.jpeg"];
+    _chatVC.user = user7;
+    [self.navigationController pushViewController:_chatVC animated:YES];
+    
 }
 
 - (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath

@@ -17,6 +17,7 @@
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
         [self setTopLineStyle:CellLineStyleNone];
         [self setBottomLineStyle:CellLineStyleNone];
+        
         _button = [[UIButton alloc] init];
         [_button.layer setMasksToBounds:YES];
         [_button.layer setCornerRadius:5.0f];
