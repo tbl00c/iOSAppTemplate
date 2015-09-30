@@ -70,10 +70,7 @@
     TLSettingItem *item = [group itemAtIndex: indexPath.row];
     
     TLFounctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
-    [cell setImageName:item.imageName];
-    [cell setTitle:item.title];
-    [cell setBackgroundColor:[UIColor whiteColor]];
-    [cell setUserInteractionEnabled:YES];
+    [cell setItem:item];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     indexPath.row == 0 ? [cell setTopLineStyle:CellLineStyleFill] :[cell setTopLineStyle:CellLineStyleNone];

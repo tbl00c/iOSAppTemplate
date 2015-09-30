@@ -62,9 +62,7 @@
     TLSettingItem *item = [group itemAtIndex:indexPath.row];
     
     TLFounctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
-    [cell setImageName:item.imageName];
-    [cell setTitle:item.title];
-    [cell setBackgroundColor:[UIColor whiteColor]];
+    [cell setItem:item];
     [cell setUserInteractionEnabled:YES];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     

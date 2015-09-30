@@ -49,7 +49,7 @@
     TLSettingGrounp *group2 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:qrCode, shake, nil];
     [items addObject:group2];
     
-    TLSettingItem *loacation = [[TLSettingItem alloc] initWithTitle:@"附近的人" imageName:@"ff_IconLocationService"];
+    TLSettingItem *loacation = [[TLSettingItem alloc] initWithTitle:@"附近的人" subTitle:@"" imageName:@"ff_IconLocationService" subImageName:@"FootStep" type: TLSettingItemTypeDefault];
     TLSettingItem *bottle = [[TLSettingItem alloc] initWithTitle:@"漂流瓶" imageName:@"ff_IconBottle"];
     TLSettingGrounp *group3 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:loacation, bottle, nil];
     [items addObject:group3];
@@ -70,7 +70,7 @@
     TLSettingGrounp *group1 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:tag, phone, nil];
     [items addObject:group1];
     TLSettingItem *position = [[TLSettingItem alloc] initWithTitle:@"地区" subTitle:@"山东 青岛" type:TLSettingItemTypeLeft];
-    TLSettingItem *album = [[TLSettingItem alloc] initWithTitle:@"个人相册" subImages:[NSMutableArray arrayWithObjects:@"1.jpg", @"2.jpg", @"8.jpg", nil]];
+    TLSettingItem *album = [[TLSettingItem alloc] initWithTitle:@"个人相册" subImages:[NSMutableArray arrayWithObjects:@"1.jpg", @"2.jpg", @"8.jpg", @"0.jpg", nil]];
     TLSettingItem *more = [[TLSettingItem alloc] initWithTitle:@"更多" type:TLSettingItemTypeLeft];
     TLSettingGrounp *group2 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:position, album, more, nil];
     [items addObject:group2];

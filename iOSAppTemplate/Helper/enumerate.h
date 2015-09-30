@@ -11,9 +11,10 @@
 #import <Foundation/Foundation.h>
 
 typedef NS_ENUM(NSInteger, TLSettingItemType) {
-    TLSettingItemTypeDefault,
-    TLSettingItemTypeLeft,
-    TLSettingItemTypeButton,
+    TLSettingItemTypeDefault,       // image, title, rightTitle, rightImage
+    TLSettingItemTypeDefaultL,      // image, title, leftImage, rightTitle
+    TLSettingItemTypeLeft,          // image, title, leftTitle, leftImage
+    TLSettingItemTypeButton,        // button
 };
 
 

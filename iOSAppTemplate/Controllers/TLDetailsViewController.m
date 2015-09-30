@@ -8,8 +8,7 @@
 
 #import "TLDetailsViewController.h"
 #import "TLUserDetailCell.h"
-#import "TLDetailInfoCell.h"
-#import "TLButtonCell.h"
+#import "TLFounctionCell.h"
 
 #import "TLUIHelper.h"
 
@@ -28,8 +27,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)];
     [self.tableView setTableHeaderView:view];
     [self.tableView registerClass:[TLUserDetailCell class] forCellReuseIdentifier:@"UserDetailCell"];
-    [self.tableView registerClass:[TLDetailInfoCell class] forCellReuseIdentifier:@"DetailInfoCell"];
-    [self.tableView registerClass:[TLButtonCell class] forCellReuseIdentifier:@"ButtonCell"];
+    [self.tableView registerClass:[TLFounctionCell class] forCellReuseIdentifier:@"DetailInfoCell"];
     [self initTestData];
 }
 
@@ -79,21 +77,19 @@
     }
     TLSettingGrounp *group = [_data objectAtIndex:indexPath.section - 1];
     TLSettingItem *item = [group itemAtIndex:indexPath.row];
+
+    TLFounctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DetailInfoCell"];
+    [cell setItem:item];
     if (item.type == TLSettingItemTypeButton) {
-        TLButtonCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ButtonCell"];
-        [cell setButtonTitle:item.title];
         if ([item.title isEqualToString:@"发消息"]) {
             [cell setButtonBackgroundGColor:DEFAULT_GREEN_COLOR];
             [cell setButtonTitleColor:[UIColor whiteColor]];
         }
+        [cell setTopLineStyle:CellLineStyleNone];
+        [cell setBottomLineStyle:CellLineStyleNone];
         return cell;
     }
-
-    TLDetailInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DetailInfoCell"];
-    [cell setCellType:item.type];
-    [cell setTitle:item.title];
-    [cell setSubTitle:item.subTitle];
-    [cell setImagesArray:item.subImages];
+    [cell setTitleFontSize:15.0f];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     indexPath.row == 0 ? [cell setTopLineStyle:CellLineStyleFill] :[cell setTopLineStyle:CellLineStyleNone];

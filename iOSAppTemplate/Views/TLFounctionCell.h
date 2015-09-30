@@ -7,12 +7,18 @@
 //
 
 #import "CommonTableViewCell.h"
+#import "TLSetting.h"
 
 @interface TLFounctionCell : CommonTableViewCell
 
-@property (nonatomic, strong) NSString *imageName;
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *subTitle;
-@property (nonatomic, strong) NSString *subImageName;
+// 一般Type
+@property (nonatomic, strong) TLSettingItem *item;
+@property (nonatomic, assign) CGFloat titleFontSize;
+
+// buttonType 用
+@property (nonatomic, assign) UIColor *buttonTitleColor;
+@property (nonatomic, assign) UIColor *buttonBackgroundGColor;
+
+- (void) addTarget:(id)target action:(SEL)action;
 
 @end

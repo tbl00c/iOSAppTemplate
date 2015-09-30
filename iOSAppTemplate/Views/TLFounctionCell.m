@@ -13,6 +13,10 @@
 
 @interface TLFounctionCell ()
 
+@property (nonatomic, strong) NSMutableArray *imageViewsData;
+
+@property (nonatomic, strong) UIButton *button;
+
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subTitleLabel;
 @property (nonatomic, strong) UIImageView *mainImageView;
@@ -21,15 +25,33 @@
 @end
 
 @implementation TLFounctionCell
-
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        _mainImageView = [[UIImageView alloc] init];
-        [self addSubview:_mainImageView];
         _titleLabel = [[UILabel alloc] init];
         [_titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
         [self addSubview:_titleLabel];
+        _subTitleLabel = [[UILabel alloc] init];
+        [_subTitleLabel setFont:[UIFont systemFontOfSize:15.0f]];
+        [self addSubview:_subTitleLabel];
+        _mainImageView = [[UIImageView alloc] init];
+        [self addSubview:_mainImageView];
+        _subImageView = [[UIImageView alloc] init];
+        [self addSubview:_subImageView];
+
+        _button = [[UIButton alloc] init];
+        [_button.layer setMasksToBounds:YES];
+        [_button.layer setCornerRadius:5.0f];
+        [_button.layer setBorderWidth:0.5f];
+        [_button.layer setBorderColor:DEFAULT_LINE_GRAY_COLOR.CGColor];
+        [_button setBackgroundColor:[UIColor whiteColor]];
+        [_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [self addSubview:_button];
+        [_titleLabel setHidden:YES];
+        [_subTitleLabel setHidden:YES];
+        [_mainImageView setHidden:YES];
+        [_subImageView setHidden:YES];
+        [_button setHidden:YES];
     }
     return self;
 }
@@ -39,24 +61,184 @@
     self.leftFreeSpace = self.frameWidth * 0.05;
     [super layoutSubviews];
     
+    if (_item == nil) {
+        return;
+    }
+    
+    if (_item.type == TLSettingItemTypeButton) {
+        float buttonX = self.frameWidth * 0.04;
+        float buttonY = self.frameHeight * 0.09;
+        float buttonWidth = self.frameWidth - buttonX * 2;
+        float buttonHeight = self.frameHeight - buttonY * 2;
+        [_button setHidden:NO];
+        [_button setFrame:CGRectMake(buttonX, 0, buttonWidth, buttonHeight)];
+        return;
+    }
+    else {
+        [_button setHidden:YES];
+    }
+    
     float spaceX = self.frameWidth * 0.05;
     float spaceY = self.frameHeight * 0.22;
-    float imageWidth = self.frameHeight - spaceY * 2;
-    [_mainImageView setFrame:CGRectMake(spaceX, spaceY, imageWidth, imageWidth)];
+    float height = self.frameHeight - spaceY * 2;
+    spaceY -= 0.5;
     
-    float labelX = imageWidth + spaceX * 2;
-    float labelWidth = self.frameWidth - labelX - spaceX * 1.5;
-    [_titleLabel setFrame:CGRectMake(labelX, spaceY, labelWidth, imageWidth)];
+    // 左半部分
+    float x = spaceX;
+    // 有主图片
+    if (_item.imageName != nil && _item.imageName.length > 0) {
+        [_mainImageView setFrame:CGRectMake(x, spaceY, height, height)];
+        x += height + spaceX;
+    }
+    // 有主标题
+    if (_item.title != nil && _item.title.length > 0) {
+        float maxWidth = _item.type == TLSettingItemTypeLeft ? 70 : self.frameWidth * 0.45;
+        float labelWidth = [_titleLabel sizeThatFits:CGSizeMake(maxWidth, MAXFLOAT)].width;
+        [_titleLabel setFrame:CGRectMake(x, spaceY, labelWidth, height)];
+        x += maxWidth + spaceX * 0.7;
+    }
+    
+    // 右半部分
+    if (_item.type == TLSettingItemTypeDefaultL) {
+        float x = self.frameWidth * 0.9;
+        if (_item.subTitle != nil && _item.subTitle.length > 0) {
+            float labelWidth = [_subTitleLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)].width;
+            x -= labelWidth;
+            [_subTitleLabel setFrame:CGRectMake(x, spaceY, labelWidth, height)];
+            x -= spaceX * 0.5;
+        }
+        if (_item.subImageName != nil && _item.subImageName.length > 0) {
+            float y = self.frameHeight * 0.3;
+            float w = self.frameHeight - y * 2;
+            x -= w;
+            [_subImageView setFrame:CGRectMake(x, y, w, w)];
+        }
+    }
+    else if (_item.type == TLSettingItemTypeDefault) {
+        float x = self.frameWidth * 0.9;
+        if (_item.subImageName != nil && _item.subImageName.length > 0) {
+            float y = self.frameHeight * 0.3;
+            float w = self.frameHeight - y * 2;
+            x -= w;
+            [_subImageView setFrame:CGRectMake(x, y, w, w)];
+            x -= (w + spaceX * 0.5);
+        }
+        if (_item.subTitle != nil && _item.subTitle.length > 0) {
+            float labelWidth = [_subTitleLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)].width;
+            x -= labelWidth;
+            [_subTitleLabel setFrame:CGRectMake(x, spaceY, labelWidth, height)];
+        }
+    }
+    else if (_item.type == TLSettingItemTypeLeft) {
+        if (_item.subTitle != nil && _item.subTitle.length > 0) {
+            float maxWidth = self.frameWidth * 0.45;
+            [_subTitleLabel setFrame:CGRectMake(x, spaceY, maxWidth, height)];
+        }
+        else if (_imageViewsData && _imageViewsData.count > 0) {
+            float imageWidth = self.frameHeight * 0.65;
+            float width = self.frameWidth * 0.9 - x;
+            float space = 0;
+            NSUInteger count = width / imageWidth * 1.1;
+            count = count < _imageViewsData.count ? count : _imageViewsData.count;
+            for (int i = 0; i < count; i ++) {
+                UIImageView *iV = [_imageViewsData objectAtIndex:i];
+                [iV setFrame:CGRectMake(x + (imageWidth + space) * i, (self.frameHeight - imageWidth) / 2, imageWidth, imageWidth)];
+                [iV setHidden:NO];
+                space = imageWidth * 0.1;
+            }
+        }
+    }
 }
 
-- (void) setTitle:(NSString *)title
+- (void) setItem:(TLSettingItem *)item
 {
-    [_titleLabel setText:title];
+    _item = item;
+    // 主图片
+    if (item.imageName != nil && item.imageName.length > 0) {
+        [_mainImageView setImage:[UIImage imageNamed:item.imageName]];
+        [_mainImageView setHidden:NO];
+    }
+    else {
+        [_mainImageView setHidden:YES];
+    }
+    // 主标题
+    if (item.title != nil && item.title.length > 0) {
+        [_titleLabel setText:item.title];
+        [_titleLabel setHidden:NO];
+    }
+    else {
+        [_titleLabel setHidden:YES];
+    }
+    // 副图片
+    if (item.subImageName != nil && item.subImageName.length > 0) {
+        [_subImageView setImage:[UIImage imageNamed:item.subImageName]];
+        [_subImageView setHidden:NO];
+    }
+    else {
+        [_subImageView setHidden:YES];
+    }
+    // 副标题
+    if (item.subTitle != nil && item.subTitle.length > 0) {
+        [_subTitleLabel setText:item.subTitle];
+        [_subTitleLabel setHidden:NO];
+    }
+    else {
+        [_subTitleLabel setHidden:YES];
+    }
+    // 图册
+    if (_imageViewsData != nil) {
+        for (UIImageView *iV in _imageViewsData) {
+            [iV removeFromSuperview];
+        }
+        [_imageViewsData removeAllObjects];
+    }
+    if (item.subImages != nil && item.subImages.count > 0) {
+        if (_imageViewsData == nil) {
+            _imageViewsData = [[NSMutableArray alloc] init];
+        }
+        for (NSString *imageName in item.subImages) {
+            UIImageView *iV = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
+            [iV setHidden:YES];
+            [_imageViewsData addObject:iV];
+            [self addSubview:iV];
+        }
+    }
+    
+    // buttonType
+    if (_item.type == TLSettingItemTypeButton && _item.title != nil && _item.title.length > 0) {
+        [_button setTitle:_item.title forState:UIControlStateNormal];
+        [self setBackgroundColor:[UIColor clearColor]];
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [self setTopLineStyle:CellLineStyleNone];
+        [self setBottomLineStyle:CellLineStyleNone];
+    }
+    else {
+        [self setBackgroundColor:[UIColor whiteColor]];
+        [self setSelectionStyle:UITableViewCellSelectionStyleDefault];
+    }
+    
+    [self sizeToFit];
 }
 
-- (void) setImageName:(NSString *)imageName
+- (void) setTitleFontSize:(CGFloat)titleFontSize
 {
-    [_mainImageView setImage:[UIImage imageNamed:imageName]];
+    [_titleLabel setFont:[UIFont systemFontOfSize:titleFontSize]];
 }
+
+- (void) setButtonTitleColor:(UIColor *)buttonTitleColor
+{
+    [_button setTitleColor:buttonTitleColor forState:UIControlStateNormal];
+}
+
+- (void) setButtonBackgroundGColor:(UIColor *)buttonBackgroundGColor
+{
+    [_button setBackgroundColor:buttonBackgroundGColor];
+}
+
+- (void)addTarget:(nullable id)target action:(SEL)action
+{
+    [_button addTarget:target action:action forControlEvents:UIControlEventTouchDown];
+}
+
 
 @end
