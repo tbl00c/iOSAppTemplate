@@ -26,13 +26,17 @@
     TLSettingItem *album = [[TLSettingItem alloc] initWithTitle:@"相册" imageName:@"MoreMyAlbum"];
     TLSettingItem *favorite = [[TLSettingItem alloc] initWithTitle:@"收藏" imageName:@"MoreMyFavorites"];
     TLSettingItem *bank = [[TLSettingItem alloc] initWithTitle:@"钱包" imageName:@"MoreMyBankCard"];
-    TLSettingItem *expression = [[TLSettingItem alloc] initWithTitle:@"表情" imageName:@"MoreExpressionShops"];
-    TLSettingGrounp *group1 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:album, favorite, bank, expression, nil];
+    TLSettingItem *card = [[TLSettingItem alloc] initWithTitle:@"卡包" imageName:@"MyCardPackageIcon"];
+    TLSettingGrounp *group1 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:album, favorite, bank, card, nil];
     [items addObject:group1];
     
-    TLSettingItem *setting = [[TLSettingItem alloc] initWithTitle:@"设置" imageName:@"MoreSetting"];
-    TLSettingGrounp *group2 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:setting, nil];
+    TLSettingItem *expression = [[TLSettingItem alloc] initWithTitle:@"表情" imageName:@"MoreExpressionShops"];
+    TLSettingGrounp *group2 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:expression, nil];
     [items addObject:group2];
+    
+    TLSettingItem *setting = [[TLSettingItem alloc] initWithTitle:@"设置" imageName:@"MoreSetting"];
+    TLSettingGrounp *group3 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:setting, nil];
+    [items addObject:group3];
     
     return items;
 }
@@ -99,6 +103,30 @@
     TLSettingItem *proverbs = [[TLSettingItem alloc] initWithTitle:@"个性签名" subTitle:@"Hello world!"];
     TLSettingGrounp *second = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:sex, pos, proverbs, nil];
     [items addObject:second];
+    
+    return items;
+}
+
++ (NSMutableArray *) getSettingVCItems
+{
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    TLSettingItem *safe = [[TLSettingItem alloc] initWithTitle:@"账号和安全" subTitle:@"已保护" imageName:nil subImageName:@"ProfileLockOn" type:TLSettingItemTypeDefaultL];
+    TLSettingGrounp *group1 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:safe, nil];
+    [items addObject:group1];
+    
+    TLSettingItem *noti = [[TLSettingItem alloc] initWithTitle:@"新消息通知"];
+    TLSettingItem *privacy = [[TLSettingItem alloc] initWithTitle:@"隐私"];
+    TLSettingItem *normal = [[TLSettingItem alloc] initWithTitle:@"通用"];
+    TLSettingGrounp *group2 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:noti, privacy, normal, nil];
+    [items addObject:group2];
+    
+    TLSettingItem *about = [[TLSettingItem alloc] initWithTitle:@"关于微信"];
+    TLSettingGrounp *group3 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:about, nil];
+    [items addObject:group3];
+    
+    TLSettingItem *exit = [[TLSettingItem alloc] initWithTitle:@"退出登陆" type:TLSettingItemTypeMidTitle];
+    TLSettingGrounp *group4 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:exit, nil];
+    [items addObject:group4];
     
     return items;
 }

@@ -67,6 +67,15 @@
         return;
     }
     
+    if (_item.type == TLSettingItemTypeMidTitle) {
+        [_titleLabel setFrame:self.bounds];
+        [_titleLabel setTextAlignment:NSTextAlignmentCenter];
+        return;
+    }
+    else {
+        [_titleLabel setTextAlignment:NSTextAlignmentLeft];
+    }
+
     if (_item.type == TLSettingItemTypeButton) {
         float buttonX = self.frameWidth * 0.04;
         float buttonY = self.frameHeight * 0.09;
@@ -103,7 +112,7 @@
     // 右半部分
     float right = self.accessoryType == UITableViewCellAccessoryDisclosureIndicator ? 32 : 10;
     if (_item.type == TLSettingItemTypeAvatar) {        // 头像Cell
-        float x = self.frameWidth - right * 1.2;
+        float x = self.frameWidth - right * 1.1;
         float y = self.frameHeight * 0.12;
         if (_item.subImageName != nil && _item.subImageName.length > 0) {;
             float w = self.frameHeight - y * 2;
@@ -119,7 +128,7 @@
             labelWidth = labelWidth < maxWidth ? labelWidth : maxWidth;
             x -= labelWidth;
             [_subTitleLabel setFrame:CGRectMake(x, spaceY, labelWidth, height)];
-            x -= spaceX * 0.5;
+            x -= spaceX * 0.1;
         }
         if (_item.subImageName != nil && _item.subImageName.length > 0) {
             float y = self.frameHeight * 0.3;

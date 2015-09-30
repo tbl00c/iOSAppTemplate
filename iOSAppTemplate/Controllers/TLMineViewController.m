@@ -8,6 +8,7 @@
 
 #import "TLMineViewController.h"
 #import "TLMineDetailViewController.h"
+#import "TLSettingViewController.h"
 
 #import "TLFounctionCell.h"
 #import "TLUserDetailCell.h"
@@ -16,6 +17,7 @@
 @interface TLMineViewController ()
 
 @property (nonatomic, strong) TLMineDetailViewController *mineDetailVC;
+@property (nonatomic, strong) TLSettingViewController *settingVC;
 
 @end
 
@@ -111,14 +113,27 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    id vc = nil;
     if (indexPath.section == 0 && indexPath.row == 0) {     // 个人信息
         if (_mineDetailVC == nil) {
             _mineDetailVC = [[TLMineDetailViewController alloc] init];
         }
-        [self setHidesBottomBarWhenPushed:YES];
-        [self.navigationController pushViewController:_mineDetailVC animated:YES];
+        vc = _mineDetailVC;
     }
-    
+    else {
+        TLSettingGrounp *group = [_data objectAtIndex:indexPath.section - 1];
+        TLSettingItem *item = [group itemAtIndex: indexPath.row];
+        if ([item.title isEqualToString:@"设置"]) {
+            if (_settingVC == nil) {
+                _settingVC = [[TLSettingViewController alloc] init];
+            }
+            vc = _settingVC;
+        }
+    }
+    if (vc != nil) {
+        [self setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
