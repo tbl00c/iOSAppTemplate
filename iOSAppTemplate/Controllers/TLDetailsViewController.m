@@ -90,6 +90,8 @@
         return cell;
     }
     [cell setTitleFontSize:15.0f];
+    [cell setSubTitleFontSize:15.0f];
+    [cell setSubTitleFontColor:[UIColor blackColor]];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     indexPath.row == 0 ? [cell setTopLineStyle:CellLineStyleFill] :[cell setTopLineStyle:CellLineStyleNone];

@@ -15,6 +15,7 @@ typedef NS_ENUM(NSInteger, TLSettingItemType) {
     TLSettingItemTypeDefaultL,      // image, title, leftImage, rightTitle
     TLSettingItemTypeLeft,          // image, title, leftTitle, leftImage
     TLSettingItemTypeButton,        // button
+    TLSettingItemTypeAvatar,        // title, avatar
 };
 
 

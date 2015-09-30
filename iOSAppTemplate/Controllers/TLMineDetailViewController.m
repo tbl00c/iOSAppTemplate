@@ -1,60 +1,42 @@
 //
-//  TLMineViewController.m
+//  TLMineDetailViewController.m
 //  iOSAppTemplate
 //
-//  Created by h1r0 on 15/9/18.
+//  Created by 李伯坤 on 15/9/30.
 //  Copyright (c) 2015年 lbk. All rights reserved.
 //
 
-#import "TLMineViewController.h"
 #import "TLMineDetailViewController.h"
-
 #import "TLFounctionCell.h"
-#import "TLUserDetailCell.h"
 #import "TLUIHelper.h"
 
-@interface TLMineViewController ()
+@interface TLMineDetailViewController ()
 
-@property (nonatomic, strong) TLMineDetailViewController *mineDetailVC;
+@property (nonatomic, strong) NSMutableArray *data;
 
 @end
 
-@implementation TLMineViewController
+@implementation TLMineDetailViewController
 
-- (void) viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    [self setHidesBottomBarWhenPushed:NO];
-    [self.navigationItem setTitle:@"我"];
+    [self.navigationItem setTitle:@"个人信息"];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)];
     [self.tableView setTableHeaderView:view];
     [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
     [self.tableView registerClass:[TLFounctionCell class] forCellReuseIdentifier:@"FunctionCell"];
-    [self.tableView registerClass:[TLUserDetailCell class] forCellReuseIdentifier:@"UserDetailCell"];
     
     [self initTestData];
 }
 
-- (void) viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    
-    [self setHidesBottomBarWhenPushed:NO];
-}
-
-#pragma mark - UITableView
-
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return _data ? _data.count + 1 : 0;
+    return _data.count;
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 1;
-    }
-    TLSettingGrounp *group = [_data objectAtIndex:section - 1];
+    TLSettingGrounp *group = [_data objectAtIndex:section];
     return group.itemsCount;
 }
 
@@ -70,23 +52,12 @@
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        TLUserDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UserDetailCell"];
-        [cell setUser:_user];
-        [cell setCellType:UserDetailCellTypeMine];
-        [cell setBackgroundColor:[UIColor whiteColor]];
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        [cell setTopLineStyle:CellLineStyleFill];
-        [cell setBottomLineStyle:CellLineStyleFill];
-        return cell;
-    }
-    
-    TLSettingGrounp *group = [_data objectAtIndex:indexPath.section - 1];
+    TLSettingGrounp *group = [_data objectAtIndex:indexPath.section];
     TLSettingItem *item = [group itemAtIndex: indexPath.row];
     
     TLFounctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
     [cell setItem:item];
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [item.title isEqualToString:@"微信号"] ? [cell setAccessoryType:UITableViewCellAccessoryNone] : [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     indexPath.row == 0 ? [cell setTopLineStyle:CellLineStyleFill] :[cell setTopLineStyle:CellLineStyleNone];
     indexPath.row == group.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleFill] : [cell setBottomLineStyle:CellLineStyleDefault];
@@ -96,12 +67,11 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (indexPath.section == 0) {
-        return 90.0f;
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        return 70.0f;
     }
-
-    return 43.0f;
+    
+    return 45.0f;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -111,26 +81,14 @@
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0 && indexPath.row == 0) {     // 个人信息
-        if (_mineDetailVC == nil) {
-            _mineDetailVC = [[TLMineDetailViewController alloc] init];
-        }
-        [self setHidesBottomBarWhenPushed:YES];
-        [self.navigationController pushViewController:_mineDetailVC animated:YES];
-    }
-    
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
+
 
 #pragma mark - 初始化
 - (void) initTestData
 {
-    _data = [TLUIHelper getMineVCItems];
-    
-    _user = [[TLUser alloc] init];
-    _user.username = @"Bay、栢";
-    _user.userID = @"li-bokun";
-    _user.avatarURL = [NSURL URLWithString:@"0.jpg"];
+    _data = [TLUIHelper getMineDetailVCItems];
     
     [self.tableView reloadData];
 }

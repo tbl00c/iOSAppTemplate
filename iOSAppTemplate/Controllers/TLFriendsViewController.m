@@ -43,6 +43,13 @@
     [self initTestData];        // 测试
 }
 
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self setHidesBottomBarWhenPushed:NO];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -54,7 +61,6 @@
     }
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:_addFriendVC animated:YES];
-    [self setHidesBottomBarWhenPushed:NO];
 }
 
 #pragma mark - UITableView
@@ -155,7 +161,6 @@
         _detailsVC.user = [array objectAtIndex:indexPath.row];;
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:_detailsVC animated:YES];
-        [self setHidesBottomBarWhenPushed:NO];
     }
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }

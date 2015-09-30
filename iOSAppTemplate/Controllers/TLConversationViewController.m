@@ -36,8 +36,11 @@
     _data = [self getTestData];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self setHidesBottomBarWhenPushed:NO];
 }
 
 - (NSMutableArray *) getTestData
@@ -104,7 +107,6 @@
     _chatVC.user = user7;
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:_chatVC animated:YES];
-    [self setHidesBottomBarWhenPushed:NO];
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 

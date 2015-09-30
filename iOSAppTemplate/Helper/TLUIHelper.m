@@ -83,4 +83,24 @@
     return items;
 }
 
++ (NSMutableArray *) getMineDetailVCItems
+{
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+    TLSettingItem *avatar = [[TLSettingItem alloc] initWithTitle:@"头像" subImageName:@"0.jpg" type:TLSettingItemTypeAvatar];
+    TLSettingItem *name = [[TLSettingItem alloc] initWithTitle:@"名字" subTitle:@"Bay、栢"];
+    TLSettingItem *num = [[TLSettingItem alloc] initWithTitle:@"微信号" subTitle:@"li-bokun"];
+    TLSettingItem *code = [[TLSettingItem alloc] initWithTitle:@"我的二维码"];
+    TLSettingItem *address = [[TLSettingItem alloc] initWithTitle:@"我的地址"];
+    TLSettingGrounp *frist = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:avatar, name, num, code, address, nil];
+    [items addObject:frist];
+    
+    TLSettingItem *sex = [[TLSettingItem alloc] initWithTitle:@"性别" subTitle:@"男"];
+    TLSettingItem *pos = [[TLSettingItem alloc] initWithTitle:@"地址" subTitle:@"山东 滨州"];
+    TLSettingItem *proverbs = [[TLSettingItem alloc] initWithTitle:@"个性签名" subTitle:@"Hello world!"];
+    TLSettingGrounp *second = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:sex, pos, proverbs, nil];
+    [items addObject:second];
+    
+    return items;
+}
+
 @end

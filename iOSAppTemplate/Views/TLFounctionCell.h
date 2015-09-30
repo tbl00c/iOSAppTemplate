@@ -14,6 +14,8 @@
 // 一般Type
 @property (nonatomic, strong) TLSettingItem *item;
 @property (nonatomic, assign) CGFloat titleFontSize;
+@property (nonatomic, assign) CGFloat subTitleFontSize;
+@property (nonatomic, assign) UIColor* subTitleFontColor;
 
 // buttonType 用
 @property (nonatomic, assign) UIColor *buttonTitleColor;

@@ -15,6 +15,11 @@
     return [self initWithTitle:title subTitle:nil imageName:nil subImageName:nil type:TLSettingItemTypeDefault];
 }
 
+- (id) initWithTitle:(NSString *)title subImageName:(NSString *)subImageName
+{
+return [self initWithTitle:title subTitle:nil imageName:nil subImageName:subImageName type:TLSettingItemTypeDefault];
+}
+
 - (id) initWithTitle:(NSString *)title type:(TLSettingItemType)type
 {
     return [self initWithTitle:title subTitle:nil imageName:nil subImageName:nil type:type];
@@ -31,9 +36,19 @@
     return [self initWithTitle:title subTitle:nil imageName:imageName subImageName:nil type:TLSettingItemTypeDefault];
 }
 
+- (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle
+{
+    return [self initWithTitle:title subTitle:subTitle imageName:nil subImageName:nil type:TLSettingItemTypeDefault];
+}
+
 - (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle type:(TLSettingItemType)type
 {
     return [self initWithTitle:title subTitle:subTitle imageName:nil subImageName:nil type:type];
+}
+
+- (id) initWithTitle:(NSString *)title subImageName:(NSString *)subImageName type:(TLSettingItemType)type
+{
+    return [self initWithTitle:title subTitle:nil imageName:nil subImageName:subImageName type:type];
 }
 
 - (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle imageName:(NSString *)imageName subImageName:(NSString *)subImageName type:(TLSettingItemType)type

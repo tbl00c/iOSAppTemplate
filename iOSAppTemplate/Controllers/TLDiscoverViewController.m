@@ -33,6 +33,13 @@
     [self initTestData];
 }
 
+- (void) viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self setHidesBottomBarWhenPushed:NO];
+}
+
 #pragma mark - UITableView
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
@@ -92,7 +99,6 @@
         [self.webVC setUrlString:@"http://wq.jd.com"];
         [self.navigationController pushViewController:self.webVC animated:YES];
     }
-    [self setHidesBottomBarWhenPushed:NO];
 
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -108,7 +114,6 @@
 #pragma mark - 初始化
 - (void) initTestData
 {
-    
     _data = [TLUIHelper getDiscoverItems];
     
     [self.tableView reloadData];

@@ -32,7 +32,8 @@
         [_titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
         [self addSubview:_titleLabel];
         _subTitleLabel = [[UILabel alloc] init];
-        [_subTitleLabel setFont:[UIFont systemFontOfSize:15.0f]];
+        [_subTitleLabel setFont:[UIFont systemFontOfSize:16.0f]];
+        [_subTitleLabel setTextColor:[UIColor grayColor]];
         [self addSubview:_subTitleLabel];
         _mainImageView = [[UIImageView alloc] init];
         [self addSubview:_mainImageView];
@@ -47,6 +48,7 @@
         [_button setBackgroundColor:[UIColor whiteColor]];
         [_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self addSubview:_button];
+        
         [_titleLabel setHidden:YES];
         [_subTitleLabel setHidden:YES];
         [_mainImageView setHidden:YES];
@@ -99,10 +101,22 @@
     }
     
     // 右半部分
-    if (_item.type == TLSettingItemTypeDefaultL) {
-        float x = self.frameWidth * 0.9;
+    float right = self.accessoryType == UITableViewCellAccessoryDisclosureIndicator ? 32 : 10;
+    if (_item.type == TLSettingItemTypeAvatar) {        // 头像Cell
+        float x = self.frameWidth - right * 1.2;
+        float y = self.frameHeight * 0.12;
+        if (_item.subImageName != nil && _item.subImageName.length > 0) {;
+            float w = self.frameHeight - y * 2;
+            x -= w;
+            [_subImageView setFrame:CGRectMake(x, y, w, w)];
+        }
+    }
+    else if (_item.type == TLSettingItemTypeDefaultL) {
+        float x = self.frameWidth - right;
         if (_item.subTitle != nil && _item.subTitle.length > 0) {
-            float labelWidth = [_subTitleLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)].width;
+            float maxWidth = self.frameWidth * 0.55;
+            float labelWidth = [_subTitleLabel sizeThatFits:CGSizeMake(maxWidth, MAXFLOAT)].width;
+            labelWidth = labelWidth < maxWidth ? labelWidth : maxWidth;
             x -= labelWidth;
             [_subTitleLabel setFrame:CGRectMake(x, spaceY, labelWidth, height)];
             x -= spaceX * 0.5;
@@ -115,7 +129,7 @@
         }
     }
     else if (_item.type == TLSettingItemTypeDefault) {
-        float x = self.frameWidth * 0.9;
+        float x = self.frameWidth - right;
         if (_item.subImageName != nil && _item.subImageName.length > 0) {
             float y = self.frameHeight * 0.3;
             float w = self.frameHeight - y * 2;
@@ -124,7 +138,9 @@
             x -= (w + spaceX * 0.5);
         }
         if (_item.subTitle != nil && _item.subTitle.length > 0) {
-            float labelWidth = [_subTitleLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)].width;
+            float maxWidth = self.frameWidth * 0.55;
+            float labelWidth = [_subTitleLabel sizeThatFits:CGSizeMake(maxWidth, MAXFLOAT)].width;
+            labelWidth = labelWidth < maxWidth ? labelWidth : maxWidth;
             x -= labelWidth;
             [_subTitleLabel setFrame:CGRectMake(x, spaceY, labelWidth, height)];
         }
@@ -136,7 +152,7 @@
         }
         else if (_imageViewsData && _imageViewsData.count > 0) {
             float imageWidth = self.frameHeight * 0.65;
-            float width = self.frameWidth * 0.9 - x;
+            float width = self.frameWidth * 0.89 - x;
             float space = 0;
             NSUInteger count = width / imageWidth * 1.1;
             count = count < _imageViewsData.count ? count : _imageViewsData.count;
@@ -173,6 +189,13 @@
     if (item.subImageName != nil && item.subImageName.length > 0) {
         [_subImageView setImage:[UIImage imageNamed:item.subImageName]];
         [_subImageView setHidden:NO];
+        if (_item.type == TLSettingItemTypeAvatar) {
+            [_subImageView.layer setMasksToBounds:YES];
+            [_subImageView.layer setCornerRadius:5.0f];
+        }
+        else {
+            [_subImageView.layer setMasksToBounds:NO];
+        }
     }
     else {
         [_subImageView setHidden:YES];
@@ -223,6 +246,16 @@
 - (void) setTitleFontSize:(CGFloat)titleFontSize
 {
     [_titleLabel setFont:[UIFont systemFontOfSize:titleFontSize]];
+}
+
+- (void) setSubTitleFontSize:(CGFloat)subTitleFontSize
+{
+    [_subTitleLabel setFont:[UIFont systemFontOfSize:subTitleFontSize]];
+}
+
+- (void) setSubTitleFontColor:(UIColor *)subTitleFontColor
+{
+    [_subTitleLabel setTextColor:subTitleFontColor];
 }
 
 - (void) setButtonTitleColor:(UIColor *)buttonTitleColor
