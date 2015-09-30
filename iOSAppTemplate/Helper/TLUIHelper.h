@@ -15,6 +15,7 @@
 + (NSMutableArray *) getDiscoverItems;
 + (NSMutableArray *) getMineVCItems;
 + (NSMutableArray *) getDetailVCItems;
++ (NSMutableArray *) getDetailSettingVCItems;
 + (NSMutableArray *) getMineDetailVCItems;
 
 + (NSMutableArray *) getSettingVCItems;

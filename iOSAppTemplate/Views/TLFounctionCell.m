@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSMutableArray *imageViewsData;
 
 @property (nonatomic, strong) UIButton *button;
+@property (nonatomic, strong) UISwitch *cSwitch;
 
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *subTitleLabel;
@@ -48,6 +49,9 @@
         [_button setBackgroundColor:[UIColor whiteColor]];
         [_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self addSubview:_button];
+        
+        _cSwitch = [[UISwitch alloc] init];
+        [self addSubview:_cSwitch];
         
         [_titleLabel setHidden:YES];
         [_subTitleLabel setHidden:YES];
@@ -173,6 +177,10 @@
             }
         }
     }
+    else if (_item.type == TLSettingItemTypeSwitch) {
+        float x = self.frameWidth - right - _cSwitch.frameWidth / 1.7;
+        [_cSwitch setCenter:CGPointMake(x, self.frameHeight / 2.0)];
+    }
 }
 
 - (void) setItem:(TLSettingItem *)item
@@ -249,6 +257,14 @@
         [self setSelectionStyle:UITableViewCellSelectionStyleDefault];
     }
     
+    // switchType
+    if (_item.type == TLSettingItemTypeSwitch) {
+        [_cSwitch setHidden:NO];
+    }
+    else {
+        [_cSwitch setHidden:YES];
+    }
+    
     [self sizeToFit];
 }
 
@@ -280,6 +296,7 @@
 - (void)addTarget:(nullable id)target action:(SEL)action
 {
     [_button addTarget:target action:action forControlEvents:UIControlEventTouchDown];
+    [_cSwitch addTarget:target action:action forControlEvents:UIControlEventEditingChanged];
 }
 
 

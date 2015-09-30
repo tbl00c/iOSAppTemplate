@@ -21,6 +21,7 @@
 		7F9BFFFCBF4DB85D4C25D242 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431F7BA1B753F37D7C06FD /* libPods.a */; };
 		C2011C271BB3FF4200DB34B3 /* TLChatMessageViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = C2011C261BB3FF4200DB34B3 /* TLChatMessageViewContrller.m */; };
 		C2011C2A1BB405F600DB34B3 /* TLInputBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2011C291BB405F600DB34B3 /* TLInputBoxViewController.m */; };
+		C2333B431BBC215600CC002E /* TLDetailsSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2333B421BBC215600CC002E /* TLDetailsSettingViewController.m */; };
 		C24769751BA96623007DC0ED /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769741BA96623007DC0ED /* common.m */; };
 		C247697F1BA96714007DC0ED /* iOSAppTemplate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C247697D1BA96714007DC0ED /* iOSAppTemplate.xcdatamodeld */; };
 		C24769841BA9674B007DC0ED /* TLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769831BA9674B007DC0ED /* TLUser.m */; };
@@ -104,6 +105,8 @@
 		C2011C261BB3FF4200DB34B3 /* TLChatMessageViewContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatMessageViewContrller.m; sourceTree = "<group>"; };
 		C2011C281BB405F600DB34B3 /* TLInputBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLInputBoxViewController.h; sourceTree = "<group>"; };
 		C2011C291BB405F600DB34B3 /* TLInputBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLInputBoxViewController.m; sourceTree = "<group>"; };
+		C2333B411BBC215600CC002E /* TLDetailsSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDetailsSettingViewController.h; sourceTree = "<group>"; };
+		C2333B421BBC215600CC002E /* TLDetailsSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDetailsSettingViewController.m; sourceTree = "<group>"; };
 		C247696F1BA96589007DC0ED /* macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
 		C24769731BA96623007DC0ED /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		C24769741BA96623007DC0ED /* common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = common.m; sourceTree = "<group>"; };
@@ -474,6 +477,8 @@
 			children = (
 				C24769BC1BA96B87007DC0ED /* TLDetailsViewController.h */,
 				C24769BD1BA96B87007DC0ED /* TLDetailsViewController.m */,
+				C2333B411BBC215600CC002E /* TLDetailsSettingViewController.h */,
+				C2333B421BBC215600CC002E /* TLDetailsSettingViewController.m */,
 			);
 			name = DetailsVC;
 			sourceTree = "<group>";
@@ -747,6 +752,7 @@
 				C2ED39461BBBEF9C00DD1251 /* TLSettingViewController.m in Sources */,
 				C2867FF31BABEDD600F56B99 /* TLFounctionCell.m in Sources */,
 				2D01200E1BAC76A500CC9988 /* TLWebViewController.m in Sources */,
+				C2333B431BBC215600CC002E /* TLDetailsSettingViewController.m in Sources */,
 				C24769D01BA96EF1007DC0ED /* TLConversation.m in Sources */,
 				C24769BA1BA96B23007DC0ED /* TLAddFriendViewController.m in Sources */,
 				C2011C2A1BB405F600DB34B3 /* TLInputBoxViewController.m in Sources */,

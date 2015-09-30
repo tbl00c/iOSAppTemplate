@@ -131,4 +131,39 @@
     return items;
 }
 
++ (NSMutableArray *) getDetailSettingVCItems
+{
+    NSMutableArray *items = [[NSMutableArray alloc] init];
+
+    TLSettingItem *tag = [[TLSettingItem alloc] initWithTitle:@"设置备注及标签"];
+    TLSettingGrounp *group1 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:tag, nil];
+    [items addObject:group1];
+    
+
+    TLSettingItem *recommend = [[TLSettingItem alloc] initWithTitle:@"把他推荐给好友"];
+    TLSettingGrounp *group2 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:recommend, nil];
+    [items addObject:group2];
+    
+    TLSettingItem *starFriend = [[TLSettingItem alloc] initWithTitle:@"把它设为星标朋友" type:TLSettingItemTypeSwitch];
+    TLSettingGrounp *group3 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:starFriend, nil];
+    [items addObject:group3];
+    
+    TLSettingItem *prohibit = [[TLSettingItem alloc] initWithTitle:@"不让他看我的朋友圈" type:TLSettingItemTypeSwitch];
+    TLSettingItem *ignore = [[TLSettingItem alloc] initWithTitle:@"不看他的朋友圈" type:TLSettingItemTypeSwitch];
+    TLSettingGrounp *group4 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:prohibit, ignore, nil];
+    [items addObject:group4];
+    
+    TLSettingItem *addBlacklist = [[TLSettingItem alloc] initWithTitle:@"加入黑名单" type:TLSettingItemTypeSwitch];
+    TLSettingItem *report = [[TLSettingItem alloc] initWithTitle:@"举报"];
+    TLSettingGrounp *group5 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:addBlacklist, report, nil];
+    [items addObject:group5];
+    
+    TLSettingItem *delete = [[TLSettingItem alloc] initWithTitle:@"删除好友" type:TLSettingItemTypeButton];
+    TLSettingGrounp *group6 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:delete, nil];
+    [items addObject:group6];
+
+    
+    return items;
+}
+
 @end

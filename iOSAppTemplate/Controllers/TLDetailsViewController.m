@@ -7,6 +7,8 @@
 //
 
 #import "TLDetailsViewController.h"
+#import "TLDetailsSettingViewController.h"
+
 #import "TLUserDetailCell.h"
 #import "TLFounctionCell.h"
 
@@ -15,6 +17,8 @@
 @interface TLDetailsViewController ()
 
 @property (nonatomic, strong) NSMutableArray *data;
+
+@property (nonatomic, strong) TLDetailsSettingViewController *detailSettingVC;
 
 @end
 
@@ -29,6 +33,9 @@
     [self.tableView registerClass:[TLUserDetailCell class] forCellReuseIdentifier:@"UserDetailCell"];
     [self.tableView registerClass:[TLFounctionCell class] forCellReuseIdentifier:@"DetailInfoCell"];
     [self initTestData];
+  
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"barbuttonicon_more"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDown)];
+    [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
 }
 
 - (void) viewWillAppear:(BOOL)animated
@@ -36,6 +43,14 @@
     [super viewWillAppear:animated];
     
     [self.tableView reloadData];
+}
+
+- (void) rightBarButtonDown
+{
+    if (_detailSettingVC == nil) {
+        _detailSettingVC = [[TLDetailsSettingViewController alloc] init];
+    }
+    [self.navigationController pushViewController:_detailSettingVC animated:YES];
 }
 
 #pragma mark - UITableView
