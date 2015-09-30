@@ -8,6 +8,7 @@
 
 #import "TLMineViewController.h"
 #import "TLMineDetailViewController.h"
+#import "TLExpressionViewController.h"
 #import "TLSettingViewController.h"
 
 #import "TLFounctionCell.h"
@@ -15,9 +16,6 @@
 #import "TLUIHelper.h"
 
 @interface TLMineViewController ()
-
-@property (nonatomic, strong) TLMineDetailViewController *mineDetailVC;
-@property (nonatomic, strong) TLSettingViewController *settingVC;
 
 @end
 
@@ -115,19 +113,16 @@
 {
     id vc = nil;
     if (indexPath.section == 0 && indexPath.row == 0) {     // 个人信息
-        if (_mineDetailVC == nil) {
-            _mineDetailVC = [[TLMineDetailViewController alloc] init];
-        }
-        vc = _mineDetailVC;
+        vc = [[TLMineDetailViewController alloc] init];
     }
     else {
         TLSettingGrounp *group = [_data objectAtIndex:indexPath.section - 1];
         TLSettingItem *item = [group itemAtIndex: indexPath.row];
-        if ([item.title isEqualToString:@"设置"]) {
-            if (_settingVC == nil) {
-                _settingVC = [[TLSettingViewController alloc] init];
-            }
-            vc = _settingVC;
+        if ([item.title isEqualToString:@"表情"]) {
+            vc = [[TLExpressionViewController alloc] init];
+        }
+        else if ([item.title isEqualToString:@"设置"]) {
+            vc = [[TLSettingViewController alloc] init];
         }
     }
     if (vc != nil) {

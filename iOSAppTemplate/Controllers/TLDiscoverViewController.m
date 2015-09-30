@@ -7,14 +7,16 @@
 //
 
 #import "TLDiscoverViewController.h"
-#import "TLWebViewController.h"
-#import "TLFounctionCell.h"
+#import "TLBottleViewController.h"
+#import "TLShoppingViewController.h"
 
+#import "TLFounctionCell.h"
 #import "TLUIHelper.h"
 
 @interface TLDiscoverViewController ()
 
-@property (nonatomic, strong) TLWebViewController *webVC;
+@property (nonatomic, strong) TLBottleViewController *bottleVC;
+@property (nonatomic, strong) TLShoppingViewController *shoppingVC;
 
 @end
 
@@ -94,21 +96,25 @@
     TLSettingGrounp *group = [_data objectAtIndex:indexPath.section];
     TLSettingItem *item = [group itemAtIndex:indexPath.row];
     
-    [self setHidesBottomBarWhenPushed:YES];
-    if ([item.title isEqualToString:@"购物"]) {
-        [self.webVC setUrlString:@"http://wq.jd.com"];
-        [self.navigationController pushViewController:self.webVC animated:YES];
+    id vc;
+    if ([item.title isEqualToString:@"漂流瓶"]) {
+        if (_bottleVC == nil) {
+            _bottleVC = [[TLBottleViewController alloc] init];
+        }
+        vc = _bottleVC;
     }
-
+    else if ([item.title isEqualToString:@"购物"]) {
+        if (_shoppingVC == nil) {
+            _shoppingVC= [[TLShoppingViewController alloc] init];
+        }
+        vc = _shoppingVC;
+    }
+    
+    if (vc != nil) {
+        [self setHidesBottomBarWhenPushed:YES];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-- (TLWebViewController *) webVC
-{
-    if (_webVC == nil) {
-        _webVC = [[TLWebViewController alloc] init];
-    }
-    return _webVC;
 }
 
 #pragma mark - 初始化

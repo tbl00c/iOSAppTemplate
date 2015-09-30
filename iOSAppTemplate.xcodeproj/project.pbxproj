@@ -24,6 +24,10 @@
 		C2333B431BBC215600CC002E /* TLDetailsSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2333B421BBC215600CC002E /* TLDetailsSettingViewController.m */; };
 		C2333B461BBC2C5A00CC002E /* TLNewsNotiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2333B451BBC2C5A00CC002E /* TLNewsNotiViewController.m */; };
 		C2333B4A1BBC32DB00CC002E /* TLTableHeadFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2333B491BBC32DB00CC002E /* TLTableHeadFooterView.m */; };
+		C2333B4E1BBC47C400CC002E /* TLExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2333B4D1BBC47C400CC002E /* TLExpressionViewController.m */; };
+		C2333B531BBC4C7700CC002E /* TLShoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2333B521BBC4C7700CC002E /* TLShoppingViewController.m */; };
+		C2333B561BBC4DC200CC002E /* TLBottleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2333B551BBC4DC200CC002E /* TLBottleViewController.m */; };
+		C2333B5D1BBC5F2600CC002E /* TLBottleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C2333B5C1BBC5F2600CC002E /* TLBottleButton.m */; };
 		C24769751BA96623007DC0ED /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769741BA96623007DC0ED /* common.m */; };
 		C247697F1BA96714007DC0ED /* iOSAppTemplate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C247697D1BA96714007DC0ED /* iOSAppTemplate.xcdatamodeld */; };
 		C24769841BA9674B007DC0ED /* TLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C24769831BA9674B007DC0ED /* TLUser.m */; };
@@ -113,6 +117,14 @@
 		C2333B451BBC2C5A00CC002E /* TLNewsNotiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLNewsNotiViewController.m; sourceTree = "<group>"; };
 		C2333B481BBC32DB00CC002E /* TLTableHeadFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableHeadFooterView.h; sourceTree = "<group>"; };
 		C2333B491BBC32DB00CC002E /* TLTableHeadFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableHeadFooterView.m; sourceTree = "<group>"; };
+		C2333B4C1BBC47C400CC002E /* TLExpressionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLExpressionViewController.h; sourceTree = "<group>"; };
+		C2333B4D1BBC47C400CC002E /* TLExpressionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLExpressionViewController.m; sourceTree = "<group>"; };
+		C2333B511BBC4C7700CC002E /* TLShoppingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLShoppingViewController.h; sourceTree = "<group>"; };
+		C2333B521BBC4C7700CC002E /* TLShoppingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLShoppingViewController.m; sourceTree = "<group>"; };
+		C2333B541BBC4DC200CC002E /* TLBottleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLBottleViewController.h; sourceTree = "<group>"; };
+		C2333B551BBC4DC200CC002E /* TLBottleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLBottleViewController.m; sourceTree = "<group>"; };
+		C2333B5B1BBC5F2600CC002E /* TLBottleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLBottleButton.h; sourceTree = "<group>"; };
+		C2333B5C1BBC5F2600CC002E /* TLBottleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLBottleButton.m; sourceTree = "<group>"; };
 		C247696F1BA96589007DC0ED /* macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = macros.h; sourceTree = "<group>"; };
 		C24769731BA96623007DC0ED /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		C24769741BA96623007DC0ED /* common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = common.m; sourceTree = "<group>"; };
@@ -223,6 +235,8 @@
 			children = (
 				2D1B0E431BAB017600AE423F /* TLDiscoverViewController.h */,
 				2D1B0E441BAB017600AE423F /* TLDiscoverViewController.m */,
+				C2333B4F1BBC4C3900CC002E /* Bottle */,
+				C2333B501BBC4C4B00CC002E /* Shopping */,
 			);
 			name = DiscoverVC;
 			sourceTree = "<group>";
@@ -245,6 +259,7 @@
 				2D1B0E4D1BAB280A00AE423F /* TLMineViewController.m */,
 				C2ED39471BBBEFB500DD1251 /* MineDetailVC */,
 				C2ED39431BBBEF8100DD1251 /* SettingVC */,
+				C2333B4B1BBC479800CC002E /* Expression */,
 			);
 			name = MineVC;
 			sourceTree = "<group>";
@@ -360,6 +375,50 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C2333B4B1BBC479800CC002E /* Expression */ = {
+			isa = PBXGroup;
+			children = (
+				C2333B4C1BBC47C400CC002E /* TLExpressionViewController.h */,
+				C2333B4D1BBC47C400CC002E /* TLExpressionViewController.m */,
+			);
+			name = Expression;
+			sourceTree = "<group>";
+		};
+		C2333B4F1BBC4C3900CC002E /* Bottle */ = {
+			isa = PBXGroup;
+			children = (
+				C2333B541BBC4DC200CC002E /* TLBottleViewController.h */,
+				C2333B551BBC4DC200CC002E /* TLBottleViewController.m */,
+			);
+			name = Bottle;
+			sourceTree = "<group>";
+		};
+		C2333B501BBC4C4B00CC002E /* Shopping */ = {
+			isa = PBXGroup;
+			children = (
+				C2333B511BBC4C7700CC002E /* TLShoppingViewController.h */,
+				C2333B521BBC4C7700CC002E /* TLShoppingViewController.m */,
+			);
+			name = Shopping;
+			sourceTree = "<group>";
+		};
+		C2333B591BBC5EF800CC002E /* Discover */ = {
+			isa = PBXGroup;
+			children = (
+				C2333B5A1BBC5F0300CC002E /* Bottle */,
+			);
+			name = Discover;
+			sourceTree = "<group>";
+		};
+		C2333B5A1BBC5F0300CC002E /* Bottle */ = {
+			isa = PBXGroup;
+			children = (
+				C2333B5B1BBC5F2600CC002E /* TLBottleButton.h */,
+				C2333B5C1BBC5F2600CC002E /* TLBottleButton.m */,
+			);
+			name = Bottle;
+			sourceTree = "<group>";
+		};
 		C247696E1BA9655C007DC0ED /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,6 +457,7 @@
 		C24769801BA96734007DC0ED /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C2333B591BBC5EF800CC002E /* Discover */,
 				C24769C31BA96C50007DC0ED /* Common */,
 				C24769C21BA96C30007DC0ED /* Friends */,
 				C24769D11BA96F0D007DC0ED /* Conversation */,
@@ -752,18 +812,22 @@
 				C24769911BA967D9007DC0ED /* UIView+TL.m in Sources */,
 				2D1BA7151BA578D2009BB687 /* AppDelegate.m in Sources */,
 				2D1B0E4E1BAB280A00AE423F /* TLMineViewController.m in Sources */,
+				C2333B4E1BBC47C400CC002E /* TLExpressionViewController.m in Sources */,
 				C24769B61BA96ACC007DC0ED /* TLFriendSearchViewController.m in Sources */,
 				2D1B0E451BAB017600AE423F /* TLDiscoverViewController.m in Sources */,
 				2D1BA7121BA578D2009BB687 /* main.m in Sources */,
 				C24769BE1BA96B87007DC0ED /* TLDetailsViewController.m in Sources */,
+				C2333B531BBC4C7700CC002E /* TLShoppingViewController.m in Sources */,
 				C29A31CF1BB3A4FF00109CFC /* TLUIHelper.m in Sources */,
 				2D1B0E521BAB2E2F00AE423F /* TLUserDetailCell.m in Sources */,
 				C24769C61BA96C83007DC0ED /* CommonTableViewCell.m in Sources */,
 				C2ED393F1BBBC4E000DD1251 /* TLMineDetailViewController.m in Sources */,
 				C24769751BA96623007DC0ED /* common.m in Sources */,
+				C2333B5D1BBC5F2600CC002E /* TLBottleButton.m in Sources */,
 				C2ED39461BBBEF9C00DD1251 /* TLSettingViewController.m in Sources */,
 				C2867FF31BABEDD600F56B99 /* TLFounctionCell.m in Sources */,
 				2D01200E1BAC76A500CC9988 /* TLWebViewController.m in Sources */,
+				C2333B561BBC4DC200CC002E /* TLBottleViewController.m in Sources */,
 				C2333B431BBC215600CC002E /* TLDetailsSettingViewController.m in Sources */,
 				C24769D01BA96EF1007DC0ED /* TLConversation.m in Sources */,
 				C24769BA1BA96B23007DC0ED /* TLAddFriendViewController.m in Sources */,
