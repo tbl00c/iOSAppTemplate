@@ -19,6 +19,7 @@
 + (NSMutableArray *) getMineDetailVCItems;
 
 + (NSMutableArray *) getSettingVCItems;
++ (NSMutableArray *) getNewNotiVCItems;
 
 
 @end

@@ -71,6 +71,14 @@
         return;
     }
     
+    if (_item.type == TLSettingItemTypeSwitch || _item.type == TLSettingItemTypeButton) {
+        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+    }
+    else {
+        [self setSelectionStyle:UITableViewCellSelectionStyleDefault];
+    }
+    
+    // MidTitle
     if (_item.type == TLSettingItemTypeMidTitle) {
         [_titleLabel setFrame:self.bounds];
         [_titleLabel setTextAlignment:NSTextAlignmentCenter];
@@ -80,6 +88,7 @@
         [_titleLabel setTextAlignment:NSTextAlignmentLeft];
     }
 
+    // Button
     if (_item.type == TLSettingItemTypeButton) {
         float buttonX = self.frameWidth * 0.04;
         float buttonY = self.frameHeight * 0.09;

@@ -1,33 +1,38 @@
 //
-//  TLSettingViewController.m
+//  TLNewsNotiViewController.m
 //  iOSAppTemplate
 //
-//  Created by 李伯坤 on 15/9/30.
+//  Created by libokun on 15/9/30.
 //  Copyright (c) 2015年 lbk. All rights reserved.
 //
 
-#import "TLSettingViewController.h"
 #import "TLNewsNotiViewController.h"
 
 #import "TLFounctionCell.h"
+#import "TLTableHeadFooterView.h"
 #import "TLUIHelper.h"
 
-@interface TLSettingViewController ()
+@interface TLNewsNotiViewController ()
 
 @property (nonatomic, strong) NSMutableArray *data;
 
 @end
 
-@implementation TLSettingViewController
+@implementation TLNewsNotiViewController
 
-- (void)viewDidLoad {
+- (void) viewDidLoad
+{
     [super viewDidLoad];
-    [self.navigationItem setTitle:@"设置"];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)];
-    [self.tableView setTableHeaderView:view];
+    [self.navigationItem setTitle:@"新消息通知"];
+    
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 10.0f)];
+    [self.tableView setTableHeaderView:headView];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 20.0f)];
+    [self.tableView setTableFooterView:footerView];
     [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
     [self.tableView registerClass:[TLFounctionCell class] forCellReuseIdentifier:@"FunctionCell"];
-    
+    [self.tableView registerClass:[TLTableHeadFooterView class] forHeaderFooterViewReuseIdentifier:@"HeadFooterView"];
     [self initTestData];
 }
 
@@ -45,11 +50,9 @@
 
 - (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
-    if (view == nil) {
-        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
-        [view setBackgroundView:[UIView new]];
-    }
+    TLSettingGrounp *group = [_data objectAtIndex:section];
+    TLTableHeadFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HeadFooterView"];
+    [view setText:group.footerTitle];
     return view;
 }
 
@@ -60,7 +63,7 @@
     
     TLFounctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
     [cell setItem:item];
-    item.type == TLSettingItemTypeMidTitle ? [cell setAccessoryType:UITableViewCellAccessoryNone] : [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    item.type == TLSettingItemTypeSwitch ? [cell setAccessoryType:UITableViewCellAccessoryNone] : [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     indexPath.row == 0 ? [cell setTopLineStyle:CellLineStyleFill] : [cell setTopLineStyle:CellLineStyleNone];
     indexPath.row == group.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleFill] : [cell setBottomLineStyle:CellLineStyleDefault];
     
@@ -74,7 +77,13 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 20.0f;
+    TLSettingGrounp *group = [_data objectAtIndex:section];
+    return [TLTableHeadFooterView heightForTextToFitView:group.footerTitle];
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 8.0f;
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,11 +97,10 @@
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-
 #pragma mark - 初始化
 - (void) initTestData
 {
-    _data = [TLUIHelper getSettingVCItems];
+    _data = [TLUIHelper getNewNotiVCItems];
     
     [self.tableView reloadData];
 }

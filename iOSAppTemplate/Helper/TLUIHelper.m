@@ -138,7 +138,6 @@
     TLSettingItem *tag = [[TLSettingItem alloc] initWithTitle:@"设置备注及标签"];
     TLSettingGrounp *group1 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:tag, nil];
     [items addObject:group1];
-    
 
     TLSettingItem *recommend = [[TLSettingItem alloc] initWithTitle:@"把他推荐给好友"];
     TLSettingGrounp *group2 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:recommend, nil];
@@ -162,7 +161,34 @@
     TLSettingGrounp *group6 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:delete, nil];
     [items addObject:group6];
 
+    return items;
+}
+
++ (NSMutableArray *) getNewNotiVCItems
+{
+    NSMutableArray *items = [[NSMutableArray alloc] init];
     
+    TLSettingItem *recNoti = [[TLSettingItem alloc] initWithTitle:@"接受新消息通知" subTitle:@"已开启"];
+    TLSettingGrounp *group1 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:@"如果你要关闭或开启微信的新消息通知，请在iPhone的\"设置\" - \"通知\"功能中，找到应用程序\"微信\"更改。" settingItems:recNoti, nil];
+    [items addObject:group1];
+    
+    TLSettingItem *showDetail = [[TLSettingItem alloc] initWithTitle:@"通知显示详情信息" type:TLSettingItemTypeSwitch];
+    TLSettingGrounp *group2 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:@"关闭后，当收到微信消息时，通知提示将不显示发信人和内容摘要。" settingItems:showDetail, nil];
+    [items addObject:group2];
+    
+    TLSettingItem *disturb = [[TLSettingItem alloc] initWithTitle:@"功能消息免打扰"];
+    TLSettingGrounp *group3 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:@"设置系统功能消息提示声音和振动时段。" settingItems:disturb, nil];
+    [items addObject:group3];
+    
+    TLSettingItem *voice = [[TLSettingItem alloc] initWithTitle:@"声音" type:TLSettingItemTypeSwitch];
+    TLSettingItem *shake = [[TLSettingItem alloc] initWithTitle:@"震动" type:TLSettingItemTypeSwitch];
+    TLSettingGrounp *group4 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:@"当微信在运行时，你可以设置是否需要声音或者振动。" settingItems:voice, shake, nil];
+    [items addObject:group4];
+
+    TLSettingItem *friends = [[TLSettingItem alloc] initWithTitle:@"朋友圈照片更新" type:TLSettingItemTypeSwitch];
+    TLSettingGrounp *group5 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:@"关闭后，有朋友更新照片时，界面下面的“发现”切换按钮上不再出现红点提示。" settingItems:friends, nil];
+    [items addObject:group5];
+
     return items;
 }
 
