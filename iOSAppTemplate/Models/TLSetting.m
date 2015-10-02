@@ -51,6 +51,11 @@ return [self initWithTitle:title subTitle:nil imageName:nil subImageName:subImag
     return [self initWithTitle:title subTitle:nil imageName:nil subImageName:subImageName type:type];
 }
 
+- (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle imageName:(NSString *)imageName subImageName:(NSString *)subImageName
+{
+    return [self initWithTitle:title subTitle:subTitle imageName:imageName subImageName:subImageName type:TLSettingItemTypeDefault];
+}
+
 - (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle imageName:(NSString *)imageName subImageName:(NSString *)subImageName type:(TLSettingItemType)type
 {
     if (self = [super init]) {

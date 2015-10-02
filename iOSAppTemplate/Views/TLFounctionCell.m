@@ -33,7 +33,7 @@
         [_titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
         [self addSubview:_titleLabel];
         _subTitleLabel = [[UILabel alloc] init];
-        [_subTitleLabel setFont:[UIFont systemFontOfSize:16.0f]];
+        [_subTitleLabel setFont:[UIFont systemFontOfSize:15.0f]];
         [_subTitleLabel setTextColor:[UIColor grayColor]];
         [self addSubview:_subTitleLabel];
         _mainImageView = [[UIImageView alloc] init];
@@ -153,11 +153,11 @@
     else if (_item.type == TLSettingItemTypeDefault) {
         float x = self.frameWidth - right;
         if (_item.subImageName != nil && _item.subImageName.length > 0) {
-            float y = self.frameHeight * 0.3;
+            float y = self.frameHeight * 0.13;
             float w = self.frameHeight - y * 2;
             x -= w;
             [_subImageView setFrame:CGRectMake(x, y, w, w)];
-            x -= (w + spaceX * 0.5);
+            x -= spaceX * 0.2;
         }
         if (_item.subTitle != nil && _item.subTitle.length > 0) {
             float maxWidth = self.frameWidth * 0.55;

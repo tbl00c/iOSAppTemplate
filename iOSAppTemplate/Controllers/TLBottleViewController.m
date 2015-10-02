@@ -88,7 +88,7 @@
 
 - (void) bottleButtonDown:(TLBottleButton *)sender
 {
-    NSLog(@"%ld", (long)sender.tag);
+
 }
 
 - (void) initSubViews

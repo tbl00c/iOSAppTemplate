@@ -44,7 +44,7 @@
 + (NSMutableArray *) getDiscoverItems
 {
     NSMutableArray *items = [[NSMutableArray alloc] init];
-    TLSettingItem *friendsAlbum = [[TLSettingItem alloc] initWithTitle:@"朋友圈" imageName:@"ff_IconShowAlbum"];
+    TLSettingItem *friendsAlbum = [[TLSettingItem alloc] initWithTitle:@"朋友圈" subTitle:nil imageName:@"ff_IconShowAlbum" subImageName:@"2.jpg"];
     TLSettingGrounp *group1 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:friendsAlbum, nil];
     [items addObject:group1];
     
@@ -53,13 +53,13 @@
     TLSettingGrounp *group2 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:qrCode, shake, nil];
     [items addObject:group2];
     
-    TLSettingItem *loacation = [[TLSettingItem alloc] initWithTitle:@"附近的人" subTitle:@"" imageName:@"ff_IconLocationService" subImageName:@"FootStep" type: TLSettingItemTypeDefault];
+    TLSettingItem *loacation = [[TLSettingItem alloc] initWithTitle:@"附近的人" subTitle:@"" imageName:@"ff_IconLocationService" subImageName:@"FootStep" type: TLSettingItemTypeDefaultL];
     TLSettingItem *bottle = [[TLSettingItem alloc] initWithTitle:@"漂流瓶" imageName:@"ff_IconBottle"];
     TLSettingGrounp *group3 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:loacation, bottle, nil];
     [items addObject:group3];
     
     TLSettingItem *shopping = [[TLSettingItem alloc] initWithTitle:@"购物" imageName:@"CreditCard_ShoppingBag"];
-    TLSettingItem *game = [[TLSettingItem alloc] initWithTitle:@"游戏" imageName:@"MoreGame"];
+    TLSettingItem *game = [[TLSettingItem alloc] initWithTitle:@"游戏" subTitle:@"超火力新枪战" imageName:@"MoreGame" subImageName:@"game_tag_icon"];
     TLSettingGrounp *group4 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:shopping, game, nil];
     [items addObject:group4];
     

@@ -21,6 +21,8 @@
 		7F9BFFFCBF4DB85D4C25D242 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431F7BA1B753F37D7C06FD /* libPods.a */; };
 		C2011C271BB3FF4200DB34B3 /* TLChatMessageViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = C2011C261BB3FF4200DB34B3 /* TLChatMessageViewContrller.m */; };
 		C2011C2A1BB405F600DB34B3 /* TLInputBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2011C291BB405F600DB34B3 /* TLInputBoxViewController.m */; };
+		C22216471BBEA6D30013ABA5 /* TLShakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C22216461BBEA6D30013ABA5 /* TLShakeViewController.m */; };
+		C222164B1BBEC19D0013ABA5 /* TLShakeMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C222164A1BBEC19D0013ABA5 /* TLShakeMenuButton.m */; };
 		C2333B431BBC215600CC002E /* TLDetailsSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2333B421BBC215600CC002E /* TLDetailsSettingViewController.m */; };
 		C2333B461BBC2C5A00CC002E /* TLNewsNotiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2333B451BBC2C5A00CC002E /* TLNewsNotiViewController.m */; };
 		C2333B4A1BBC32DB00CC002E /* TLTableHeadFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2333B491BBC32DB00CC002E /* TLTableHeadFooterView.m */; };
@@ -111,6 +113,10 @@
 		C2011C261BB3FF4200DB34B3 /* TLChatMessageViewContrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatMessageViewContrller.m; sourceTree = "<group>"; };
 		C2011C281BB405F600DB34B3 /* TLInputBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLInputBoxViewController.h; sourceTree = "<group>"; };
 		C2011C291BB405F600DB34B3 /* TLInputBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLInputBoxViewController.m; sourceTree = "<group>"; };
+		C22216451BBEA6D30013ABA5 /* TLShakeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLShakeViewController.h; sourceTree = "<group>"; };
+		C22216461BBEA6D30013ABA5 /* TLShakeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLShakeViewController.m; sourceTree = "<group>"; };
+		C22216491BBEC19D0013ABA5 /* TLShakeMenuButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLShakeMenuButton.h; sourceTree = "<group>"; };
+		C222164A1BBEC19D0013ABA5 /* TLShakeMenuButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLShakeMenuButton.m; sourceTree = "<group>"; };
 		C2333B411BBC215600CC002E /* TLDetailsSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDetailsSettingViewController.h; sourceTree = "<group>"; };
 		C2333B421BBC215600CC002E /* TLDetailsSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDetailsSettingViewController.m; sourceTree = "<group>"; };
 		C2333B441BBC2C5A00CC002E /* TLNewsNotiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLNewsNotiViewController.h; sourceTree = "<group>"; };
@@ -235,6 +241,7 @@
 			children = (
 				2D1B0E431BAB017600AE423F /* TLDiscoverViewController.h */,
 				2D1B0E441BAB017600AE423F /* TLDiscoverViewController.m */,
+				C22216441BBEA6B80013ABA5 /* Shake */,
 				C2333B4F1BBC4C3900CC002E /* Bottle */,
 				C2333B501BBC4C4B00CC002E /* Shopping */,
 			);
@@ -375,6 +382,24 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C22216441BBEA6B80013ABA5 /* Shake */ = {
+			isa = PBXGroup;
+			children = (
+				C22216451BBEA6D30013ABA5 /* TLShakeViewController.h */,
+				C22216461BBEA6D30013ABA5 /* TLShakeViewController.m */,
+			);
+			name = Shake;
+			sourceTree = "<group>";
+		};
+		C22216481BBEC1890013ABA5 /* Shake */ = {
+			isa = PBXGroup;
+			children = (
+				C22216491BBEC19D0013ABA5 /* TLShakeMenuButton.h */,
+				C222164A1BBEC19D0013ABA5 /* TLShakeMenuButton.m */,
+			);
+			name = Shake;
+			sourceTree = "<group>";
+		};
 		C2333B4B1BBC479800CC002E /* Expression */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,6 +430,7 @@
 		C2333B591BBC5EF800CC002E /* Discover */ = {
 			isa = PBXGroup;
 			children = (
+				C22216481BBEC1890013ABA5 /* Shake */,
 				C2333B5A1BBC5F0300CC002E /* Bottle */,
 			);
 			name = Discover;
@@ -831,6 +857,7 @@
 				C2333B431BBC215600CC002E /* TLDetailsSettingViewController.m in Sources */,
 				C24769D01BA96EF1007DC0ED /* TLConversation.m in Sources */,
 				C24769BA1BA96B23007DC0ED /* TLAddFriendViewController.m in Sources */,
+				C22216471BBEA6D30013ABA5 /* TLShakeViewController.m in Sources */,
 				C2011C2A1BB405F600DB34B3 /* TLInputBoxViewController.m in Sources */,
 				C29A31C21BB39D6900109CFC /* TLChatViewController.m in Sources */,
 				C2011C271BB3FF4200DB34B3 /* TLChatMessageViewContrller.m in Sources */,
@@ -848,6 +875,7 @@
 				C24769D41BA96F29007DC0ED /* TLConversationCell.m in Sources */,
 				C24769841BA9674B007DC0ED /* TLUser.m in Sources */,
 				2DAF76BE1BA583670047E869 /* TLNavigationController.m in Sources */,
+				C222164B1BBEC19D0013ABA5 /* TLShakeMenuButton.m in Sources */,
 				C29A31C91BB3A17200109CFC /* TLSetting.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

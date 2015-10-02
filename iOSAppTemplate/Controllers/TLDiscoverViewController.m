@@ -9,6 +9,7 @@
 #import "TLDiscoverViewController.h"
 #import "TLBottleViewController.h"
 #import "TLShoppingViewController.h"
+#import "TLShakeViewController.h"
 
 #import "TLFounctionCell.h"
 #import "TLUIHelper.h"
@@ -17,6 +18,7 @@
 
 @property (nonatomic, strong) TLBottleViewController *bottleVC;
 @property (nonatomic, strong) TLShoppingViewController *shoppingVC;
+@property (nonatomic, strong) TLShakeViewController *shakeVC;
 
 @end
 
@@ -97,7 +99,13 @@
     TLSettingItem *item = [group itemAtIndex:indexPath.row];
     
     id vc;
-    if ([item.title isEqualToString:@"漂流瓶"]) {
+    if ([item.title isEqualToString:@"摇一摇"]) {
+        if (_shakeVC == nil) {
+            _shakeVC = [[TLShakeViewController alloc] init];
+        }
+        vc = _shakeVC;
+    }
+    else if ([item.title isEqualToString:@"漂流瓶"]) {
         if (_bottleVC == nil) {
             _bottleVC = [[TLBottleViewController alloc] init];
         }

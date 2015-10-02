@@ -63,7 +63,7 @@
     
     TLFounctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
     [cell setItem:item];
-    item.type == TLSettingItemTypeSwitch ? [cell setAccessoryType:UITableViewCellAccessoryNone] : [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    (item.type == TLSettingItemTypeSwitch || ![item.title isEqualToString:@"接受新消息提醒"]) ? [cell setAccessoryType:UITableViewCellAccessoryNone] : [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     indexPath.row == 0 ? [cell setTopLineStyle:CellLineStyleFill] : [cell setTopLineStyle:CellLineStyleNone];
     indexPath.row == group.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleFill] : [cell setBottomLineStyle:CellLineStyleDefault];
     

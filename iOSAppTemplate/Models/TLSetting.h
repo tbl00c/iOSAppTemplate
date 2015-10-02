@@ -27,6 +27,7 @@
 - (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle type:(TLSettingItemType)type;
 - (id) initWithTitle:(NSString *)title subImageName:(NSString *)subImageName type:(TLSettingItemType)type;
 
+- (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle imageName:(NSString *)imageName subImageName:(NSString *)subImageName;
 - (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle imageName:(NSString *)imageName subImageName:(NSString *)subImageName type:(TLSettingItemType)type;
 - (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle imageName:(NSString *)imageName subImageURL:(NSURL *)subImageURL type:(TLSettingItemType)type;
 
