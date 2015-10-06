@@ -185,6 +185,7 @@
 
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    _searchVC.friendsArray = self.friendsArray;
     [self.tabBarController.tabBar setHidden:YES];
 }
 

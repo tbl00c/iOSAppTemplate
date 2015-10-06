@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.navigationItem setTitle:@"添加好友"];
 }
 
 - (void)didReceiveMemoryWarning {

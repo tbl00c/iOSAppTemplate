@@ -10,5 +10,6 @@
 
 @interface TLFriendSearchViewController : CommonTableViewController <UISearchResultsUpdating>
 
+@property (nonatomic, copy) NSMutableArray *friendsArray;
 
 @end
