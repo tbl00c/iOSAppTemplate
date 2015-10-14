@@ -82,6 +82,11 @@
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    TLSettingGrounp *group = [_data objectAtIndex:indexPath.section];
+    TLSettingItem *item = [group itemAtIndex: indexPath.row];
+    if (item.type == TLSettingItemTypeButton) {
+        return 50.0f;
+    }
     return 44.0f;
 }
 
