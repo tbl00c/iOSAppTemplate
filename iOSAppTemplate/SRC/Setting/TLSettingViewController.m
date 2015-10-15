@@ -87,7 +87,7 @@
         TLNewsNotiViewController *newsNotiVC = [[TLNewsNotiViewController alloc] init];
         [self.navigationController pushViewController:newsNotiVC animated:YES];
     }
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

@@ -109,7 +109,7 @@
     _chatVC.user = user7;
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:_chatVC animated:YES];
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Event Response

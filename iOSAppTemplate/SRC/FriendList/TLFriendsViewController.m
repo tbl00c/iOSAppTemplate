@@ -161,7 +161,7 @@
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:self.detailsVC animated:YES];
     }
-    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - UISearchBarDelegate
