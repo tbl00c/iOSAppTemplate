@@ -19,6 +19,7 @@
 
 @implementation TLFriendSearchViewController
 
+#pragma mark - LifeCycle
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -48,8 +49,7 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
 }
 
-#pragma mark - UITableView
-
+#pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -78,13 +78,13 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 54.5f;
 }
 
 #pragma mark - UISearchResultsUpdating
-
 - (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
     NSString *searchText = searchController.searchBar.text;
     [_data removeAllObjects];

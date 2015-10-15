@@ -8,16 +8,20 @@
 
 #import "TLFriendCell.h"
 
+@interface TLFriendCell ()
+
+@property (nonatomic, strong) UIImageView *avatarImageView;
+@property (nonatomic, strong) UILabel *usernameLabel;
+
+@end
+
 @implementation TLFriendCell
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        _avatarImageView = [[UIImageView alloc] init];
-        [self addSubview:_avatarImageView];
-        _usernameLabel = [[UILabel alloc] init];
-        [_usernameLabel setFont:[UIFont systemFontOfSize:17.0f]];
-        [self addSubview:_usernameLabel];
+        [self addSubview:self.avatarImageView];
+        [self addSubview:self.usernameLabel];
     }
     return self;
 }
@@ -43,5 +47,22 @@
     [_usernameLabel setText:user.username];
 }
 
+#pragma mark - Getter and Setter
+- (UIImageView *) avatarImageView
+{
+    if (_avatarImageView == nil) {
+        _avatarImageView = [[UIImageView alloc] init];
+    }
+    return _avatarImageView;
+}
+
+- (UILabel *) usernameLabel
+{
+    if (_usernameLabel == nil) {
+        _usernameLabel = [[UILabel alloc] init];
+        [_usernameLabel setFont:[UIFont systemFontOfSize:17.0f]];
+    }
+    return _usernameLabel;
+}
 
 @end

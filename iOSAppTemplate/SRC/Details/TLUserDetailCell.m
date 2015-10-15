@@ -23,21 +23,10 @@
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        _avatarImageView = [[UIImageView alloc] init];
-        [_avatarImageView.layer setMasksToBounds:YES];
-        [_avatarImageView.layer setCornerRadius:5.0f];
-        [self addSubview:_avatarImageView];
-        _usernameLabel = [[UILabel alloc] init];
-        [_usernameLabel setFont:[UIFont systemFontOfSize:17.0f]];
-        [self addSubview:_usernameLabel];
-        _userIDLabel = [[UILabel alloc] init];
-        [_userIDLabel setFont:[UIFont systemFontOfSize:14.0f]];
-        [_userIDLabel setTextColor:DEFAULT_TEXT_GRAY_COLOR];
-        [self addSubview:_userIDLabel];
-        _nikeNameLabel = [[UILabel alloc] init];
-        [_nikeNameLabel setFont:[UIFont systemFontOfSize:13.0f]];
-        [_nikeNameLabel setTextColor:DEFAULT_TEXT_GRAY_COLOR];
-        [self addSubview:_nikeNameLabel];
+        [self addSubview:self.avatarImageView];
+        [self addSubview:self.usernameLabel];
+        [self addSubview:self.userIDLabel];
+        [self addSubview:self.nikeNameLabel];
     }
     return self;
 }
@@ -71,26 +60,8 @@
     [_nikeNameLabel setFrame:CGRectMake(labelX, labelY, size.width, size.height)];
 }
 
-- (void) setCellType:(UserDetailCellType)cellType
-{
-    _cellType = cellType;
-    switch (_cellType) {
-        case UserDetailCellTypeFriends:
-            [_userIDLabel setTextColor:DEFAULT_TEXT_GRAY_COLOR];
-            [_userIDLabel setFont:[UIFont systemFontOfSize:13.0f]];
-            break;
-        case UserDetailCellTypeMine:
-            [_userIDLabel setTextColor:[UIColor blackColor]];
 
-            [_userIDLabel setFont:[UIFont systemFontOfSize:14.0f]];
-            [_nikeNameLabel setHidden:YES];
-            break;
-        default:
-            break;
-    }
-    [self sizeToFit];
-}
-
+#pragma mark - Getter and Setter
 - (void) setUser:(TLUser *)user
 {
     [_avatarImageView setImage:[UIImage imageNamed:[NSString stringWithFormat: @"%@", user.avatarURL]]];
@@ -113,6 +84,65 @@
     else {
         [_userIDLabel setText:@""];
     }
+}
+
+- (void) setCellType:(UserDetailCellType)cellType
+{
+    _cellType = cellType;
+    switch (_cellType) {
+        case UserDetailCellTypeFriends:
+            [_userIDLabel setTextColor:DEFAULT_TEXT_GRAY_COLOR];
+            [_userIDLabel setFont:[UIFont systemFontOfSize:13.0f]];
+            break;
+        case UserDetailCellTypeMine:
+            [_userIDLabel setTextColor:[UIColor blackColor]];
+            
+            [_userIDLabel setFont:[UIFont systemFontOfSize:14.0f]];
+            [_nikeNameLabel setHidden:YES];
+            break;
+        default:
+            break;
+    }
+    [self sizeToFit];
+}
+
+- (UIImageView *) avatarImageView
+{
+    if (_avatarImageView == nil) {
+        _avatarImageView = [[UIImageView alloc] init];
+        [_avatarImageView.layer setMasksToBounds:YES];
+        [_avatarImageView.layer setCornerRadius:5.0f];
+    }
+    return _avatarImageView;
+}
+
+- (UILabel *) usernameLabel
+{
+    if (_usernameLabel == nil) {
+        _usernameLabel = [[UILabel alloc] init];
+        [_usernameLabel setFont:[UIFont systemFontOfSize:17.0f]];
+    }
+    return _usernameLabel;
+}
+
+- (UILabel *) userIDLabel
+{
+    if (_userIDLabel == nil) {
+        _userIDLabel = [[UILabel alloc] init];
+        [_userIDLabel setFont:[UIFont systemFontOfSize:14.0f]];
+        [_userIDLabel setTextColor:DEFAULT_TEXT_GRAY_COLOR];
+    }
+    return _userIDLabel;
+}
+
+- (UILabel *) nikeNameLabel
+{
+    if (_nikeNameLabel == nil) {
+        _nikeNameLabel = [[UILabel alloc] init];
+        [_nikeNameLabel setFont:[UIFont systemFontOfSize:13.0f]];
+        [_nikeNameLabel setTextColor:DEFAULT_TEXT_GRAY_COLOR];
+    }
+    return _nikeNameLabel;
 }
 
 @end

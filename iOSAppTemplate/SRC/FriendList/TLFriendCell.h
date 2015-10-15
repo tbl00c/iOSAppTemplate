@@ -11,9 +11,6 @@
 
 @interface TLFriendCell : CommonTableViewCell
 
-@property (nonatomic, strong) UIImageView *avatarImageView;
-@property (nonatomic, strong) UILabel *usernameLabel;
-
 @property (nonatomic, strong) TLUser *user;
 
 @end

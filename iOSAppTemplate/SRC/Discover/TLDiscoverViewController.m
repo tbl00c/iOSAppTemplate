@@ -24,17 +24,20 @@
 
 @implementation TLDiscoverViewController
 
+#pragma mark - LifeCycle
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     [self setHidesBottomBarWhenPushed:NO];
     [self.navigationItem setTitle:@"发现"];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)];
-    [self.tableView setTableHeaderView:view];
     [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
+    
+    // SubViews
+    [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)]];
     [self.tableView registerClass:[TLFounctionCell class] forCellReuseIdentifier:@"FunctionCell"];
     
-    [self initTestData];
+    // Data
+    _data = [TLUIHelper getDiscoverItems];
 }
 
 - (void) viewDidDisappear:(BOOL)animated
@@ -44,8 +47,7 @@
     [self setHidesBottomBarWhenPushed:NO];
 }
 
-#pragma mark - UITableView
-
+#pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _data.count;
@@ -83,6 +85,7 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 45.0f;
@@ -100,22 +103,13 @@
     
     id vc;
     if ([item.title isEqualToString:@"摇一摇"]) {
-        if (_shakeVC == nil) {
-            _shakeVC = [[TLShakeViewController alloc] init];
-        }
-        vc = _shakeVC;
+        vc = self.shakeVC;
     }
     else if ([item.title isEqualToString:@"漂流瓶"]) {
-        if (_bottleVC == nil) {
-            _bottleVC = [[TLBottleViewController alloc] init];
-        }
-        vc = _bottleVC;
+        vc = self.bottleVC;
     }
     else if ([item.title isEqualToString:@"购物"]) {
-        if (_shoppingVC == nil) {
-            _shoppingVC= [[TLShoppingViewController alloc] init];
-        }
-        vc = _shoppingVC;
+        vc = self.shoppingVC;
     }
     
     if (vc != nil) {
@@ -125,12 +119,29 @@
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-#pragma mark - 初始化
-- (void) initTestData
+#pragma mark - Getter and Setter
+- (TLShakeViewController *) shakeVC
 {
-    _data = [TLUIHelper getDiscoverItems];
-    
-    [self.tableView reloadData];
+    if (_shakeVC == nil) {
+        _shakeVC = [[TLShakeViewController alloc] init];
+    }
+    return _shakeVC;
+}
+
+- (TLBottleViewController *) bottleVC
+{
+    if (_bottleVC == nil) {
+        _bottleVC = [[TLBottleViewController alloc] init];
+    }
+    return _bottleVC;
+}
+
+- (TLShoppingViewController *) shoppingVC
+{
+    if (_shoppingVC == nil) {
+        _shoppingVC= [[TLShoppingViewController alloc] init];
+    }
+    return _shoppingVC;
 }
 
 @end

@@ -21,6 +21,7 @@
 
 @implementation TLMineViewController
 
+#pragma mark - Life Cycle
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -42,8 +43,7 @@
     [self setHidesBottomBarWhenPushed:NO];
 }
 
-#pragma mark - UITableView
-
+#pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _data ? _data.count + 1 : 0;
@@ -56,16 +56,6 @@
     }
     TLSettingGrounp *group = [_data objectAtIndex:section - 1];
     return group.itemsCount;
-}
-
-- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
-    if (view == nil) {
-        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
-        [view setBackgroundView:[UIView new]];
-    }
-    return view;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -92,6 +82,17 @@
     indexPath.row == group.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleFill] : [cell setBottomLineStyle:CellLineStyleDefault];
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
+    if (view == nil) {
+        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
+        [view setBackgroundView:[UIView new]];
+    }
+    return view;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -132,7 +133,7 @@
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-#pragma mark - 初始化
+#pragma mark - Private Methods
 - (void) initTestData
 {
     _data = [TLUIHelper getMineVCItems];

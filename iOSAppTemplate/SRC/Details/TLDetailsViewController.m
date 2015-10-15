@@ -24,6 +24,7 @@
 
 @implementation TLDetailsViewController
 
+#pragma mark - LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"详细资料"];
@@ -45,16 +46,7 @@
     [self.tableView reloadData];
 }
 
-- (void) rightBarButtonDown
-{
-    if (_detailSettingVC == nil) {
-        _detailSettingVC = [[TLDetailsSettingViewController alloc] init];
-    }
-    [self.navigationController pushViewController:_detailSettingVC animated:YES];
-}
-
-#pragma mark - UITableView
-
+#pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _data ? _data.count + 1 : 0;
@@ -67,16 +59,6 @@
     }
     TLSettingGrounp *group = [_data objectAtIndex:section - 1];
     return group.itemsCount;
-}
-
-- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
-    if (view == nil) {
-        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
-        [view setBackgroundView:[UIView new]];
-    }
-    return view;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,6 +97,17 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
+    if (view == nil) {
+        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
+        [view setBackgroundView:[UIView new]];
+    }
+    return view;
+}
+
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
@@ -148,7 +141,13 @@
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-#pragma mark - 初始化
+#pragma mark - Event Response
+- (void) rightBarButtonDown
+{
+    [self.navigationController pushViewController:self.detailSettingVC animated:YES];
+}
+
+#pragma mark - Private Methods
 - (void) initTestData
 {
     _data = [TLUIHelper getDetailVCItems];
@@ -156,5 +155,13 @@
     [self.tableView reloadData];
 }
 
+#pragma mark - Getter and Setter
+- (TLDetailsSettingViewController *) detailSettingVC
+{
+    if (_detailSettingVC == nil) {
+        _detailSettingVC = [[TLDetailsSettingViewController alloc] init];
+    }
+    return _detailSettingVC;
+}
 
 @end

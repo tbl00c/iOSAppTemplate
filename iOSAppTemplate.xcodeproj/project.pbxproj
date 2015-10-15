@@ -573,12 +573,12 @@
 		C265A7F31BCDFC5D00079AD9 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C265A78F1BCDFB4E00079AD9 /* TLAddFriendViewController.h */,
-				C265A7901BCDFB4E00079AD9 /* TLAddFriendViewController.m */,
-				C265A7931BCDFB4E00079AD9 /* TLFriendSearchViewController.h */,
-				C265A7941BCDFB4E00079AD9 /* TLFriendSearchViewController.m */,
 				C265A7951BCDFB4E00079AD9 /* TLFriendsViewController.h */,
 				C265A7961BCDFB4E00079AD9 /* TLFriendsViewController.m */,
+				C265A7931BCDFB4E00079AD9 /* TLFriendSearchViewController.h */,
+				C265A7941BCDFB4E00079AD9 /* TLFriendSearchViewController.m */,
+				C265A78F1BCDFB4E00079AD9 /* TLAddFriendViewController.h */,
+				C265A7901BCDFB4E00079AD9 /* TLAddFriendViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

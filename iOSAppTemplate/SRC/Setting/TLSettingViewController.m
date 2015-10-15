@@ -23,15 +23,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"设置"];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)];
-    [self.tableView setTableHeaderView:view];
     [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
+    
+    // SubViews
+    [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)]];
     [self.tableView registerClass:[TLFounctionCell class] forCellReuseIdentifier:@"FunctionCell"];
     
-    [self initTestData];
+    _data = [TLUIHelper getSettingVCItems];
 }
 
-#pragma mark - UITableView
+#pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _data.count;
@@ -41,16 +42,6 @@
 {
     TLSettingGrounp *group = [_data objectAtIndex:section];
     return group.itemsCount;
-}
-
-- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
-    if (view == nil) {
-        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
-        [view setBackgroundView:[UIView new]];
-    }
-    return view;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,6 +56,17 @@
     indexPath.row == group.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleFill] : [cell setBottomLineStyle:CellLineStyleDefault];
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
+    if (view == nil) {
+        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
+        [view setBackgroundView:[UIView new]];
+    }
+    return view;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,13 +90,5 @@
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-
-#pragma mark - 初始化
-- (void) initTestData
-{
-    _data = [TLUIHelper getSettingVCItems];
-    
-    [self.tableView reloadData];
-}
 
 @end

@@ -29,29 +29,12 @@
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        _titleLabel = [[UILabel alloc] init];
-        [_titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
-        [self addSubview:_titleLabel];
-        _subTitleLabel = [[UILabel alloc] init];
-        [_subTitleLabel setFont:[UIFont systemFontOfSize:15.0f]];
-        [_subTitleLabel setTextColor:[UIColor grayColor]];
-        [self addSubview:_subTitleLabel];
-        _mainImageView = [[UIImageView alloc] init];
-        [self addSubview:_mainImageView];
-        _subImageView = [[UIImageView alloc] init];
-        [self addSubview:_subImageView];
-
-        _button = [[UIButton alloc] init];
-        [_button.layer setMasksToBounds:YES];
-        [_button.layer setCornerRadius:5.0f];
-        [_button.layer setBorderWidth:0.5f];
-        [_button.layer setBorderColor:DEFAULT_LINE_GRAY_COLOR.CGColor];
-        [_button setBackgroundColor:[UIColor whiteColor]];
-        [_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [self addSubview:_button];
-        
-        _cSwitch = [[UISwitch alloc] init];
-        [self addSubview:_cSwitch];
+        [self addSubview:self.titleLabel];
+        [self addSubview:self.subTitleLabel];
+        [self addSubview:self.mainImageView];
+        [self addSubview:self.subImageView];
+        [self addSubview:self.button];
+        [self addSubview:self.cSwitch];
         
         [_titleLabel setHidden:YES];
         [_subTitleLabel setHidden:YES];
@@ -277,6 +260,7 @@
     [self sizeToFit];
 }
 
+#pragma mark - Getter and Setter
 - (void) setTitleFontSize:(CGFloat)titleFontSize
 {
     [_titleLabel setFont:[UIFont systemFontOfSize:titleFontSize]];
@@ -308,5 +292,61 @@
     [_cSwitch addTarget:target action:action forControlEvents:UIControlEventEditingChanged];
 }
 
+- (UILabel *) titleLabel
+{
+    if (_titleLabel == nil) {
+        _titleLabel = [[UILabel alloc] init];
+        [_titleLabel setFont:[UIFont systemFontOfSize:17.0f]];
+    }
+    return _titleLabel;
+}
+
+- (UILabel *) subTitleLabel
+{
+    if (_subTitleLabel == nil) {
+        _subTitleLabel = [[UILabel alloc] init];
+        [_subTitleLabel setFont:[UIFont systemFontOfSize:15.0f]];
+        [_subTitleLabel setTextColor:[UIColor grayColor]];
+    }
+    return _subTitleLabel;
+}
+
+- (UIImageView *) mainImageView
+{
+    if (_mainImageView == nil) {
+        _mainImageView = [[UIImageView alloc] init];
+    }
+    return _mainImageView;
+}
+
+- (UIImageView *) subImageView
+{
+    if (_subImageView == nil) {
+        _subImageView = [[UIImageView alloc] init];
+    }
+    return _subImageView;
+}
+
+- (UIButton *) button
+{
+    if (_button == nil) {
+        _button = [[UIButton alloc] init];
+        [_button.layer setMasksToBounds:YES];
+        [_button.layer setCornerRadius:5.0f];
+        [_button.layer setBorderWidth:0.5f];
+        [_button.layer setBorderColor:DEFAULT_LINE_GRAY_COLOR.CGColor];
+        [_button setBackgroundColor:[UIColor whiteColor]];
+        [_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }
+    return _button;
+}
+
+- (UISwitch *) cSwitch
+{
+    if (_cSwitch == nil) {
+        _cSwitch = [[UISwitch alloc] init];
+    }
+    return _cSwitch;
+}
 
 @end

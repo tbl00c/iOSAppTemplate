@@ -10,6 +10,7 @@
 
 @implementation TLShoppingViewController
 
+#pragma mark - LifeSycle
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -20,6 +21,7 @@
     [self setUrlString:@"http://wq.jd.com"];
 }
 
+#pragma mark - Event Response
 - (void) rightBarButtonDown
 {
 

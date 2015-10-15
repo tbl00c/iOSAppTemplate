@@ -19,6 +19,7 @@
 
 @implementation TLDetailsSettingViewController
 
+#pragma mark - LifeCycle
 - (void) viewDidLoad
 {
     [super viewDidLoad];
@@ -31,8 +32,7 @@
     [self initTestData];
 }
 
-#pragma mark - UITableView
-
+#pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _data.count;
@@ -42,16 +42,6 @@
 {
     TLSettingGrounp *group = [_data objectAtIndex:section];
     return group.itemsCount;
-}
-
-- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
-    if (view == nil) {
-        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
-        [view setBackgroundView:[UIView new]];
-    }
-    return view;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -78,6 +68,17 @@
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     }
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
+    if (view == nil) {
+        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
+        [view setBackgroundView:[UIView new]];
+    }
+    return view;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

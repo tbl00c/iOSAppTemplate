@@ -8,31 +8,24 @@
 
 #import "TLConversationCell.h"
 
+@interface TLConversationCell ()
+
+@property (nonatomic, strong) UIImageView *avatarImageView;
+@property (nonatomic, strong) UILabel *usernameLabel;
+@property (nonatomic, strong) UILabel *dateLabel;
+@property (nonatomic, strong) UILabel *messageLabel;
+
+@end
+
 @implementation TLConversationCell
 
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        _avatarImageView = [[UIImageView alloc] init];
-        [_avatarImageView.layer setMasksToBounds:YES];
-        [_avatarImageView.layer setCornerRadius:5.0f];
-        [self addSubview:_avatarImageView];
-        
-        _usernameLabel = [[UILabel alloc] init];
-        [_usernameLabel setFont:[UIFont systemFontOfSize:16]];
-        [self addSubview:_usernameLabel];
-        
-        _dateLabel = [[UILabel alloc] init];
-        [_dateLabel setAlpha:0.8];
-        [_dateLabel setFont:[UIFont systemFontOfSize:12]];
-        [_dateLabel setTextAlignment:NSTextAlignmentRight];
-        [_dateLabel setTextColor:[UIColor grayColor]];
-        [self addSubview:_dateLabel];
-        
-        _messageLabel = [[UILabel alloc] init];
-        [_messageLabel setTextColor:[UIColor grayColor]];
-        [_messageLabel setFont:[UIFont systemFontOfSize:14]];
-        [self addSubview:_messageLabel];
+        [self addSubview:self.avatarImageView];
+        [self addSubview:self.usernameLabel];
+        [self addSubview:self.dateLabel];
+        [self addSubview:self.messageLabel];
     }
     return self;
 }
@@ -71,6 +64,48 @@
     [_usernameLabel setText:_conversation.from];
     [_dateLabel setText:@"11:01"];
     [_messageLabel setText:_conversation.message];
+}
+
+#pragma mark - Getter and Setter
+- (UIImageView *) avatarImageView
+{
+    if (_avatarImageView == nil) {
+        _avatarImageView = [[UIImageView alloc] init];
+        [_avatarImageView.layer setMasksToBounds:YES];
+        [_avatarImageView.layer setCornerRadius:5.0f];
+    }
+    return _avatarImageView;
+}
+
+- (UILabel *) usernameLabel
+{
+    if (_usernameLabel == nil) {
+        _usernameLabel = [[UILabel alloc] init];
+        [_usernameLabel setFont:[UIFont systemFontOfSize:16]];
+    }
+    return _usernameLabel;
+}
+
+- (UILabel *) detailTextLabel
+{
+    if (_dateLabel == nil) {
+        _dateLabel = [[UILabel alloc] init];
+        [_dateLabel setAlpha:0.8];
+        [_dateLabel setFont:[UIFont systemFontOfSize:12]];
+        [_dateLabel setTextAlignment:NSTextAlignmentRight];
+        [_dateLabel setTextColor:[UIColor grayColor]];
+    }
+    return _dateLabel;
+}
+
+- (UILabel *) messageLabel
+{
+    if (_messageLabel == nil) {
+        _messageLabel = [[UILabel alloc] init];
+        [_messageLabel setTextColor:[UIColor grayColor]];
+        [_messageLabel setFont:[UIFont systemFontOfSize:14]];
+    }
+    return _messageLabel;
 }
 
 @end

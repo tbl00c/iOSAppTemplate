@@ -32,15 +32,25 @@
 
 @implementation TLFriendsViewController
 
+#pragma mark - LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationItem setTitle:@"通讯录"];
     [self setHidesBottomBarWhenPushed:NO];
+    [self.navigationItem setTitle:@"通讯录"];
     [self.tableView setShowsVerticalScrollIndicator:NO];
-    [self.tableView registerClass:[TLFriendCell class] forCellReuseIdentifier:@"FriendCell"];
+    [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
+    [self.tableView setBackgroundColor:[UIColor whiteColor]];
+    [self.tableView setSectionIndexBackgroundColor:[UIColor clearColor]];
+    [self.tableView setSectionIndexColor:DEFAULT_NAVBAR_COLOR];
     
-    [self initSubViews];
-    [self initTestData];        // 测试
+    // SubViews
+    [self.tableView registerClass:[TLFriendCell class] forCellReuseIdentifier:@"FriendCell"];
+    [self.navigationItem setRightBarButtonItem:self.addFriendButton];
+    [self.tableView setTableHeaderView:self.searchController.searchBar];
+    [self.tableView setTableFooterView:self.footerLabel];
+    
+    // 测试
+    [self initTestData];
 }
 
 - (void) viewDidDisappear:(BOOL)animated
@@ -50,21 +60,7 @@
     [self setHidesBottomBarWhenPushed:NO];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-- (void) addFriendButtonDown
-{
-    if (_addFriendVC == nil) {
-        _addFriendVC = [[TLAddFriendViewController alloc] init];
-    }
-    [self setHidesBottomBarWhenPushed:YES];
-    [self.navigationController pushViewController:_addFriendVC animated:YES];
-}
-
-#pragma mark - UITableView
-
+#pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _data.count + 1;
@@ -84,7 +80,6 @@
     if (section == 0) {
         return nil;
     }
-    
     id label = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerView"];
     if (label == nil) {
         label = [[UILabel alloc] init];
@@ -106,12 +101,7 @@
         user.avatarURL = [NSURL URLWithString:item.imageName];
         [cell setUser:user];
         [cell setTopLineStyle:CellLineStyleNone];
-        if (indexPath.row == _functionGroup.itemsCount - 1) {
-            [cell setBottomLineStyle:CellLineStyleNone];
-        }
-        else {
-            [cell setBottomLineStyle:CellLineStyleDefault];
-        }
+        indexPath.row == _functionGroup.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleNone] :[cell setBottomLineStyle:CellLineStyleDefault];
     }
     else {
         NSArray *array = [_data objectAtIndex:indexPath.section - 1];
@@ -120,12 +110,7 @@
         [cell setTopLineStyle:CellLineStyleNone];
         
         if (indexPath.row == array.count - 1) {
-            if (indexPath.section == _data.count) {
-                [cell setBottomLineStyle:CellLineStyleFill];
-            }
-            else {
-                [cell setBottomLineStyle:CellLineStyleNone];
-            }
+            indexPath.section == _data.count ? [cell setBottomLineStyle:CellLineStyleFill] :[cell setBottomLineStyle:CellLineStyleNone];
         }
         else {
             [cell setBottomLineStyle:CellLineStyleDefault];
@@ -135,6 +120,23 @@
     return cell;
 }
 
+// 拼音首字母检索
+- (NSArray *) sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    return _section;
+}
+
+// 检索时空出搜索框
+- (NSInteger) tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    if(index == 0) {
+        [self.tableView scrollRectToVisible:_searchController.searchBar.frame animated:NO];
+        return -1;
+    }
+    return index;
+}
+
+#pragma mark - UITableViewDelegate
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 54.5f;
@@ -154,35 +156,15 @@
         
     }
     else {
-        if (_detailsVC == nil) {
-            _detailsVC = [[TLDetailsViewController alloc] init];
-        }
         NSArray *array = [_data objectAtIndex:indexPath.section - 1];
-        _detailsVC.user = [array objectAtIndex:indexPath.row];;
+        self.detailsVC.user = [array objectAtIndex:indexPath.row];;
         [self setHidesBottomBarWhenPushed:YES];
-        [self.navigationController pushViewController:_detailsVC animated:YES];
+        [self.navigationController pushViewController:self.detailsVC animated:YES];
     }
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
-- (NSArray *) sectionIndexTitlesForTableView:(UITableView *)tableView
-{
-    return _section;
-}
-
-- (NSInteger) tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
-{
-    if(index == 0) {
-        [self.tableView scrollRectToVisible:_searchController.searchBar.frame animated:NO];
-        return -1;
-    }
-    else {
-        return index - 1;
-    }
-}
-
 #pragma mark - UISearchBarDelegate
-
 - (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     _searchVC.friendsArray = self.friendsArray;
@@ -194,39 +176,14 @@
     [self.tabBarController.tabBar setHidden:NO];
 }
 
-#pragma mark - 初始化
-- (void) initSubViews
+#pragma mark - Event Response
+- (void) addFriendButtonDown
 {
-    [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
-    [self.tableView.layer setBackgroundColor:[UIColor whiteColor].CGColor];
-    [self.tableView setShowsVerticalScrollIndicator:NO];
-    [self.tableView setSectionIndexBackgroundColor:[UIColor clearColor]];
-    [self.tableView setSectionIndexColor:DEFAULT_NAVBAR_COLOR];
-    
-    // 添加好友按钮
-    _addFriendButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"contacts_add_friend"] style:UIBarButtonItemStylePlain target:self action:@selector(addFriendButtonDown)];
-    [self.navigationItem setRightBarButtonItem:_addFriendButton];
-    
-    // 搜索
-    _searchVC = [[TLFriendSearchViewController alloc] init];
-    _searchController = [[UISearchController alloc] initWithSearchResultsController:_searchVC];
-    [_searchController setSearchResultsUpdater: _searchVC];
-    [_searchController.searchBar setPlaceholder:@"搜索"];
-    [_searchController.searchBar setBarTintColor:DEFAULT_SEARCHBAR_COLOR];
-    [_searchController.searchBar sizeToFit];
-    [_searchController.searchBar setDelegate:self];
-    [_searchController.searchBar.layer setBorderWidth:0.5f];
-    [_searchController.searchBar.layer setBorderColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0].CGColor];
-    [self.tableView setTableHeaderView:_searchController.searchBar];
-    
-    // 好友计数
-    _footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 49.0f)];
-    [_footerLabel setBackgroundColor:[UIColor whiteColor]];
-    [_footerLabel setTextColor:[UIColor grayColor]];
-    [_footerLabel setTextAlignment:NSTextAlignmentCenter];
-    [self.tableView setTableFooterView:_footerLabel];
+    [self setHidesBottomBarWhenPushed:YES];
+    [self.navigationController pushViewController:self.addFriendVC animated:YES];
 }
 
+#pragma mark - Private Methods
 - (void) initTestData
 {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -282,6 +239,65 @@
             [_footerLabel setText:[NSString stringWithFormat:@"%lu位联系人", (unsigned long)_friendsArray.count]];
         });
     });
+}
+
+#pragma mark - Getter and Setter
+- (UIBarButtonItem *) addFriendButton
+{
+    if (_addFriendButton == nil) {
+        _addFriendButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"contacts_add_friend"] style:UIBarButtonItemStylePlain target:self action:@selector(addFriendButtonDown)];
+    }
+    return _addFriendButton;
+}
+
+- (TLFriendSearchViewController *) searchVC
+{
+    if (_searchVC == nil) {
+        _searchVC = [[TLFriendSearchViewController alloc] init];
+    }
+    return _searchVC;
+}
+
+- (UISearchController *) searchController
+{
+    if (_searchController == nil) {
+        _searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchVC];
+        [_searchController setSearchResultsUpdater: self.searchVC];
+        [_searchController.searchBar setPlaceholder:@"搜索"];
+        [_searchController.searchBar setBarTintColor:DEFAULT_SEARCHBAR_COLOR];
+        [_searchController.searchBar sizeToFit];
+        [_searchController.searchBar setDelegate:self];
+        [_searchController.searchBar.layer setBorderWidth:0.5f];
+        [_searchController.searchBar.layer setBorderColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0].CGColor];
+    }
+    return _searchController;
+}
+
+- (UILabel *) footerLabel
+{
+    if (_footerLabel == nil) {
+        _footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 49.0f)];
+        [_footerLabel setBackgroundColor:[UIColor whiteColor]];
+        [_footerLabel setTextColor:[UIColor grayColor]];
+        [_footerLabel setTextAlignment:NSTextAlignmentCenter];
+    }
+    return _footerLabel;
+}
+
+- (TLAddFriendViewController *) addFriendVC
+{
+    if (_addFriendVC == nil) {
+        _addFriendVC = [[TLAddFriendViewController alloc] init];
+    }
+    return _addFriendVC;
+}
+
+- (TLDetailsViewController *) detailsVC
+{
+    if (_detailsVC == nil) {
+        _detailsVC = [[TLDetailsViewController alloc] init];
+    }
+    return _detailsVC;
 }
 
 @end

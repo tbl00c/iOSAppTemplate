@@ -17,6 +17,8 @@
     UIImageView *lineDownImageView;
 }
 
+@property (nonatomic, strong) UIBarButtonItem *rightBarButtonItem;
+
 @property (nonatomic, strong) UIView *upView;
 @property (nonatomic, strong) UIView *downView;
 @property (nonatomic, strong) UIImageView *centerView;
@@ -27,16 +29,19 @@
 
 @implementation TLShakeViewController
 
+#pragma mark - LifeCycle
 - (void) viewDidLoad
 {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"摇一摇"];
-    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"barbuttonicon_set"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDown)];
-    [self.navigationItem setRightBarButtonItem:rightBarButtonItem];
+    [self.view setBackgroundColor:[UIColor colorWithRed:42.0/255.0 green:45.0/255.0 blue:46.0/255.0 alpha:1.0]];
+    
+    [self.navigationItem setRightBarButtonItem:self.rightBarButtonItem];
     
     [self initSubViews];
 }
 
+#pragma mark - Event Response
 - (void) rightBarButtonDown
 {
     
@@ -49,6 +54,7 @@
     }
 }
 
+// 摇动手机
 - (void) motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
     if ([lineUpImageView isHidden]) {
@@ -71,10 +77,9 @@
     }
 }
 
+#pragma mark - Private Method
 - (void) initSubViews
 {
-    [self.view setBackgroundColor:[UIColor colorWithRed:42.0/255.0 green:45.0/255.0 blue:46.0/255.0 alpha:1.0]];
-    
     float w = self.view.frameWidth;
     float h = self.view.frameHeight * 0.45;
     
@@ -113,35 +118,44 @@
     x = space * 0.5;
     _menuButtons = [[NSMutableArray alloc] init];
     TLShakeMenuButton *peopleButton = [[TLShakeMenuButton alloc] initWithFrame:CGRectMake(x, y, w, h)
-                                                              imageName:@"Shake_icon_people"
-                                                            imageHLName:@"Shake_icon_peopleHL"
-                                                                  title:@"人"
-                                                                 target:self
-                                                                 action:@selector(menuButtonDown:)];
+                                                                     imageName:@"Shake_icon_people"
+                                                                   imageHLName:@"Shake_icon_peopleHL"
+                                                                         title:@"人"
+                                                                        target:self
+                                                                        action:@selector(menuButtonDown:)];
     peopleButton.tag = 0;
     [peopleButton setChoosed:YES];
     [_menuButtons addObject:peopleButton];
     [self.view addSubview:peopleButton];
     x += w + space;
     TLShakeMenuButton *songButton = [[TLShakeMenuButton alloc] initWithFrame:CGRectMake(x, y, w, h)
-                                                               imageName:@"Shake_icon_music"
-                                                             imageHLName:@"Shake_icon_musicHL"
-                                                                   title:@"歌曲"
-                                                                  target:self
-                                                                  action:@selector(menuButtonDown:)];
+                                                                   imageName:@"Shake_icon_music"
+                                                                 imageHLName:@"Shake_icon_musicHL"
+                                                                       title:@"歌曲"
+                                                                      target:self
+                                                                      action:@selector(menuButtonDown:)];
     songButton.tag = 1;
     [_menuButtons addObject:songButton];
     [self.view addSubview:songButton];
     x += w + space;
     TLShakeMenuButton *tvButton = [[TLShakeMenuButton alloc] initWithFrame:CGRectMake(x, y, w, h)
-                                                             imageName:@"Shake_icon_tv"
-                                                           imageHLName:@"Shake_icon_tvHL"
-                                                                 title:@"电视"
-                                                                target:self
-                                                                action:@selector(menuButtonDown:)];
+                                                                 imageName:@"Shake_icon_tv"
+                                                               imageHLName:@"Shake_icon_tvHL"
+                                                                     title:@"电视"
+                                                                    target:self
+                                                                    action:@selector(menuButtonDown:)];
     tvButton.tag = 2;
     [_menuButtons addObject:tvButton];
     [self.view addSubview:tvButton];
+}
+
+#pragma mark - Getter and Setter
+- (UIBarButtonItem *) rightBarButtonItem
+{
+    if (_rightBarButtonItem) {
+        _rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"barbuttonicon_set"] style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDown)];
+    }
+    return _rightBarButtonItem;
 }
 
 @end

@@ -33,10 +33,11 @@
     [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
     [self.tableView registerClass:[TLFounctionCell class] forCellReuseIdentifier:@"FunctionCell"];
     [self.tableView registerClass:[TLTableHeadFooterView class] forHeaderFooterViewReuseIdentifier:@"HeadFooterView"];
-    [self initTestData];
+    
+    _data = [TLUIHelper getNewNotiVCItems];
 }
 
-#pragma mark - UITableView
+#pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _data.count;
@@ -46,14 +47,6 @@
 {
     TLSettingGrounp *group = [_data objectAtIndex:section];
     return group.itemsCount;
-}
-
-- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    TLSettingGrounp *group = [_data objectAtIndex:section];
-    TLTableHeadFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HeadFooterView"];
-    [view setText:group.footerTitle];
-    return view;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,6 +61,15 @@
     indexPath.row == group.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleFill] : [cell setBottomLineStyle:CellLineStyleDefault];
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    TLSettingGrounp *group = [_data objectAtIndex:section];
+    TLTableHeadFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"HeadFooterView"];
+    [view setText:group.footerTitle];
+    return view;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -95,14 +97,6 @@
         [self.navigationController pushViewController:newsNotiVC animated:YES];
     }
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-#pragma mark - 初始化
-- (void) initTestData
-{
-    _data = [TLUIHelper getNewNotiVCItems];
-    
-    [self.tableView reloadData];
 }
 
 @end

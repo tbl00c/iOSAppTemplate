@@ -24,47 +24,31 @@
 
 @implementation TLConversationViewController
 
+#pragma mark - LifeCycle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.navigationItem setTitle:@"消息"];
     [self setHidesBottomBarWhenPushed:NO];
+    [self.navigationItem setTitle:@"消息"];
+    [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
+    [self.tableView setBackgroundColor:[UIColor whiteColor]];
     
+    // subView
+    [self.navigationItem setRightBarButtonItem:self.navRightButton];        // nav菜单
+    [self.tableView setTableHeaderView:self.searchController.searchBar];
     [self.tableView registerClass:[TLConversationCell class] forCellReuseIdentifier:@"ConversationCell"];
     
-    [self initSubViews];
-    
+    // data
     _data = [self getTestData];
 }
 
 - (void) viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-    
     [self setHidesBottomBarWhenPushed:NO];
 }
 
-- (NSMutableArray *) getTestData
-{
-    NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:20];
-    
-    TLConversation *item1 = [[TLConversation alloc] init];
-    item1.from = [NSString stringWithFormat:@"莫小贝"];
-    item1.message = @"帅哥你好！！";
-    item1.avatarURL = [NSURL URLWithString:@"10.jpeg"];
-    item1.messageCount = 0;
-    item1.date = [NSDate date];
-    [models addObject:item1];
-    
-    return models;
-}
-
-- (void) navRightButtonDown
-{
-
-}
-
-#pragma mark - UITableView
-
+#pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -89,6 +73,24 @@
     return cell;
 }
 
+- (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (NSString *) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return @"删除";
+}
+
+- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [_data removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
+#pragma mark - UITableViewDelegate
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 63;
@@ -110,21 +112,26 @@
     [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-- (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - Event Response
+- (void) navRightButtonDown
 {
-    return YES;
+    
 }
 
-- (NSString *) tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return @"删除";
-}
-
-- (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - Private Methods
+- (NSMutableArray *) getTestData
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_data removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    }
+    NSMutableArray *models = [[NSMutableArray alloc] initWithCapacity:20];
+    
+    TLConversation *item1 = [[TLConversation alloc] init];
+    item1.from = [NSString stringWithFormat:@"莫小贝"];
+    item1.message = @"帅哥你好！！";
+    item1.avatarURL = [NSURL URLWithString:@"10.jpeg"];
+    item1.messageCount = 0;
+    item1.date = [NSDate date];
+    [models addObject:item1];
+    
+    return models;
 }
 
 #pragma mark - UISearchBarDelegate
@@ -139,29 +146,37 @@
     [self.tabBarController.tabBar setHidden:NO];
 }
 
-/**
- *  初始化子视图
- */
-- (void) initSubViews
+
+#pragma mark - Getter and Setter
+- (UIBarButtonItem *) navRightButton
 {
-    [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
-    [self.tableView.layer setBackgroundColor:[UIColor whiteColor].CGColor];
-    
-    // 搜索
-    _searchVC = [[TLFriendSearchViewController alloc] init];
-    _searchController = [[UISearchController alloc] initWithSearchResultsController:_searchVC];
-    [_searchController setSearchResultsUpdater: _searchVC];
-    [_searchController.searchBar setPlaceholder:@"搜索"];
-    [_searchController.searchBar setBarTintColor:DEFAULT_SEARCHBAR_COLOR];
-    [_searchController.searchBar sizeToFit];
-    [_searchController.searchBar setDelegate:self];
-    [_searchController.searchBar.layer setBorderWidth:0.5f];
-    [_searchController.searchBar.layer setBorderColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0].CGColor];
-    [self.tableView setTableHeaderView:_searchController.searchBar];
-    
-    // navBar 右按钮
-    _navRightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"barbuttonicon_add"] style:UIBarButtonItemStylePlain target:self action:@selector(navRightButtonDown)];
-    [self.navigationItem setRightBarButtonItem:_navRightButton];
+    if (_navRightButton == nil) {
+        _navRightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"barbuttonicon_add"] style:UIBarButtonItemStylePlain target:self action:@selector(navRightButtonDown)];
+    }
+    return _navRightButton;
+}
+
+- (TLFriendSearchViewController *) searchVC
+{
+    if (_searchVC == nil) {
+        _searchVC = [[TLFriendSearchViewController alloc] init];
+    }
+    return _searchVC;
+}
+
+- (UISearchController *) searchController
+{
+    if (_searchController == nil) {
+        _searchController = [[UISearchController alloc] initWithSearchResultsController:_searchVC];
+        [_searchController setSearchResultsUpdater: self.searchVC];
+        [_searchController.searchBar setPlaceholder:@"搜索"];
+        [_searchController.searchBar setBarTintColor:DEFAULT_SEARCHBAR_COLOR];
+        [_searchController.searchBar sizeToFit];
+        [_searchController.searchBar setDelegate:self];
+        [_searchController.searchBar.layer setBorderWidth:0.5f];
+        [_searchController.searchBar.layer setBorderColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0].CGColor];
+    }
+    return _searchController;
 }
 
 @end

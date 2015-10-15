@@ -19,22 +19,38 @@
 
 @implementation TLChatViewController
 
+#pragma mark - LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _chatVC = [[TLChatMessageViewContrller alloc] init];
-    [_chatVC.view setFrame:CGRectMake(0, HEIGHT_STATUSBAR + HEIGHT_NAVBAR, WIDTH_SCREEN, HEIGHT_SCREEN - HEIGHT_TABBAR - HEIGHT_NAVBAR - HEIGHT_STATUSBAR)];
-    [self.view addSubview:_chatVC.view];
-    
-    _inputBoxVC = [[TLInputBoxViewController alloc] init];
-    [_inputBoxVC.view setFrame:CGRectMake(0, HEIGHT_SCREEN - HEIGHT_STATUSBAR, WIDTH_SCREEN, HEIGHT_SCREEN)];
+    [self.view addSubview:self.chatVC.view];
     [self.view addSubview:_inputBoxVC.view];
 }
 
+
+#pragma mark - Getter and Setter
 - (void) setUser:(TLUser *)user
 {
     _user = user;
     [self.navigationItem setTitle:user.username];
+}
+
+- (TLChatMessageViewContrller *) chatVC
+{
+    if (_chatVC == nil) {
+        _chatVC = [[TLChatMessageViewContrller alloc] init];
+        [_chatVC.view setFrame:CGRectMake(0, HEIGHT_STATUSBAR + HEIGHT_NAVBAR, WIDTH_SCREEN, HEIGHT_SCREEN - HEIGHT_TABBAR - HEIGHT_NAVBAR - HEIGHT_STATUSBAR)];
+    }
+    return _chatVC;
+}
+
+- (TLInputBoxViewController *) inputBoxVC
+{
+    if (_inputBoxVC == nil) {
+        _inputBoxVC = [[TLInputBoxViewController alloc] init];
+        [_inputBoxVC.view setFrame:CGRectMake(0, HEIGHT_SCREEN - HEIGHT_STATUSBAR, WIDTH_SCREEN, HEIGHT_SCREEN)];
+    }
+    return _inputBoxVC;
 }
 
 

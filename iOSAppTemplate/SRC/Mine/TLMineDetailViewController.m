@@ -18,17 +18,20 @@
 
 @implementation TLMineDetailViewController
 
+#pragma mark - LifeCycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"个人信息"];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)];
-    [self.tableView setTableHeaderView:view];
     [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
+    
+    // SubViews;
+    [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)]];
     [self.tableView registerClass:[TLFounctionCell class] forCellReuseIdentifier:@"FunctionCell"];
     
     [self initTestData];
 }
 
+#pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _data.count;
@@ -38,16 +41,6 @@
 {
     TLSettingGrounp *group = [_data objectAtIndex:section];
     return group.itemsCount;
-}
-
-- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
-    if (view == nil) {
-        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
-        [view setBackgroundView:[UIView new]];
-    }
-    return view;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -65,12 +58,22 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
+    if (view == nil) {
+        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
+        [view setBackgroundView:[UIView new]];
+    }
+    return view;
+}
+
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0 && indexPath.row == 0) {
         return 80.0f;
     }
-    
     return 45.0f;
 }
 
@@ -85,7 +88,7 @@
 }
 
 
-#pragma mark - 初始化
+#pragma mark - Private Methods
 - (void) initTestData
 {
     _data = [TLUIHelper getMineDetailVCItems];
