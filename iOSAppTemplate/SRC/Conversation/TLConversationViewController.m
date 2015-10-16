@@ -105,11 +105,11 @@
     user7.username = @"莫小贝";
     user7.userID = @"XB";
     user7.nikename = @"小贝";
-    user7.avatarURL = [NSURL URLWithString:@"10.jpeg"];
+    user7.avatarURL = @"10.jpeg";
     _chatVC.user = user7;
     [self setHidesBottomBarWhenPushed:YES];
     [self.navigationController pushViewController:_chatVC animated:YES];
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark - Event Response

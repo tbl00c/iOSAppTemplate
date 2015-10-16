@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TLMessage.h"
 
 @interface TLChatMessageViewContrller : UITableViewController
+
+@property (nonatomic, strong) NSMutableArray *data;
+
+- (void) addNewMessage:(TLMessage *)message;
 
 @end

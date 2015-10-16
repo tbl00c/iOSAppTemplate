@@ -130,7 +130,7 @@
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark - Private Methods
@@ -141,7 +141,7 @@
     _user = [[TLUser alloc] init];
     _user.username = @"Bay、栢";
     _user.userID = @"li-bokun";
-    _user.avatarURL = [NSURL URLWithString:@"0.jpg"];
+    _user.avatarURL = @"0.jpg";
     
     [self.tableView reloadData];
 }

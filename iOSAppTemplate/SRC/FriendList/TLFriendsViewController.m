@@ -98,7 +98,7 @@
         TLSettingItem *item = [_functionGroup itemAtIndex:indexPath.row];
         TLUser *user = [[TLUser alloc] init];
         user.username = item.title;
-        user.avatarURL = [NSURL URLWithString:item.imageName];
+        user.avatarURL = item.imageName;
         [cell setUser:user];
         [cell setTopLineStyle:CellLineStyleNone];
         indexPath.row == _functionGroup.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleNone] :[cell setBottomLineStyle:CellLineStyleDefault];
@@ -161,7 +161,7 @@
         [self setHidesBottomBarWhenPushed:YES];
         [self.navigationController pushViewController:self.detailsVC animated:YES];
     }
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark - UISearchBarDelegate
@@ -192,41 +192,41 @@
         user1.username = @"吕轻侯";
         user1.nikename = @"侯哥";
         user1.userID = @"yun";
-        user1.avatarURL = [NSURL URLWithString:@"1.jpg"];
+        user1.avatarURL = @"1.jpg";
         [_friendsArray addObject:user1];
         TLUser *user2 = [[TLUser alloc] init];
         user2.username = @"白展堂";
         user2.userID = @"小白2";
         user2.nikename = @"堂堂";
-        user2.avatarURL = [NSURL URLWithString:@"4.jpg"];
+        user2.avatarURL = @"4.jpg";
         [_friendsArray addObject:user2];
         TLUser *user3 = [[TLUser alloc] init];
         user3.username = @"李秀莲";
         user3.userID = @"xiulian";
         user3.nikename = @"大嘴";
-        user3.avatarURL = [NSURL URLWithString:@"8.jpg"];
+        user3.avatarURL = @"8.jpg";
         [_friendsArray addObject:user3];
         TLUser *user4 = [[TLUser alloc] init];
         user4.username = @"燕小六";
         user4.userID = @"xiao6";
-        user4.avatarURL = [NSURL URLWithString:@"11.jpg"];
+        user4.avatarURL = @"11.jpg";
         [_friendsArray addObject:user4];
         TLUser *user5 = [[TLUser alloc] init];
         user5.username = @"郭芙蓉";
         user5.userID = @"furongMM";
-        user5.avatarURL = [NSURL URLWithString:@"12.jpg"];
+        user5.avatarURL = @"12.jpg";
         [_friendsArray addObject:user5];
         TLUser *user6 = [[TLUser alloc] init];
         user6.username = @"佟湘玉";
         user6.userID = @"yu";
         user6.nikename = @"掌柜嗒";
-        user6.avatarURL = [NSURL URLWithString:@"7.jpg"];
+        user6.avatarURL = @"7.jpg";
         [_friendsArray addObject:user6];
         TLUser *user7 = [[TLUser alloc] init];
         user7.username = @"莫小贝";
         user7.userID = @"XB";
         user7.nikename = @"小贝";
-        user7.avatarURL = [NSURL URLWithString:@"10.jpeg"];
+        user7.avatarURL = @"10.jpeg";
         [_friendsArray addObject:user7];
         
         _functionGroup = [TLUIHelper getFriensListItemsGroup];
