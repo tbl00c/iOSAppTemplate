@@ -75,6 +75,8 @@
 		C26F8D5D1BD0D9310096A3EB /* TLVoiceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D5C1BD0D9310096A3EB /* TLVoiceMessageCell.m */; settings = {ASSET_TAGS = (); }; };
 		C26F8D631BD0D96F0096A3EB /* TLSystemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D621BD0D96F0096A3EB /* TLSystemMessageCell.m */; settings = {ASSET_TAGS = (); }; };
 		C26F8D681BD0EDF40096A3EB /* ChatViewImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C26F8D671BD0EDF40096A3EB /* ChatViewImages.xcassets */; settings = {ASSET_TAGS = (); }; };
+		C27AA8B31BD10B39009C0B51 /* 1001.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C27AA8B21BD10B39009C0B51 /* 1001.jpg */; settings = {ASSET_TAGS = (); }; };
+		C27AA8B51BD10DBE009C0B51 /* 1000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C27AA8B41BD10DBE009C0B51 /* 1000.jpg */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +213,8 @@
 		C26F8D611BD0D96F0096A3EB /* TLSystemMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSystemMessageCell.h; sourceTree = "<group>"; };
 		C26F8D621BD0D96F0096A3EB /* TLSystemMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSystemMessageCell.m; sourceTree = "<group>"; };
 		C26F8D671BD0EDF40096A3EB /* ChatViewImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ChatViewImages.xcassets; sourceTree = "<group>"; };
+		C27AA8B21BD10B39009C0B51 /* 1001.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1001.jpg; sourceTree = "<group>"; };
+		C27AA8B41BD10DBE009C0B51 /* 1000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1000.jpg; sourceTree = "<group>"; };
 		DCCD342CB6E933ACE2862878 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -464,6 +468,8 @@
 		C265A7C61BCDFB7200079AD9 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				C27AA8B41BD10DBE009C0B51 /* 1000.jpg */,
+				C27AA8B21BD10B39009C0B51 /* 1001.jpg */,
 				C265A7C71BCDFB7200079AD9 /* 0.jpg */,
 				C265A7C81BCDFB7200079AD9 /* 1.jpg */,
 				C265A7C91BCDFB7200079AD9 /* 10.jpeg */,
@@ -858,6 +864,8 @@
 				C265A7DE1BCDFB7200079AD9 /* 4.jpg in Resources */,
 				C26F8D681BD0EDF40096A3EB /* ChatViewImages.xcassets in Resources */,
 				C265A7E61BCDFB7200079AD9 /* Weixin.xcassets in Resources */,
+				C27AA8B51BD10DBE009C0B51 /* 1000.jpg in Resources */,
+				C27AA8B31BD10B39009C0B51 /* 1001.jpg in Resources */,
 				C265A7E11BCDFB7200079AD9 /* ChatVCImages.xcassets in Resources */,
 				C265A7E41BCDFB7200079AD9 /* Images.xcassets in Resources */,
 				C265A7DC1BCDFB7200079AD9 /* 12.jpg in Resources */,

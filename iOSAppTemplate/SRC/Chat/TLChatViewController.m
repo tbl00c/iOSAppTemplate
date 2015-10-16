@@ -59,6 +59,23 @@
     message3.date = [NSDate date];
     message3.text = @"有天小侄子问我：“啥时候我才能长大？”\n我问他：“当你看电视看到女主角快被糟蹋的时候，心里想的是什么？”\n“当然是希望男主角快点出现来救女主角啊。”\n“我跟你恰恰相反，这就是小屁孩跟大人的区别。”";
     [_chatVC addNewMessage:message3];
+    
+    TLMessage *message4 = [[TLMessage alloc] init];
+    message4.from = _user;
+    message4.messageType = TLMessageTypeImage;
+    message4.ownerTyper = TLMessageOwnerTypeOther;
+    message4.date = [NSDate date];
+    message4.imagePath = @"1000.jpg";
+    [_chatVC addNewMessage:message4];
+    
+    TLMessage *message5 = [[TLMessage alloc] init];
+    message5.from = _user;
+    message5.messageType = TLMessageTypeImage;
+    message5.ownerTyper = TLMessageOwnerTypeSelf;
+    message5.date = [NSDate date];
+    message5.imagePath = @"1001.jpg";
+    [_chatVC addNewMessage:message5];
+
 }
 
 

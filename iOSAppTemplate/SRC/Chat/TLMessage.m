@@ -9,6 +9,7 @@
 #import "TLMessage.h"
 
 static UILabel *label = nil;
+static UIImage *image = nil;
 
 @implementation TLMessage
 
@@ -54,6 +55,8 @@ static UILabel *label = nil;
             _messageSize = [label sizeThatFits:CGSizeMake(WIDTH_SCREEN * 0.6, MAXFLOAT)];
             break;
         case TLMessageTypeImage:
+            image = [UIImage imageNamed:self.imagePath];
+            _messageSize = (image.size.width > WIDTH_SCREEN * 0.5 ? CGSizeMake(WIDTH_SCREEN * 0.5, WIDTH_SCREEN * 0.5 / image.size.width * image.size.height) : image.size);
             break;
         case TLMessageTypeVoice:
 
