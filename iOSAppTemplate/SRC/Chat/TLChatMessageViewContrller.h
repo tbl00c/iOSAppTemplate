@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSMutableArray *data;
 
 - (void) addNewMessage:(TLMessage *)message;
+- (void) scrollToBottom;
 
 @end

@@ -36,6 +36,11 @@
     [self.tableView reloadData];
 }
 
+- (void) scrollToBottom
+{
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:_data.count - 1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:YES];
+}
+
 #pragma mark - UITableViewDataSource
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
