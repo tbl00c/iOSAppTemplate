@@ -17,6 +17,7 @@
 #define HEIGHT_STATUSBAR	20
 #define HEIGHT_TABBAR       49
 #define HEIGHT_NAVBAR       44
+#define HEIGHT_CHATBOXVIEW  215
 
 #pragma mark - Color
 #define     DEFAULT_NAVBAR_COLOR            [UIColor colorWithRed:20.0/255.0 green:20.0/255.0 blue:20.0/255.0 alpha:0.9]

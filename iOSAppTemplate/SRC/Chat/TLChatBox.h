@@ -18,7 +18,7 @@ typedef NS_ENUM(NSInteger, TLChatBoxStatus) {
 
 @class TLChatBox;
 @protocol TLChatBoxDelegate <NSObject>
-- (void)chatBox:(TLChatBox *)chatBox changeStatusForm:(TLChatBoxStatus)fromStatus to:(TLChatBoxStatus)status;
+- (void)chatBox:(TLChatBox *)chatBox changeStatusForm:(TLChatBoxStatus)fromStatus to:(TLChatBoxStatus)toStatus;
 @end
 
 @interface TLChatBox : UIView

@@ -54,120 +54,124 @@
 #pragma mark - UITextViewDelegate
 - (void) textViewDidBeginEditing:(UITextView *)textView
 {
-    if (self.status == TLChatBoxStatusShowFace) {
+    TLChatBoxStatus lastStatus = self.status;
+    self.status = TLChatBoxStatusShowKeyboard;
+    if (lastStatus == TLChatBoxStatusShowFace) {
         [_faceButton setImage:[UIImage imageNamed:@"ToolViewEmotion"] forState:UIControlStateNormal];
         [_faceButton setImage:[UIImage imageNamed:@"ToolViewEmotionHL"] forState:UIControlStateHighlighted];
     }
-    else if (self.status == TLChatBoxStatusShowMore) {
+    else if (lastStatus == TLChatBoxStatusShowMore) {
         [_moreButton setImage:[UIImage imageNamed:@"TypeSelectorBtn_Black"] forState:UIControlStateNormal];
         [_moreButton setImage:[UIImage imageNamed:@"TypeSelectorBtnHL_Black"] forState:UIControlStateHighlighted];
     }
     if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeStatusForm:to:)]) {
-        [_delegate chatBox:self changeStatusForm:self.status to:TLChatBoxStatusShowKeyboard];
+        [_delegate chatBox:self changeStatusForm:lastStatus to:self.status];
     }
-    self.status = TLChatBoxStatusShowKeyboard;
 }
 
 #pragma mark - Event Response
 - (void) voiceButtonDown:(UIButton *)sender
 {
-    if (self.status == TLChatBoxStatusShowVoice) {      // 正在显示talkButton，改为现实键盘状态
+    TLChatBoxStatus lastStatus = self.status;
+    if (lastStatus == TLChatBoxStatusShowVoice) {      // 正在显示talkButton，改为现实键盘状态
+        self.status = TLChatBoxStatusShowKeyboard;
         [self.talkButton setHidden:YES];
         [self.textView setHidden:NO];
         [self.textView becomeFirstResponder];
         [_voiceButton setImage:[UIImage imageNamed:@"ToolViewInputVoice"] forState:UIControlStateNormal];
         [_voiceButton setImage:[UIImage imageNamed:@"ToolViewInputVoiceHL"] forState:UIControlStateHighlighted];
         if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeStatusForm:to:)]) {
-            [_delegate chatBox:self changeStatusForm:self.status to:TLChatBoxStatusShowKeyboard];
+            [_delegate chatBox:self changeStatusForm:lastStatus to:self.status];
         }
-        self.status = TLChatBoxStatusShowKeyboard;
     }
     else {          // 显示talkButton
+        self.status = TLChatBoxStatusShowVoice;
         [self.textView resignFirstResponder];
         [self.textView setHidden:YES];
         [self.talkButton setHidden:NO];
         [_voiceButton setImage:[UIImage imageNamed:@"ToolViewKeyboard"] forState:UIControlStateNormal];
         [_voiceButton setImage:[UIImage imageNamed:@"ToolViewKeyboardHL"] forState:UIControlStateHighlighted];
-        if (self.status == TLChatBoxStatusShowFace) {
+        if (lastStatus == TLChatBoxStatusShowFace) {
             [_faceButton setImage:[UIImage imageNamed:@"ToolViewEmotion"] forState:UIControlStateNormal];
             [_faceButton setImage:[UIImage imageNamed:@"ToolViewEmotionHL"] forState:UIControlStateHighlighted];
         }
-        else if (self.status == TLChatBoxStatusShowMore) {
+        else if (lastStatus == TLChatBoxStatusShowMore) {
             [_moreButton setImage:[UIImage imageNamed:@"TypeSelectorBtn_Black"] forState:UIControlStateNormal];
             [_moreButton setImage:[UIImage imageNamed:@"TypeSelectorBtnHL_Black"] forState:UIControlStateHighlighted];
         }
         if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeStatusForm:to:)]) {
-            [_delegate chatBox:self changeStatusForm:self.status to:TLChatBoxStatusShowVoice];
+            [_delegate chatBox:self changeStatusForm:lastStatus to:self.status];
         }
-        self.status = TLChatBoxStatusShowVoice;
     }
 }
 
 - (void) faceButtonDown:(UIButton *)sender
 {
-    if (self.status == TLChatBoxStatusShowFace) {       // 正在显示表情，改为现实键盘状态
+    TLChatBoxStatus lastStatus = self.status;
+    if (lastStatus == TLChatBoxStatusShowFace) {       // 正在显示表情，改为现实键盘状态
+        self.status = TLChatBoxStatusShowKeyboard;
         [_faceButton setImage:[UIImage imageNamed:@"ToolViewEmotion"] forState:UIControlStateNormal];
         [_faceButton setImage:[UIImage imageNamed:@"ToolViewEmotionHL"] forState:UIControlStateHighlighted];
         [self.textView becomeFirstResponder];
         if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeStatusForm:to:)]) {
-            [_delegate chatBox:self changeStatusForm:self.status to:TLChatBoxStatusShowKeyboard];
+            [_delegate chatBox:self changeStatusForm:lastStatus to:self.status];
         }
-        self.status = TLChatBoxStatusShowKeyboard;
     }
     else {
+        self.status = TLChatBoxStatusShowFace;
         [_faceButton setImage:[UIImage imageNamed:@"ToolViewKeyboard"] forState:UIControlStateNormal];
         [_faceButton setImage:[UIImage imageNamed:@"ToolViewKeyboardHL"] forState:UIControlStateHighlighted];
-        if (self.status == TLChatBoxStatusShowMore) {
+        if (lastStatus == TLChatBoxStatusShowMore) {
             [_moreButton setImage:[UIImage imageNamed:@"TypeSelectorBtn_Black"] forState:UIControlStateNormal];
             [_moreButton setImage:[UIImage imageNamed:@"TypeSelectorBtnHL_Black"] forState:UIControlStateHighlighted];
         }
-        else if (self.status == TLChatBoxStatusShowVoice) {
+        else if (lastStatus == TLChatBoxStatusShowVoice) {
             [_voiceButton setImage:[UIImage imageNamed:@"ToolViewInputVoice"] forState:UIControlStateNormal];
             [_voiceButton setImage:[UIImage imageNamed:@"ToolViewInputVoiceHL"] forState:UIControlStateHighlighted];
             [_talkButton setHidden:YES];
             [_textView setHidden:NO];
         }
-        else if (self.status == TLChatBoxStatusShowKeyboard || self.self == TLChatBoxStatusNothing) {
+        else if (lastStatus == TLChatBoxStatusShowKeyboard) {
             [self.textView resignFirstResponder];
         }
         if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeStatusForm:to:)]) {
-            [_delegate chatBox:self changeStatusForm:self.status to:TLChatBoxStatusShowFace];
+            [_delegate chatBox:self changeStatusForm:lastStatus to:self.status];
         }
-        self.status = TLChatBoxStatusShowFace;
     }
 }
 
 - (void) moreButtonDown:(UIButton *)sender
 {
-    if (self.status == TLChatBoxStatusShowMore) {
+    TLChatBoxStatus lastStatus = self.status;
+    if (lastStatus == TLChatBoxStatusShowMore) {
+        self.status = TLChatBoxStatusShowKeyboard;
         [_moreButton setImage:[UIImage imageNamed:@"TypeSelectorBtn_Black"] forState:UIControlStateNormal];
         [_moreButton setImage:[UIImage imageNamed:@"TypeSelectorBtnHL_Black"] forState:UIControlStateHighlighted];
         [self.textView becomeFirstResponder];
         if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeStatusForm:to:)]) {
-            [_delegate chatBox:self changeStatusForm:self.status to:TLChatBoxStatusShowKeyboard];
+            [_delegate chatBox:self changeStatusForm:lastStatus to:self.status];
         }
-        self.status = TLChatBoxStatusShowKeyboard;
     }
     else {
+        self.status = TLChatBoxStatusShowMore;
         [_moreButton setImage:[UIImage imageNamed:@"ToolViewKeyboard"] forState:UIControlStateNormal];
         [_moreButton setImage:[UIImage imageNamed:@"ToolViewKeyboardHL"] forState:UIControlStateHighlighted];
-        if (self.status == TLChatBoxStatusShowFace) {
+        if (lastStatus == TLChatBoxStatusShowFace) {
             [_faceButton setImage:[UIImage imageNamed:@"ToolViewEmotion"] forState:UIControlStateNormal];
             [_faceButton setImage:[UIImage imageNamed:@"ToolViewEmotionHL"] forState:UIControlStateHighlighted];
         }
-        else if (self.status == TLChatBoxStatusShowVoice) {
+        else if (lastStatus == TLChatBoxStatusShowVoice) {
             [_voiceButton setImage:[UIImage imageNamed:@"ToolViewInputVoice"] forState:UIControlStateNormal];
             [_voiceButton setImage:[UIImage imageNamed:@"ToolViewInputVoiceHL"] forState:UIControlStateHighlighted];
             [_talkButton setHidden:YES];
             [_textView setHidden:NO];
         }
-        else if (self.status == TLChatBoxStatusShowKeyboard || self.self == TLChatBoxStatusNothing) {
+        else if (lastStatus == TLChatBoxStatusShowKeyboard) {
             [self.textView resignFirstResponder];
         }
         if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeStatusForm:to:)]) {
-            [_delegate chatBox:self changeStatusForm:self.status to:TLChatBoxStatusShowMore];
+            [_delegate chatBox:self changeStatusForm:lastStatus to:self.status];
         }
-        self.status = TLChatBoxStatusShowMore;
     }
 }
 
