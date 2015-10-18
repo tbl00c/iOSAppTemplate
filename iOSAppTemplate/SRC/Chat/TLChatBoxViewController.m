@@ -8,14 +8,15 @@
 
 #import "TLChatBoxViewController.h"
 #import "TLChatBox.h"
+#import "TLChatBoxMoreView.h"
 
 @interface TLChatBoxViewController () <TLChatBoxDelegate>
 
 @property (nonatomic, assign) CGFloat curHeight;
-
 @property (nonatomic, assign) CGRect keyboardFrame;
 
 @property (nonatomic, strong) TLChatBox *chatBox;
+@property (nonatomic, strong) TLChatBoxMoreView *chatBoxMoreView;
 
 @end
 
@@ -27,6 +28,7 @@
     [super viewDidLoad];
     
     [self.view addSubview:self.chatBox];
+    [self.view addSubview:self.chatBoxMoreView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
@@ -114,6 +116,14 @@
         [_chatBox setDelegate:self];
     }
     return _chatBox;
+}
+
+- (TLChatBoxMoreView *) chatBoxMoreView
+{
+    if (_chatBoxMoreView == nil) {
+        _chatBoxMoreView = [[TLChatBoxMoreView alloc] initWithFrame:CGRectMake(0, HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW, WIDTH_SCREEN, HEIGHT_CHATBOXVIEW)];
+    }
+    return _chatBoxMoreView;
 }
 
 @end
