@@ -11,6 +11,7 @@
 		2D1BA7151BA578D2009BB687 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BA7141BA578D2009BB687 /* AppDelegate.m */; };
 		2D1BA72F1BA578D2009BB687 /* iOSAppTemplateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BA72E1BA578D2009BB687 /* iOSAppTemplateTests.m */; };
 		7F9BFFFCBF4DB85D4C25D242 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431F7BA1B753F37D7C06FD /* libPods.a */; };
+		C26267F91BD4872B0021760F /* TLChatBoxFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26267F81BD4872B0021760F /* TLChatBoxFaceView.m */; settings = {ASSET_TAGS = (); }; };
 		C265A7401BCDF88D00079AD9 /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7371BCDF88D00079AD9 /* common.m */; };
 		C265A7421BCDF88D00079AD9 /* TLDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A73D1BCDF88D00079AD9 /* TLDataHelper.m */; };
 		C265A7431BCDF88D00079AD9 /* TLUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A73F1BCDF88D00079AD9 /* TLUIHelper.m */; };
@@ -104,6 +105,8 @@
 		38431F7BA1B753F37D7C06FD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		96D5D1B7652B72A32F8E9A66 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C24769761BA96652007DC0ED /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		C26267F71BD4872B0021760F /* TLChatBoxFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBoxFaceView.h; sourceTree = "<group>"; };
+		C26267F81BD4872B0021760F /* TLChatBoxFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBoxFaceView.m; sourceTree = "<group>"; };
 		C265A7361BCDF88D00079AD9 /* common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = common.h; sourceTree = "<group>"; };
 		C265A7371BCDF88D00079AD9 /* common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = common.m; sourceTree = "<group>"; };
 		C265A7381BCDF88D00079AD9 /* enumerate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = enumerate.h; sourceTree = "<group>"; };
@@ -782,6 +785,8 @@
 				C2706FD41BD21B7D0085C2FA /* TLChatBoxMoreView.m */,
 				C2706FD61BD21DE40085C2FA /* TLChatBoxMoreItem.h */,
 				C2706FD71BD21DE40085C2FA /* TLChatBoxMoreItem.m */,
+				C26267F71BD4872B0021760F /* TLChatBoxFaceView.h */,
+				C26267F81BD4872B0021760F /* TLChatBoxFaceView.m */,
 			);
 			name = InputBox;
 			sourceTree = "<group>";
@@ -949,6 +954,7 @@
 				C265A7401BCDF88D00079AD9 /* common.m in Sources */,
 				C265A7AE1BCDFB4E00079AD9 /* TLConversationViewController.m in Sources */,
 				C265A7621BCDFB4000079AD9 /* TLTableHeadFooterView.m in Sources */,
+				C26267F91BD4872B0021760F /* TLChatBoxFaceView.m in Sources */,
 				C265A7611BCDFB4000079AD9 /* TLNavigationController.m in Sources */,
 				C265A7661BCDFB4000079AD9 /* UIImage+TL.m in Sources */,
 				2D1BA7151BA578D2009BB687 /* AppDelegate.m in Sources */,
