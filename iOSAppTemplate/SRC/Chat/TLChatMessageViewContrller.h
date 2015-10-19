@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "TLMessage.h"
 
+@class TLChatMessageViewContrller;
+@protocol TLChatMessageViewControllerDelegate <NSObject>
+- (void) didTapChatMessageView:(TLChatMessageViewContrller *)chatMessageViewController;
+@end
+
 @interface TLChatMessageViewContrller : UITableViewController
 
+@property (nonatomic, assign) id<TLChatMessageViewControllerDelegate>delegate;
 @property (nonatomic, strong) NSMutableArray *data;
 
 - (void) addNewMessage:(TLMessage *)message;

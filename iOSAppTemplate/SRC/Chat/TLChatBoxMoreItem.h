@@ -12,10 +12,9 @@
 
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *imageName;
-@property (nonatomic, strong) NSString *imageHLName;
 
 + (TLChatBoxMoreItem *) createChatBoxMoreItemWithTitle:(NSString *)title
-                                             imageName:(NSString *)imageName
-                                           imageHLName:(NSString *)imageHLName;
+                                             imageName:(NSString *)imageName;
 
+- (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
 @end

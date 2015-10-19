@@ -13,7 +13,6 @@
 
 @interface TLChatBoxViewController () <TLChatBoxDelegate>
 
-@property (nonatomic, assign) CGFloat curHeight;
 @property (nonatomic, assign) CGRect keyboardFrame;
 
 @property (nonatomic, strong) TLChatBox *chatBox;
@@ -35,10 +34,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardFrameWillChange:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
-- (void) viewWillAppear:(BOOL)animated
+- (void) viewDidDisappear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    [self.chatBox resignFirstResponder];
+    [super viewDidDisappear:animated];
+    [self resignFirstResponder];
 }
 
 - (void)dealloc{
@@ -46,7 +45,36 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+#pragma mark - Public Methods
+- (BOOL) resignFirstResponder
+{
+    if (self.chatBox.status != TLChatBoxStatusNothing && self.chatBox.status != TLChatBoxStatusShowVoice) {
+        [self.chatBoxFaceView removeFromSuperview];
+        [self.chatBoxMoreView removeFromSuperview];
+        [self.chatBox resignFirstResponder];
+        self.chatBox.status = (self.chatBox.status == TLChatBoxStatusShowVoice ? self.chatBox.status : TLChatBoxStatusNothing);
+        if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
+            [UIView animateWithDuration:0.3 animations:^{
+                [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR];
+            }];
+        }
+    }
+    return [super resignFirstResponder];
+}
+
 #pragma mark - TLChatBoxDelegate
+- (void) chatBox:(TLChatBox *)chatBox sendTextMessage:(NSString *)textMessage
+{
+    TLMessage *message = [[TLMessage alloc] init];
+    message.messageType = TLMessageTypeText;
+    message.ownerTyper = TLMessageOwnerTypeSelf;
+    message.text = textMessage;
+    message.date = [NSDate date];
+    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController: sendMessage:)]) {
+        [_delegate chatBoxViewController:self sendMessage:message];
+    }
+}
+
 - (void) chatBox:(TLChatBox *)chatBox changeStatusForm:(TLChatBoxStatus)fromStatus to:(TLChatBoxStatus)toStatus
 {
     if (toStatus == TLChatBoxStatusShowKeyboard) {      // 显示键盘
@@ -60,9 +88,8 @@
         // 从显示更多或表情状态 到 显示语音状态需要动画
         if (fromStatus == TLChatBoxStatusShowMore || fromStatus == TLChatBoxStatusShowFace) {
             [UIView animateWithDuration:0.3 animations:^{
-                _curHeight = HEIGHT_TABBAR;
                 if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:_curHeight];
+                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR];
                 }
             } completion:^(BOOL finished) {
                 [self.chatBoxFaceView removeFromSuperview];
@@ -75,9 +102,8 @@
             [self.chatBoxFaceView setOriginY:HEIGHT_TABBAR];
             [self.view addSubview:self.chatBoxFaceView];
             [UIView animateWithDuration:0.3 animations:^{
-                _curHeight = HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW;
                 if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:_curHeight];
+                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW];
                 }
             }];
         }
@@ -93,9 +119,8 @@
             // 整个界面高度变化
             if (fromStatus != TLChatBoxStatusShowMore) {
                 [UIView animateWithDuration:0.2 animations:^{
-                    _curHeight = HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW;
                     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                        [_delegate chatBoxViewController:self didChangeChatBoxHeight:_curHeight];
+                        [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW];
                     }
                 }];
             }
@@ -106,9 +131,8 @@
             [self.chatBoxMoreView setOriginY:HEIGHT_TABBAR];
             [self.view addSubview:self.chatBoxMoreView];
             [UIView animateWithDuration:0.3 animations:^{
-                _curHeight = HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW;
                 if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:_curHeight];
+                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW];
                 }
             }];
         }
@@ -123,9 +147,8 @@
             
             if (fromStatus != TLChatBoxStatusShowFace) {
                 [UIView animateWithDuration:0.2 animations:^{
-                    _curHeight = HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW;
                     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                        [_delegate chatBoxViewController:self didChangeChatBoxHeight:_curHeight];
+                        [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW];
                     }
                 }];
             }
@@ -139,9 +162,8 @@
     if (_chatBox.status == TLChatBoxStatusShowFace || _chatBox.status == TLChatBoxStatusShowMore) {
         return;
     }
-    _curHeight = HEIGHT_TABBAR;
     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-        [_delegate chatBoxViewController:self didChangeChatBoxHeight:_curHeight];
+        [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR];
     }
 }
 
@@ -153,9 +175,8 @@
     else if ((_chatBox.status == TLChatBoxStatusShowFace || _chatBox.status == TLChatBoxStatusShowMore) && self.keyboardFrame.size.height <= HEIGHT_CHATBOXVIEW) {
         return;
     }
-    _curHeight = self.keyboardFrame.size.height + HEIGHT_TABBAR;
     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-        [_delegate chatBoxViewController:self didChangeChatBoxHeight: _curHeight];
+        [_delegate chatBoxViewController:self didChangeChatBoxHeight: self.keyboardFrame.size.height + HEIGHT_TABBAR];
     }
 }
 
@@ -173,7 +194,31 @@
 {
     if (_chatBoxMoreView == nil) {
         _chatBoxMoreView = [[TLChatBoxMoreView alloc] initWithFrame:CGRectMake(0, HEIGHT_TABBAR, WIDTH_SCREEN, HEIGHT_CHATBOXVIEW)];
-        [_chatBoxMoreView setBackgroundColor:[UIColor orangeColor]];
+        TLChatBoxMoreItem *photosItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"照片"
+                                                                                imageName:@"sharemore_pic"];
+        TLChatBoxMoreItem *takePictureItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"拍摄"
+                                                                                     imageName:@"sharemore_video"];
+        TLChatBoxMoreItem *videoItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"小视频"
+                                                                               imageName:@"sharemore_sight"];
+        TLChatBoxMoreItem *videoCallItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"视频聊天"
+                                                                                   imageName:@"sharemore_videovoip"];
+        TLChatBoxMoreItem *giftItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"红包"
+                                                                              imageName:@"sharemore_wallet"];
+        TLChatBoxMoreItem *transferItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"转账"
+                                                                                  imageName:@"sharemorePay"];
+        TLChatBoxMoreItem *positionItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"位置"
+                                                                                  imageName:@"sharemore_location"];
+        TLChatBoxMoreItem *favoriteItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"收藏"
+                                                                                  imageName:@"sharemore_myfav"];
+        TLChatBoxMoreItem *businessCardItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"名片"
+                                                                                      imageName:@"sharemore_friendcard" ];
+        TLChatBoxMoreItem *interphoneItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"实时对讲机"
+                                                                                    imageName:@"sharemore_wxtalk" ];
+        TLChatBoxMoreItem *voiceItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"语音输入"
+                                                                               imageName:@"sharemore_voiceinput"];
+        TLChatBoxMoreItem *cardsItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"卡券"
+                                                                               imageName:@"sharemore_wallet"];
+        [_chatBoxMoreView setItems:[[NSMutableArray alloc] initWithObjects:photosItem, takePictureItem, videoItem, videoCallItem, giftItem, transferItem, positionItem, favoriteItem, businessCardItem, interphoneItem, voiceItem, cardsItem, nil]];
     }
     return _chatBoxMoreView;
 }
@@ -182,7 +227,6 @@
 {
     if (_chatBoxFaceView == nil) {
         _chatBoxFaceView = [[TLChatBoxFaceView alloc] initWithFrame:CGRectMake(0, HEIGHT_TABBAR, WIDTH_SCREEN, HEIGHT_CHATBOXVIEW)];
-        [_chatBoxFaceView setBackgroundColor:[UIColor redColor]];
     }
     return _chatBoxFaceView;
 }

@@ -49,6 +49,10 @@
 - (BOOL) resignFirstResponder
 {
     [self.textView resignFirstResponder];
+    [_moreButton setImage:[UIImage imageNamed:@"TypeSelectorBtn_Black"] forState:UIControlStateNormal];
+    [_moreButton setImage:[UIImage imageNamed:@"TypeSelectorBtnHL_Black"] forState:UIControlStateHighlighted];
+    [_faceButton setImage:[UIImage imageNamed:@"ToolViewEmotion"] forState:UIControlStateNormal];
+    [_faceButton setImage:[UIImage imageNamed:@"ToolViewEmotionHL"] forState:UIControlStateHighlighted];
     return [super resignFirstResponder];
 }
 
@@ -68,6 +72,20 @@
     if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeStatusForm:to:)]) {
         [_delegate chatBox:self changeStatusForm:lastStatus to:self.status];
     }
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"]){
+        if (textView.text.length > 0) {
+            if (_delegate && [_delegate respondsToSelector:@selector(chatBox:sendTextMessage:)]) {
+                [_delegate chatBox:self sendTextMessage:textView.text];
+            }
+            textView.text = @"";
+        }
+        return NO;
+    }
+    
+    return YES;
 }
 
 #pragma mark - Event Response
@@ -226,6 +244,7 @@
         [_textView.layer setBorderColor:self.topLine.backgroundColor.CGColor];
         [_textView setShowsVerticalScrollIndicator:NO];
         [_textView setScrollsToTop:NO];
+        [_textView setReturnKeyType:UIReturnKeySend];
         [_textView setDelegate:self];
     }
     return _textView;

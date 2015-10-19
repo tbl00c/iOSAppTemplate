@@ -13,6 +13,12 @@
 #import "TLVoiceMessageCell.h"
 #import "TLSystemMessageCell.h"
 
+@interface TLChatMessageViewContrller ()
+
+@property (nonatomic, strong) UITapGestureRecognizer *tapGR;
+
+@end
+
 @implementation TLChatMessageViewContrller
 
 #pragma mark - LifeCycle
@@ -20,6 +26,7 @@
 {
     [super viewDidLoad];
     [self.view setBackgroundColor:DEFAULT_BACKGROUND_COLOR];
+    [self.view addGestureRecognizer:self.tapGR];
     [self.tableView setTableFooterView:[UIView new]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
@@ -67,7 +74,29 @@
     return message.cellHeight;
 }
 
-#pragma mark - Getter and Setter
+#pragma mark - UIScrollViewDelegate
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+}
+
+#pragma mark - Event Response
+- (void) didTapView
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(didTapChatMessageView:)]) {
+        [_delegate didTapChatMessageView:self];
+    }
+}
+
+#pragma mark - Getter
+- (UITapGestureRecognizer *) tapGR
+{
+    if (_tapGR == nil) {
+        _tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapView)];
+    }
+    return _tapGR;
+}
+
 - (NSMutableArray *) data
 {
     if (_data == nil) {

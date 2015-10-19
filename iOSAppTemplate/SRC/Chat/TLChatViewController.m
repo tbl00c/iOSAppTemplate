@@ -9,8 +9,9 @@
 #import "TLChatViewController.h"
 #import "TLChatMessageViewContrller.h"
 #import "TLChatBoxViewController.h"
+#import "TLUserHelper.h"
 
-@interface TLChatViewController () <TLChatBoxViewControllerDelegate>
+@interface TLChatViewController () <TLChatMessageViewControllerDelegate, TLChatBoxViewControllerDelegate>
 {
     CGFloat viewHeight;
 }
@@ -23,7 +24,7 @@
 @implementation TLChatViewController
 
 #pragma mark - LifeCycle
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
     viewHeight = HEIGHT_SCREEN - HEIGHT_NAVBAR - HEIGHT_STATUSBAR;
@@ -35,7 +36,20 @@
     [self loadTestData];
 }
 
+#pragma mark - TLChatMessageViewControllerDelegate
+- (void) didTapChatMessageView:(TLChatMessageViewContrller *)chatMessageViewController
+{
+    [self.chatBoxVC resignFirstResponder];
+}
+
 #pragma mark - TLChatBoxViewControllerDelegate
+- (void) chatBoxViewController:(TLChatBoxViewController *)chatboxViewController sendMessage:(TLMessage *)message
+{
+    message.from = [TLUserHelper sharedUserHelper].user;
+    [self.chatMessageVC addNewMessage:message];
+    [self.chatMessageVC scrollToBottom];
+}
+
 - (void) chatBoxViewController:(TLChatBoxViewController *)chatboxViewController didChangeChatBoxHeight:(CGFloat)height
 {
     self.chatMessageVC.view.frameHeight = viewHeight - height;
@@ -116,6 +130,7 @@
     if (_chatMessageVC == nil) {
         _chatMessageVC = [[TLChatMessageViewContrller alloc] init];
         [_chatMessageVC.view setFrame:CGRectMake(0, HEIGHT_STATUSBAR + HEIGHT_NAVBAR, WIDTH_SCREEN, viewHeight - HEIGHT_TABBAR)];
+        [_chatMessageVC setDelegate:self];
     }
     return _chatMessageVC;
 }
@@ -124,7 +139,7 @@
 {
     if (_chatBoxVC == nil) {
         _chatBoxVC = [[TLChatBoxViewController alloc] init];
-        [_chatBoxVC.view setFrame:CGRectMake(0, HEIGHT_SCREEN - HEIGHT_TABBAR, WIDTH_SCREEN, HEIGHT_TABBAR)];
+        [_chatBoxVC.view setFrame:CGRectMake(0, HEIGHT_SCREEN - HEIGHT_TABBAR, WIDTH_SCREEN, HEIGHT_SCREEN)];
         [_chatBoxVC setDelegate:self];
     }
     return _chatBoxVC;

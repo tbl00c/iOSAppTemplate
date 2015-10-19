@@ -13,6 +13,7 @@
 
 #import "TLFounctionCell.h"
 #import "TLUserDetailCell.h"
+#import "TLUserHelper.h"
 #import "TLUIHelper.h"
 
 @interface TLMineViewController ()
@@ -138,10 +139,7 @@
 {
     _data = [TLUIHelper getMineVCItems];
     
-    _user = [[TLUser alloc] init];
-    _user.username = @"Bay、栢";
-    _user.userID = @"li-bokun";
-    _user.avatarURL = @"0.jpg";
+    _user = [TLUserHelper sharedUserHelper].user;
     
     [self.tableView reloadData];
 }

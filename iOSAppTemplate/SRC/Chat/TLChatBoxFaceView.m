@@ -8,14 +8,30 @@
 
 #import "TLChatBoxFaceView.h"
 
+@interface TLChatBoxFaceView ()
+@property (nonatomic, strong) UIView *topLine;
+@end
+
 @implementation TLChatBoxFaceView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (id) initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        [self setBackgroundColor:DEFAULT_CHATBOX_COLOR];
+        [self addSubview:self.topLine];
+    }
+    return self;
 }
-*/
+
+#pragma mark - Getter
+- (UIView *) topLine
+{
+    if (_topLine == nil) {
+        _topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 0.5)];
+        [_topLine setBackgroundColor:DEFAULT_LINE_GRAY_COLOR];
+    }
+    return _topLine;
+}
+
 
 @end

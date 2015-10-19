@@ -7,16 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TLMessage.h"
 
 @class TLChatBoxViewController;
 @protocol TLChatBoxViewControllerDelegate <NSObject>
 - (void) chatBoxViewController:(TLChatBoxViewController *)chatboxViewController
-         didChangeChatBoxHeight:(CGFloat)height;
+        didChangeChatBoxHeight:(CGFloat)height;
+- (void) chatBoxViewController:(TLChatBoxViewController *)chatboxViewController
+                   sendMessage:(TLMessage *)message;
 @end
 
 
 @interface TLChatBoxViewController : UIViewController
 
 @property id<TLChatBoxViewControllerDelegate>delegate;
+
 
 @end
