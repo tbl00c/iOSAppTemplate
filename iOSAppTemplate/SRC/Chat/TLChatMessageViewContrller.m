@@ -25,7 +25,7 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
-    [self.view setBackgroundColor:DEFAULT_BACKGROUND_COLOR];
+    [self.view setBackgroundColor:DEFAULT_CHAT_BACKGROUND_COLOR];
     [self.view addGestureRecognizer:self.tapGR];
     [self.tableView setTableFooterView:[UIView new]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];

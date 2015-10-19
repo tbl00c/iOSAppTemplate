@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TLFace.h"
+
+@class TLChatBoxFaceGroupView;
+@protocol TLChatBoxFaceGroupViewDelegate <NSObject>
+
+- (void) chatBoxFaceGroupViewAddButtonDown;
+- (void) chatBoxFaceGroupViewSendButtonDown;
+- (void) chatBoxFaceGroupView:(TLChatBoxFaceGroupView *)chatBoxFaceGroupView didSelectedFaceGroupIndex:(NSInteger)index;
+
+@end
 
 @interface TLChatBoxFaceGroupView : UIView
 
-@property (nonatomic, strong) NSMutableArray *faceGroup;
+@property (nonatomic, assign) id<TLChatBoxFaceGroupViewDelegate>delegate;
+@property (nonatomic, strong) NSMutableArray *faceGroupArray;
 
 @end

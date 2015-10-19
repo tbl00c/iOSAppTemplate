@@ -15,15 +15,16 @@ typedef NS_ENUM(NSInteger, TLFaceType) {
 
 @interface TLFace : NSObject
 
-@property (nonatomic, assign) TLFaceType faceType;
 @property (nonatomic, strong) NSString *faceID;
-@property (nonatomic, strong) NSString *faceImageName;
+@property (nonatomic, strong) NSString *faceName;
 
 @end
 
 @interface TLFaceGroup : NSObject
 
-@property (nonatomic, strong) NSString *faceGroupTitle;
-@property (nonatomic, strong) NSMutableArray *facesArray;
+@property (nonatomic, assign) TLFaceType faceType;
+@property (nonatomic, strong) NSString *groupID;
+@property (nonatomic, strong) NSString *groupImageName;
+@property (nonatomic, strong) NSArray *facesArray;
 
 @end
