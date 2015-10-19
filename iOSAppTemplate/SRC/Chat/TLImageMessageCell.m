@@ -23,7 +23,8 @@
     [super layoutSubviews];
     float x = self.avatarImageView.originX + (self.message.ownerTyper == TLMessageOwnerTypeSelf ? - self.messageImageView.frameWidth - 12 : self.avatarImageView.frameWidth + 12);
     [self.messageImageView setOrigin:CGPointMake(x, self.avatarImageView.originY)];
-    [self.messageBackgroundImageView setFrame:CGRectMake(x - 8, self.avatarImageView.originY - 5, self.messageImageView.frameWidth + 16, self.messageImageView.frameHeight)];
+    [self.messageBackgroundImageView setFrame:CGRectMake(x - 8, self.avatarImageView.originY - 5, self.messageImageView.frameWidth + 16, self.messageImageView.frameHeight
+                                                         )];
 }
 
 #pragma mark - Getter and Setter
