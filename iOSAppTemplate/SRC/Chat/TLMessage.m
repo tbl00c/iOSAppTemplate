@@ -57,6 +57,7 @@ static UIImage *image = nil;
         case TLMessageTypeImage:
             image = [UIImage imageNamed:self.imagePath];
             _messageSize = (image.size.width > WIDTH_SCREEN * 0.5 ? CGSizeMake(WIDTH_SCREEN * 0.5, WIDTH_SCREEN * 0.5 / image.size.width * image.size.height) : image.size);
+            _messageSize = (_messageSize.height > 60 ? _messageSize : CGSizeMake(60.0 / _messageSize.height * _messageSize.width, 60));
             break;
         case TLMessageTypeVoice:
 
@@ -72,7 +73,17 @@ static UIImage *image = nil;
 
 - (CGFloat) cellHeight
 {
-    return self.messageSize.height + 40 > 60 ? self.messageSize.height + 40 : 60;
+    switch (self.messageType) {     // cell 上下间隔为10
+        case TLMessageTypeText:
+            return self.messageSize.height + 40 > 60 ? self.messageSize.height + 40 : 60;
+            break;
+        case TLMessageTypeImage:
+            return self.messageSize.height + 20;
+            break;
+        default:
+            break;
+    }
+    return 0;
 }
 
 @end

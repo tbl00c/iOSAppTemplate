@@ -11,72 +11,75 @@
 		2D1BA7151BA578D2009BB687 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BA7141BA578D2009BB687 /* AppDelegate.m */; };
 		2D1BA72F1BA578D2009BB687 /* iOSAppTemplateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BA72E1BA578D2009BB687 /* iOSAppTemplateTests.m */; };
 		7F9BFFFCBF4DB85D4C25D242 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431F7BA1B753F37D7C06FD /* libPods.a */; };
-		C265A7401BCDF88D00079AD9 /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7371BCDF88D00079AD9 /* common.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7421BCDF88D00079AD9 /* TLDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A73D1BCDF88D00079AD9 /* TLDataHelper.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7431BCDF88D00079AD9 /* TLUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A73F1BCDF88D00079AD9 /* TLUIHelper.m */; settings = {ASSET_TAGS = (); }; };
-		C265A75E1BCDFB4000079AD9 /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7461BCDFB4000079AD9 /* CommonTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		C265A75F1BCDFB4000079AD9 /* CommonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7481BCDFB4000079AD9 /* CommonTableViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7601BCDFB4000079AD9 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A74A1BCDFB4000079AD9 /* CommonViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7611BCDFB4000079AD9 /* TLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A74C1BCDFB4000079AD9 /* TLNavigationController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7621BCDFB4000079AD9 /* TLTableHeadFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A74E1BCDFB4000079AD9 /* TLTableHeadFooterView.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7631BCDFB4000079AD9 /* TLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7501BCDFB4000079AD9 /* TLWebViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7641BCDFB4000079AD9 /* NSString+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7541BCDFB4000079AD9 /* NSString+TL.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7651BCDFB4000079AD9 /* UIDevice+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7561BCDFB4000079AD9 /* UIDevice+TL.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7661BCDFB4000079AD9 /* UIImage+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7581BCDFB4000079AD9 /* UIImage+TL.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7671BCDFB4000079AD9 /* UIView+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A75A1BCDFB4000079AD9 /* UIView+TL.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7681BCDFB4000079AD9 /* iOSAppTemplate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C265A75C1BCDFB4000079AD9 /* iOSAppTemplate.xcdatamodeld */; settings = {ASSET_TAGS = (); }; };
-		C265A7A91BCDFB4E00079AD9 /* TLChatMessageViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A76C1BCDFB4E00079AD9 /* TLChatMessageViewContrller.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7AA1BCDFB4E00079AD9 /* TLChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A76E1BCDFB4E00079AD9 /* TLChatViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7AC1BCDFB4E00079AD9 /* TLConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7731BCDFB4E00079AD9 /* TLConversation.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7AD1BCDFB4E00079AD9 /* TLConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7751BCDFB4E00079AD9 /* TLConversationCell.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7AE1BCDFB4E00079AD9 /* TLConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7771BCDFB4E00079AD9 /* TLConversationViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7AF1BCDFB4E00079AD9 /* TLDetailsSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A77A1BCDFB4E00079AD9 /* TLDetailsSettingViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7B01BCDFB4E00079AD9 /* TLDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A77C1BCDFB4E00079AD9 /* TLDetailsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7B11BCDFB4E00079AD9 /* TLUserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A77E1BCDFB4E00079AD9 /* TLUserDetailCell.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7B21BCDFB4E00079AD9 /* TLBottleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7811BCDFB4E00079AD9 /* TLBottleButton.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7B31BCDFB4E00079AD9 /* TLBottleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7831BCDFB4E00079AD9 /* TLBottleViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7B41BCDFB4E00079AD9 /* TLDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7851BCDFB4E00079AD9 /* TLDiscoverViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7B61BCDFB4E00079AD9 /* TLShakeMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7891BCDFB4E00079AD9 /* TLShakeMenuButton.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7B71BCDFB4E00079AD9 /* TLShakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A78B1BCDFB4E00079AD9 /* TLShakeViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7B81BCDFB4E00079AD9 /* TLShoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A78D1BCDFB4E00079AD9 /* TLShoppingViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7B91BCDFB4E00079AD9 /* TLAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7901BCDFB4E00079AD9 /* TLAddFriendViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7BA1BCDFB4E00079AD9 /* TLFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7921BCDFB4E00079AD9 /* TLFriendCell.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7BB1BCDFB4E00079AD9 /* TLFriendSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7941BCDFB4E00079AD9 /* TLFriendSearchViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7BC1BCDFB4E00079AD9 /* TLFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7961BCDFB4E00079AD9 /* TLFriendsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7BD1BCDFB4E00079AD9 /* TLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7981BCDFB4E00079AD9 /* TLUser.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7BF1BCDFB4E00079AD9 /* TLMineDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A79D1BCDFB4E00079AD9 /* TLMineDetailViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7C01BCDFB4E00079AD9 /* TLMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A79F1BCDFB4E00079AD9 /* TLMineViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7C41BCDFB4E00079AD9 /* TLRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7A81BCDFB4E00079AD9 /* TLRootViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A7D81BCDFB7200079AD9 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7C71BCDFB7200079AD9 /* 0.jpg */; settings = {ASSET_TAGS = (); }; };
-		C265A7D91BCDFB7200079AD9 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7C81BCDFB7200079AD9 /* 1.jpg */; settings = {ASSET_TAGS = (); }; };
-		C265A7DA1BCDFB7200079AD9 /* 10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7C91BCDFB7200079AD9 /* 10.jpeg */; settings = {ASSET_TAGS = (); }; };
-		C265A7DB1BCDFB7200079AD9 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7CA1BCDFB7200079AD9 /* 11.jpg */; settings = {ASSET_TAGS = (); }; };
-		C265A7DC1BCDFB7200079AD9 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7CB1BCDFB7200079AD9 /* 12.jpg */; settings = {ASSET_TAGS = (); }; };
-		C265A7DD1BCDFB7200079AD9 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7CC1BCDFB7200079AD9 /* 2.jpg */; settings = {ASSET_TAGS = (); }; };
-		C265A7DE1BCDFB7200079AD9 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7CD1BCDFB7200079AD9 /* 4.jpg */; settings = {ASSET_TAGS = (); }; };
-		C265A7DF1BCDFB7200079AD9 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7CE1BCDFB7200079AD9 /* 7.jpg */; settings = {ASSET_TAGS = (); }; };
-		C265A7E01BCDFB7200079AD9 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7CF1BCDFB7200079AD9 /* 8.jpg */; settings = {ASSET_TAGS = (); }; };
-		C265A7E11BCDFB7200079AD9 /* ChatVCImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D01BCDFB7200079AD9 /* ChatVCImages.xcassets */; settings = {ASSET_TAGS = (); }; };
-		C265A7E21BCDFB7200079AD9 /* Discover.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D11BCDFB7200079AD9 /* Discover.xcassets */; settings = {ASSET_TAGS = (); }; };
-		C265A7E31BCDFB7200079AD9 /* Friends.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D21BCDFB7200079AD9 /* Friends.xcassets */; settings = {ASSET_TAGS = (); }; };
-		C265A7E41BCDFB7200079AD9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D31BCDFB7200079AD9 /* Images.xcassets */; settings = {ASSET_TAGS = (); }; };
-		C265A7E51BCDFB7200079AD9 /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D41BCDFB7200079AD9 /* Mine.xcassets */; settings = {ASSET_TAGS = (); }; };
-		C265A7E61BCDFB7200079AD9 /* Weixin.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D51BCDFB7200079AD9 /* Weixin.xcassets */; settings = {ASSET_TAGS = (); }; };
-		C265A7E71BCDFB7200079AD9 /* IAT.plist in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D71BCDFB7200079AD9 /* IAT.plist */; settings = {ASSET_TAGS = (); }; };
-		C265A8041BCDFD3900079AD9 /* TLNewsNotiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7FF1BCDFD3900079AD9 /* TLNewsNotiViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A8051BCDFD3900079AD9 /* TLSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A8011BCDFD3900079AD9 /* TLSetting.m */; settings = {ASSET_TAGS = (); }; };
-		C265A8061BCDFD3900079AD9 /* TLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A8031BCDFD3900079AD9 /* TLSettingViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C265A80C1BCDFE0600079AD9 /* TLFounctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A80B1BCDFE0600079AD9 /* TLFounctionCell.m */; settings = {ASSET_TAGS = (); }; };
-		C265A80F1BCDFE5A00079AD9 /* TLExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A80E1BCDFE5A00079AD9 /* TLExpressionViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C26F8D491BD09C380096A3EB /* TLMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D481BD09C380096A3EB /* TLMessage.m */; settings = {ASSET_TAGS = (); }; };
-		C26F8D541BD0D4A40096A3EB /* TLMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D531BD0D4A40096A3EB /* TLMessageCell.m */; settings = {ASSET_TAGS = (); }; };
-		C26F8D571BD0D9150096A3EB /* TLTextMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D561BD0D9150096A3EB /* TLTextMessageCell.m */; settings = {ASSET_TAGS = (); }; };
-		C26F8D5A1BD0D9230096A3EB /* TLImageMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D591BD0D9230096A3EB /* TLImageMessageCell.m */; settings = {ASSET_TAGS = (); }; };
-		C26F8D5D1BD0D9310096A3EB /* TLVoiceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D5C1BD0D9310096A3EB /* TLVoiceMessageCell.m */; settings = {ASSET_TAGS = (); }; };
-		C26F8D631BD0D96F0096A3EB /* TLSystemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D621BD0D96F0096A3EB /* TLSystemMessageCell.m */; settings = {ASSET_TAGS = (); }; };
-		C26F8D681BD0EDF40096A3EB /* ChatViewImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C26F8D671BD0EDF40096A3EB /* ChatViewImages.xcassets */; settings = {ASSET_TAGS = (); }; };
-		C27AA8B31BD10B39009C0B51 /* 1001.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C27AA8B21BD10B39009C0B51 /* 1001.jpg */; settings = {ASSET_TAGS = (); }; };
-		C27AA8B51BD10DBE009C0B51 /* 1000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C27AA8B41BD10DBE009C0B51 /* 1000.jpg */; settings = {ASSET_TAGS = (); }; };
+		C265A7401BCDF88D00079AD9 /* common.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7371BCDF88D00079AD9 /* common.m */; };
+		C265A7421BCDF88D00079AD9 /* TLDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A73D1BCDF88D00079AD9 /* TLDataHelper.m */; };
+		C265A7431BCDF88D00079AD9 /* TLUIHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A73F1BCDF88D00079AD9 /* TLUIHelper.m */; };
+		C265A75E1BCDFB4000079AD9 /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7461BCDFB4000079AD9 /* CommonTableViewCell.m */; };
+		C265A75F1BCDFB4000079AD9 /* CommonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7481BCDFB4000079AD9 /* CommonTableViewController.m */; };
+		C265A7601BCDFB4000079AD9 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A74A1BCDFB4000079AD9 /* CommonViewController.m */; };
+		C265A7611BCDFB4000079AD9 /* TLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A74C1BCDFB4000079AD9 /* TLNavigationController.m */; };
+		C265A7621BCDFB4000079AD9 /* TLTableHeadFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A74E1BCDFB4000079AD9 /* TLTableHeadFooterView.m */; };
+		C265A7631BCDFB4000079AD9 /* TLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7501BCDFB4000079AD9 /* TLWebViewController.m */; };
+		C265A7641BCDFB4000079AD9 /* NSString+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7541BCDFB4000079AD9 /* NSString+TL.m */; };
+		C265A7651BCDFB4000079AD9 /* UIDevice+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7561BCDFB4000079AD9 /* UIDevice+TL.m */; };
+		C265A7661BCDFB4000079AD9 /* UIImage+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7581BCDFB4000079AD9 /* UIImage+TL.m */; };
+		C265A7671BCDFB4000079AD9 /* UIView+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A75A1BCDFB4000079AD9 /* UIView+TL.m */; };
+		C265A7681BCDFB4000079AD9 /* iOSAppTemplate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C265A75C1BCDFB4000079AD9 /* iOSAppTemplate.xcdatamodeld */; };
+		C265A7A91BCDFB4E00079AD9 /* TLChatMessageViewContrller.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A76C1BCDFB4E00079AD9 /* TLChatMessageViewContrller.m */; };
+		C265A7AA1BCDFB4E00079AD9 /* TLChatViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A76E1BCDFB4E00079AD9 /* TLChatViewController.m */; };
+		C265A7AC1BCDFB4E00079AD9 /* TLConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7731BCDFB4E00079AD9 /* TLConversation.m */; };
+		C265A7AD1BCDFB4E00079AD9 /* TLConversationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7751BCDFB4E00079AD9 /* TLConversationCell.m */; };
+		C265A7AE1BCDFB4E00079AD9 /* TLConversationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7771BCDFB4E00079AD9 /* TLConversationViewController.m */; };
+		C265A7AF1BCDFB4E00079AD9 /* TLDetailsSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A77A1BCDFB4E00079AD9 /* TLDetailsSettingViewController.m */; };
+		C265A7B01BCDFB4E00079AD9 /* TLDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A77C1BCDFB4E00079AD9 /* TLDetailsViewController.m */; };
+		C265A7B11BCDFB4E00079AD9 /* TLUserDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A77E1BCDFB4E00079AD9 /* TLUserDetailCell.m */; };
+		C265A7B21BCDFB4E00079AD9 /* TLBottleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7811BCDFB4E00079AD9 /* TLBottleButton.m */; };
+		C265A7B31BCDFB4E00079AD9 /* TLBottleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7831BCDFB4E00079AD9 /* TLBottleViewController.m */; };
+		C265A7B41BCDFB4E00079AD9 /* TLDiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7851BCDFB4E00079AD9 /* TLDiscoverViewController.m */; };
+		C265A7B61BCDFB4E00079AD9 /* TLShakeMenuButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7891BCDFB4E00079AD9 /* TLShakeMenuButton.m */; };
+		C265A7B71BCDFB4E00079AD9 /* TLShakeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A78B1BCDFB4E00079AD9 /* TLShakeViewController.m */; };
+		C265A7B81BCDFB4E00079AD9 /* TLShoppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A78D1BCDFB4E00079AD9 /* TLShoppingViewController.m */; };
+		C265A7B91BCDFB4E00079AD9 /* TLAddFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7901BCDFB4E00079AD9 /* TLAddFriendViewController.m */; };
+		C265A7BA1BCDFB4E00079AD9 /* TLFriendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7921BCDFB4E00079AD9 /* TLFriendCell.m */; };
+		C265A7BB1BCDFB4E00079AD9 /* TLFriendSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7941BCDFB4E00079AD9 /* TLFriendSearchViewController.m */; };
+		C265A7BC1BCDFB4E00079AD9 /* TLFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7961BCDFB4E00079AD9 /* TLFriendsViewController.m */; };
+		C265A7BD1BCDFB4E00079AD9 /* TLUser.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7981BCDFB4E00079AD9 /* TLUser.m */; };
+		C265A7BF1BCDFB4E00079AD9 /* TLMineDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A79D1BCDFB4E00079AD9 /* TLMineDetailViewController.m */; };
+		C265A7C01BCDFB4E00079AD9 /* TLMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A79F1BCDFB4E00079AD9 /* TLMineViewController.m */; };
+		C265A7C41BCDFB4E00079AD9 /* TLRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7A81BCDFB4E00079AD9 /* TLRootViewController.m */; };
+		C265A7D81BCDFB7200079AD9 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7C71BCDFB7200079AD9 /* 0.jpg */; };
+		C265A7D91BCDFB7200079AD9 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7C81BCDFB7200079AD9 /* 1.jpg */; };
+		C265A7DA1BCDFB7200079AD9 /* 10.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7C91BCDFB7200079AD9 /* 10.jpeg */; };
+		C265A7DB1BCDFB7200079AD9 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7CA1BCDFB7200079AD9 /* 11.jpg */; };
+		C265A7DC1BCDFB7200079AD9 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7CB1BCDFB7200079AD9 /* 12.jpg */; };
+		C265A7DD1BCDFB7200079AD9 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7CC1BCDFB7200079AD9 /* 2.jpg */; };
+		C265A7DE1BCDFB7200079AD9 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7CD1BCDFB7200079AD9 /* 4.jpg */; };
+		C265A7DF1BCDFB7200079AD9 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7CE1BCDFB7200079AD9 /* 7.jpg */; };
+		C265A7E01BCDFB7200079AD9 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C265A7CF1BCDFB7200079AD9 /* 8.jpg */; };
+		C265A7E21BCDFB7200079AD9 /* Discover.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D11BCDFB7200079AD9 /* Discover.xcassets */; };
+		C265A7E31BCDFB7200079AD9 /* Friends.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D21BCDFB7200079AD9 /* Friends.xcassets */; };
+		C265A7E41BCDFB7200079AD9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D31BCDFB7200079AD9 /* Images.xcassets */; };
+		C265A7E51BCDFB7200079AD9 /* Mine.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D41BCDFB7200079AD9 /* Mine.xcassets */; };
+		C265A7E61BCDFB7200079AD9 /* Weixin.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D51BCDFB7200079AD9 /* Weixin.xcassets */; };
+		C265A7E71BCDFB7200079AD9 /* IAT.plist in Resources */ = {isa = PBXBuildFile; fileRef = C265A7D71BCDFB7200079AD9 /* IAT.plist */; };
+		C265A8041BCDFD3900079AD9 /* TLNewsNotiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7FF1BCDFD3900079AD9 /* TLNewsNotiViewController.m */; };
+		C265A8051BCDFD3900079AD9 /* TLSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A8011BCDFD3900079AD9 /* TLSetting.m */; };
+		C265A8061BCDFD3900079AD9 /* TLSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A8031BCDFD3900079AD9 /* TLSettingViewController.m */; };
+		C265A80C1BCDFE0600079AD9 /* TLFounctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A80B1BCDFE0600079AD9 /* TLFounctionCell.m */; };
+		C265A80F1BCDFE5A00079AD9 /* TLExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A80E1BCDFE5A00079AD9 /* TLExpressionViewController.m */; };
+		C26F8D491BD09C380096A3EB /* TLMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D481BD09C380096A3EB /* TLMessage.m */; };
+		C26F8D541BD0D4A40096A3EB /* TLMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D531BD0D4A40096A3EB /* TLMessageCell.m */; };
+		C26F8D571BD0D9150096A3EB /* TLTextMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D561BD0D9150096A3EB /* TLTextMessageCell.m */; };
+		C26F8D5A1BD0D9230096A3EB /* TLImageMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D591BD0D9230096A3EB /* TLImageMessageCell.m */; };
+		C26F8D5D1BD0D9310096A3EB /* TLVoiceMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D5C1BD0D9310096A3EB /* TLVoiceMessageCell.m */; };
+		C26F8D631BD0D96F0096A3EB /* TLSystemMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C26F8D621BD0D96F0096A3EB /* TLSystemMessageCell.m */; };
+		C26F8D681BD0EDF40096A3EB /* ChatViewImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C26F8D671BD0EDF40096A3EB /* ChatViewImages.xcassets */; };
+		C2706FD51BD21B7D0085C2FA /* TLChatBoxMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2706FD41BD21B7D0085C2FA /* TLChatBoxMoreView.m */; };
+		C2706FD81BD21DE40085C2FA /* TLChatBoxMoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C2706FD71BD21DE40085C2FA /* TLChatBoxMoreItem.m */; };
+		C27AA8B31BD10B39009C0B51 /* 1001.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C27AA8B21BD10B39009C0B51 /* 1001.jpg */; };
+		C27AA8B51BD10DBE009C0B51 /* 1000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C27AA8B41BD10DBE009C0B51 /* 1000.jpg */; };
+		C2E0B6311BD13A9900823528 /* TLChatBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E0B6301BD13A9900823528 /* TLChatBoxViewController.m */; };
+		C2E0B6341BD13AAC00823528 /* TLChatBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E0B6331BD13AAC00823528 /* TLChatBox.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,7 +186,6 @@
 		C265A7CD1BCDFB7200079AD9 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
 		C265A7CE1BCDFB7200079AD9 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
 		C265A7CF1BCDFB7200079AD9 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
-		C265A7D01BCDFB7200079AD9 /* ChatVCImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ChatVCImages.xcassets; sourceTree = "<group>"; };
 		C265A7D11BCDFB7200079AD9 /* Discover.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Discover.xcassets; sourceTree = "<group>"; };
 		C265A7D21BCDFB7200079AD9 /* Friends.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Friends.xcassets; sourceTree = "<group>"; };
 		C265A7D31BCDFB7200079AD9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -213,8 +215,16 @@
 		C26F8D611BD0D96F0096A3EB /* TLSystemMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSystemMessageCell.h; sourceTree = "<group>"; };
 		C26F8D621BD0D96F0096A3EB /* TLSystemMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSystemMessageCell.m; sourceTree = "<group>"; };
 		C26F8D671BD0EDF40096A3EB /* ChatViewImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ChatViewImages.xcassets; sourceTree = "<group>"; };
+		C2706FD31BD21B7D0085C2FA /* TLChatBoxMoreView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBoxMoreView.h; sourceTree = "<group>"; };
+		C2706FD41BD21B7D0085C2FA /* TLChatBoxMoreView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBoxMoreView.m; sourceTree = "<group>"; };
+		C2706FD61BD21DE40085C2FA /* TLChatBoxMoreItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBoxMoreItem.h; sourceTree = "<group>"; };
+		C2706FD71BD21DE40085C2FA /* TLChatBoxMoreItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBoxMoreItem.m; sourceTree = "<group>"; };
 		C27AA8B21BD10B39009C0B51 /* 1001.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1001.jpg; sourceTree = "<group>"; };
 		C27AA8B41BD10DBE009C0B51 /* 1000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1000.jpg; sourceTree = "<group>"; };
+		C2E0B62F1BD13A9900823528 /* TLChatBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBoxViewController.h; sourceTree = "<group>"; };
+		C2E0B6301BD13A9900823528 /* TLChatBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBoxViewController.m; sourceTree = "<group>"; };
+		C2E0B6321BD13AAC00823528 /* TLChatBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBox.h; sourceTree = "<group>"; };
+		C2E0B6331BD13AAC00823528 /* TLChatBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBox.m; sourceTree = "<group>"; };
 		DCCD342CB6E933ACE2862878 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -479,7 +489,6 @@
 				C265A7CD1BCDFB7200079AD9 /* 4.jpg */,
 				C265A7CE1BCDFB7200079AD9 /* 7.jpg */,
 				C265A7CF1BCDFB7200079AD9 /* 8.jpg */,
-				C265A7D01BCDFB7200079AD9 /* ChatVCImages.xcassets */,
 				C265A7D11BCDFB7200079AD9 /* Discover.xcassets */,
 				C265A7D21BCDFB7200079AD9 /* Friends.xcassets */,
 				C265A7D31BCDFB7200079AD9 /* Images.xcassets */,
@@ -684,6 +693,8 @@
 				C265A76E1BCDFB4E00079AD9 /* TLChatViewController.m */,
 				C265A76B1BCDFB4E00079AD9 /* TLChatMessageViewContrller.h */,
 				C265A76C1BCDFB4E00079AD9 /* TLChatMessageViewContrller.m */,
+				C2E0B62F1BD13A9900823528 /* TLChatBoxViewController.h */,
+				C2E0B6301BD13A9900823528 /* TLChatBoxViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -765,6 +776,12 @@
 		C26F8D651BD0DD260096A3EB /* InputBox */ = {
 			isa = PBXGroup;
 			children = (
+				C2E0B6321BD13AAC00823528 /* TLChatBox.h */,
+				C2E0B6331BD13AAC00823528 /* TLChatBox.m */,
+				C2706FD31BD21B7D0085C2FA /* TLChatBoxMoreView.h */,
+				C2706FD41BD21B7D0085C2FA /* TLChatBoxMoreView.m */,
+				C2706FD61BD21DE40085C2FA /* TLChatBoxMoreItem.h */,
+				C2706FD71BD21DE40085C2FA /* TLChatBoxMoreItem.m */,
 			);
 			name = InputBox;
 			sourceTree = "<group>";
@@ -866,7 +883,6 @@
 				C265A7E61BCDFB7200079AD9 /* Weixin.xcassets in Resources */,
 				C27AA8B51BD10DBE009C0B51 /* 1000.jpg in Resources */,
 				C27AA8B31BD10B39009C0B51 /* 1001.jpg in Resources */,
-				C265A7E11BCDFB7200079AD9 /* ChatVCImages.xcassets in Resources */,
 				C265A7E41BCDFB7200079AD9 /* Images.xcassets in Resources */,
 				C265A7DC1BCDFB7200079AD9 /* 12.jpg in Resources */,
 				C265A7E21BCDFB7200079AD9 /* Discover.xcassets in Resources */,
@@ -937,6 +953,7 @@
 				C265A7661BCDFB4000079AD9 /* UIImage+TL.m in Sources */,
 				2D1BA7151BA578D2009BB687 /* AppDelegate.m in Sources */,
 				C265A7B01BCDFB4E00079AD9 /* TLDetailsViewController.m in Sources */,
+				C2E0B6341BD13AAC00823528 /* TLChatBox.m in Sources */,
 				C265A7BA1BCDFB4E00079AD9 /* TLFriendCell.m in Sources */,
 				C26F8D631BD0D96F0096A3EB /* TLSystemMessageCell.m in Sources */,
 				C265A7A91BCDFB4E00079AD9 /* TLChatMessageViewContrller.m in Sources */,
@@ -956,10 +973,12 @@
 				C265A8051BCDFD3900079AD9 /* TLSetting.m in Sources */,
 				C265A7AA1BCDFB4E00079AD9 /* TLChatViewController.m in Sources */,
 				C265A7B81BCDFB4E00079AD9 /* TLShoppingViewController.m in Sources */,
+				C2706FD81BD21DE40085C2FA /* TLChatBoxMoreItem.m in Sources */,
 				C265A7B21BCDFB4E00079AD9 /* TLBottleButton.m in Sources */,
 				C265A7671BCDFB4000079AD9 /* UIView+TL.m in Sources */,
 				C265A7B31BCDFB4E00079AD9 /* TLBottleViewController.m in Sources */,
 				C265A7BF1BCDFB4E00079AD9 /* TLMineDetailViewController.m in Sources */,
+				C2E0B6311BD13A9900823528 /* TLChatBoxViewController.m in Sources */,
 				C265A7AD1BCDFB4E00079AD9 /* TLConversationCell.m in Sources */,
 				C26F8D541BD0D4A40096A3EB /* TLMessageCell.m in Sources */,
 				C265A80F1BCDFE5A00079AD9 /* TLExpressionViewController.m in Sources */,
@@ -975,6 +994,7 @@
 				C265A7B71BCDFB4E00079AD9 /* TLShakeViewController.m in Sources */,
 				C265A80C1BCDFE0600079AD9 /* TLFounctionCell.m in Sources */,
 				C265A7421BCDF88D00079AD9 /* TLDataHelper.m in Sources */,
+				C2706FD51BD21B7D0085C2FA /* TLChatBoxMoreView.m in Sources */,
 				C265A7601BCDFB4000079AD9 /* CommonViewController.m in Sources */,
 				C265A8041BCDFD3900079AD9 /* TLNewsNotiViewController.m in Sources */,
 			);

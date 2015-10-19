@@ -85,10 +85,7 @@
 {
     TLSettingGrounp *group = [_data objectAtIndex:indexPath.section];
     TLSettingItem *item = [group itemAtIndex: indexPath.row];
-    if (item.type == TLSettingItemTypeButton) {
-        return 50.0f;
-    }
-    return 44.0f;
+    return item.type == TLSettingItemTypeButton ? 50.0f : 44.0f;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
