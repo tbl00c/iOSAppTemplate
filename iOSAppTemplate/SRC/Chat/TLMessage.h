@@ -67,6 +67,7 @@ typedef NS_ENUM(NSUInteger, TLMessageReadState) {
 
 #pragma mark - 文字消息
 @property (nonatomic, strong) NSString *text;                       // 文字信息
+@property (nonatomic, strong) NSAttributedString *attrText;         // 格式化的文字信息
 
 #pragma mark - 图片消息
 @property (nonatomic, strong) NSString *imagePath;                  // 本地图片Path

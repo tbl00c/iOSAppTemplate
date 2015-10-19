@@ -11,6 +11,7 @@
 @interface TLChatBoxFaceGroupView ()
 
 @property (nonatomic, strong) UIButton *addButton;
+@property (nonatomic, strong) UIButton *sendButton;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) NSMutableArray *faceGroupViewArray;
 
@@ -37,6 +38,7 @@
     UIView *line = [[UIView alloc] initWithFrame:CGRectMake(w, 6, 0.5, self.frameHeight - 12)];
     [line setBackgroundColor:DEFAULT_LINE_GRAY_COLOR];
     [self addSubview:line];
+    [self.sendButton setFrame:CGRectMake(self.frameWidth - w * 1.2, 0, w * 1.2, self.frameHeight)];
     
     [self.scrollView setFrame:CGRectMake(w + 0.5, 0, self.frameWidth - self.addButton.frameWidth, self.frameHeight)];
     [self.scrollView setContentSize:CGSizeMake(w * (faceGroupArray.count + 3), self.scrollView.frameHeight)];
@@ -76,12 +78,18 @@
             [button setBackgroundColor:[UIColor whiteColor]];
         }
         [sender setBackgroundColor:DEFAULT_CHATBOX_COLOR];
+        if ([[_faceGroupArray objectAtIndex:sender.tag] faceType] == TLFaceTypeEmoji) {
+            [self addSubview:self.sendButton];
+            [self.scrollView setFrameWidth:self.frameWidth - self.addButton.frameWidth - self.sendButton.frameWidth - 1];
+        }
+        else {
+            [self.sendButton removeFromSuperview];
+            [self.scrollView setFrameWidth:self.frameWidth - self.addButton.frameWidth - 0.5];
+        }
         if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceGroupView:didSelectedFaceGroupIndex:)]) {
             [_delegate chatBoxFaceGroupView:self didSelectedFaceGroupIndex:sender.tag];
         }
     }
-    
-    
 }
 
 #pragma mark - Getter
@@ -94,6 +102,19 @@
         [_addButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
     }
     return _addButton;
+}
+
+- (UIButton *) sendButton
+{
+    if (_sendButton == nil) {
+        _sendButton = [[UIButton alloc] init];
+        [_sendButton setTitle:@"发送" forState:UIControlStateNormal];
+        [_sendButton.titleLabel setFont:[UIFont systemFontOfSize:15.0f]];
+        [_sendButton setBackgroundColor:[UIColor colorWithRed:0.1 green:0.4 blue:0.8 alpha:1.0]];
+        _sendButton.tag = -2;
+        [_sendButton addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
+    }
+    return _sendButton;
 }
 
 - (UIScrollView *) scrollView

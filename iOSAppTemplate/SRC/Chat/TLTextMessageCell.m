@@ -35,7 +35,7 @@
 - (void) setMessage:(TLMessage *)message
 {
     [super setMessage:message];
-    [_messageTextLabel setText:message.text];
+    [_messageTextLabel setAttributedText:message.attrText];
     _messageTextLabel.size = message.messageSize;
 }
 

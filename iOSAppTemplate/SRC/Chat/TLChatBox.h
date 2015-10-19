@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TLFace.h"
 
 typedef NS_ENUM(NSInteger, TLChatBoxStatus) {
     TLChatBoxStatusNothing,
@@ -26,5 +27,9 @@ typedef NS_ENUM(NSInteger, TLChatBoxStatus) {
 
 @property (nonatomic, assign) id<TLChatBoxDelegate>delegate;
 @property (nonatomic, assign) TLChatBoxStatus status;
+
+- (void) addEmojiFace:(TLFace *)face;
+- (void) sendCurrentMessage;
+- (void) deleteButtonDown;
 
 @end

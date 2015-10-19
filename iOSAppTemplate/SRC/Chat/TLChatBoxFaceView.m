@@ -56,12 +56,16 @@
 
 - (void) chatBoxFaceGroupViewSendButtonDown
 {
-
+    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceViewDeleteButtonDown)]) {
+        [_delegate chatBoxFaceViewSendButtonDown];
+    }
 }
 
 - (void) chatBoxFaceGroupViewAddButtonDown
 {
-
+    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceViewSendButtonDown)]) {
+        [_delegate chatBoxFaceViewSendButtonDown];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -74,7 +78,17 @@
 #pragma mark - Event Response
 - (void) didSelectedFace:(UIButton *)sender
 {
-    NSLog(@"Did Selected Face: %ld", sender.tag);
+    TLFace *face = [_curGroup.facesArray objectAtIndex:sender.tag];
+    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceViewDidSelectedFace:type:)]) {
+        [_delegate chatBoxFaceViewDidSelectedFace:face type:_curGroup.faceType];
+    }
+}
+
+- (void) deleteButtonDown
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceViewDeleteButtonDown)]) {
+        [_delegate chatBoxFaceViewDeleteButtonDown];
+    }
 }
 
 #pragma mark - Private Methods
@@ -84,32 +98,43 @@
         [button removeFromSuperview];
     }
     [self.faceViewArray removeAllObjects];
-    int page = (int)(self.curGroup.facesArray.count / (self.curGroup.faceType == TLFaceTypeEmoji ? 20 : 8));
+    int page = (int)(self.curGroup.facesArray.count / (self.curGroup.faceType == TLFaceTypeEmoji ? 20 : 8)) + (int)(self.curGroup.facesArray.count % (self.curGroup.faceType == TLFaceTypeEmoji ? 20 : 8));
     [self.pageControl setNumberOfPages:page];
     [self.scrollView setContentSize:CGSizeMake(WIDTH_SCREEN * page, self.scrollView.frameHeight)];
     
     float spaceX = 12;
-    float spaceY = 12;
-    
+    float spaceY = 10;
+    float w =  (WIDTH_SCREEN - spaceX * 2) / (_curGroup.faceType == TLFaceTypeEmoji ? 7 : 4);
+    float h = _curGroup.faceType == TLFaceTypeEmoji ? (self.scrollView.frameHeight - spaceY * 2) / 3 : w * 1.2;
     float x = spaceX;
     float y = spaceY;
-    float w = _curGroup.faceType == TLFaceTypeEmoji ? (WIDTH_SCREEN - 20) / 7 : (WIDTH_SCREEN - 20) / 4;
-    float h = _curGroup.faceType == TLFaceTypeEmoji ? w * 1.1 : w * 1.2;
-    int i = 0, curPage = 0;
-    for (TLFace *face in _curGroup.facesArray) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
-        button.tag = i ++;
-        [button setImage:[UIImage imageNamed:face.faceName] forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(didSelectedFace:) forControlEvents:UIControlEventTouchUpInside];
-        [self.scrollView addSubview:button];
+   
+    int index = 0, curPage = 0;
+    for (int i = 0; i < _curGroup.facesArray.count; i ++) {
+        TLFace *face = [_curGroup.facesArray objectAtIndex:i];
         if (_curGroup.faceType == TLFaceTypeEmoji) {
-            curPage = (i % 21 == 0 ? curPage + 1 : curPage);
-            x = (i % 7 == 0 ? curPage * WIDTH_SCREEN + spaceX: x + w);
-            y = (i % 7 == 0 ?  (i % 21 == 0 ? spaceY : y + h) : y);
+            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
+            if (++index % 21 == 0) {
+                [button setImage:[UIImage imageNamed:@"DeleteEmoticonBtn"] forState:UIControlStateNormal];
+                [button addTarget:self action:@selector(deleteButtonDown) forControlEvents:UIControlEventTouchUpInside];
+                i --;
+            }
+            else {
+                button.tag = i;
+                [button setImage:[UIImage imageNamed:face.faceName] forState:UIControlStateNormal];
+                [button addTarget:self action:@selector(didSelectedFace:) forControlEvents:UIControlEventTouchUpInside];
+            }
+            [self.scrollView addSubview:button];
+            curPage = (index % 21 == 0 ? curPage + 1 : curPage);
+            x = (index % 7 == 0 ? curPage * WIDTH_SCREEN + spaceX: x + w);
+            y = (index % 7 == 0 ?  (index % 21 == 0 ? spaceY : y + h) : y);
         }
-        else {
-        
-        }
+    }
+    if (_curGroup.facesArray.count % 20 != 0) {
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
+        [button setImage:[UIImage imageNamed:@"DeleteEmoticonBtn"] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(deleteButtonDown) forControlEvents:UIControlEventTouchUpInside];
+        [self.scrollView addSubview:button];
     }
 }
 

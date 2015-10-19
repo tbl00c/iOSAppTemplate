@@ -47,10 +47,6 @@ static TLFaceHelper *faceHelper = nil;
         group.groupImageName = @"EmotionsEmojiHL";
         group.facesArray = nil;
         [_faceGroupArray addObject:group];
-        [_faceGroupArray addObject:group];
-        [_faceGroupArray addObject:group];
-        [_faceGroupArray addObject:group];
-        [_faceGroupArray addObject:group];
     }
     return _faceGroupArray;
 }

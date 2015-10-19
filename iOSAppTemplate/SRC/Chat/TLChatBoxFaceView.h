@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TLFace.h"
+
+@protocol TLChatBoxFaceViewDelegate <NSObject>
+- (void) chatBoxFaceViewDidSelectedFace:(TLFace *)face type:(TLFaceType)type;
+- (void) chatBoxFaceViewDeleteButtonDown;
+- (void) chatBoxFaceViewSendButtonDown;
+@end
 
 @interface TLChatBoxFaceView : UIView
+
+@property (nonatomic, assign) id<TLChatBoxFaceViewDelegate>delegate;
 
 @end

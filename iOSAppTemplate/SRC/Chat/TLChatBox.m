@@ -56,6 +56,26 @@
     return [super resignFirstResponder];
 }
 
+- (void) addEmojiFace:(TLFace *)face
+{
+    [self.textView setText:[self.textView.text stringByAppendingString:face.faceName]];
+}
+
+- (void) sendCurrentMessage
+{
+    if (self.textView.text.length > 0) {     // send Text
+        if (_delegate && [_delegate respondsToSelector:@selector(chatBox:sendTextMessage:)]) {
+            [_delegate chatBox:self sendTextMessage:self.textView.text];
+        }
+        self.textView.text = @"";
+    }
+}
+
+- (void) deleteButtonDown
+{
+    [self textView:self.textView shouldChangeTextInRange:NSMakeRange(self.textView.text.length - 1, 1) replacementText:@""];
+}
+
 #pragma mark - UITextViewDelegate
 - (void) textViewDidBeginEditing:(UITextView *)textView
 {
@@ -76,13 +96,26 @@
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@"\n"]){
-        if (textView.text.length > 0) {
-            if (_delegate && [_delegate respondsToSelector:@selector(chatBox:sendTextMessage:)]) {
-                [_delegate chatBox:self sendTextMessage:textView.text];
-            }
-            textView.text = @"";
-        }
+        [self sendCurrentMessage];
         return NO;
+    }
+    else if ([text isEqualToString:@""]) {       // delete
+        if ([textView.text characterAtIndex:range.location] == ']') {
+            NSUInteger location = range.location;
+            NSUInteger length = range.length;
+            while (location != 0) {
+                location --;
+                length ++ ;
+                char c = [textView.text characterAtIndex:location];
+                if (c == '[') {
+                    textView.text = [textView.text stringByReplacingCharactersInRange:NSMakeRange(location, length) withString:@""];
+                    return NO;
+                }
+                else if (c == ']') {
+                    return YES;
+                }
+            }
+        }
     }
     
     return YES;

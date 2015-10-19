@@ -7,6 +7,7 @@
 //
 
 #import "TLMessage.h"
+#import "TLChatHelper.h"
 
 static UILabel *label = nil;
 static UIImage *image = nil;
@@ -25,7 +26,14 @@ static UIImage *image = nil;
     return self;
 }
 
-#pragma mark - Getter and Setter
+#pragma mark - Setter
+- (void) setText:(NSString *)text
+{
+    _text = text;
+    _attrText = [TLChatHelper formatMessageString:text];
+}
+
+#pragma mark - Getter
 - (void) setMessageType:(TLMessageType)messageType
 {
     _messageType = messageType;
@@ -51,7 +59,7 @@ static UIImage *image = nil;
 {
     switch (self.messageType) {
         case TLMessageTypeText:
-            [label setText:self.text];
+            [label setAttributedText:self.attrText];
             _messageSize = [label sizeThatFits:CGSizeMake(WIDTH_SCREEN * 0.6, MAXFLOAT)];
             break;
         case TLMessageTypeImage:

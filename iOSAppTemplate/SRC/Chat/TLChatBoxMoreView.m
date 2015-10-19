@@ -75,7 +75,9 @@
 
 - (void) didSelectedItem:(TLChatBoxMoreItem *)sender
 {
-    NSLog(@"Did Selected Item: %ld", (long)sender.tag);
+    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxMoreView:didSelectItemIndex:)]) {
+        [_delegate chatBoxMoreView:self didSelectItemIndex:(int)sender.tag];
+    }
 }
 
 #pragma mark - Getter

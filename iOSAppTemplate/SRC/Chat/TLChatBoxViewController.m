@@ -11,7 +11,7 @@
 #import "TLChatBoxMoreView.h"
 #import "TLChatBoxFaceView.h"
 
-@interface TLChatBoxViewController () <TLChatBoxDelegate>
+@interface TLChatBoxViewController () <TLChatBoxDelegate, TLChatBoxFaceViewDelegate, TLChatBoxMoreViewDelegate>
 
 @property (nonatomic, assign) CGRect keyboardFrame;
 
@@ -156,6 +156,30 @@
     }
 }
 
+#pragma mark - TLChatBoxFaceViewDelegate
+- (void) chatBoxFaceViewDidSelectedFace:(TLFace *)face type:(TLFaceType)type
+{
+    if (type == TLFaceTypeEmoji) {
+        [self.chatBox addEmojiFace:face];
+    }
+}
+
+- (void) chatBoxFaceViewDeleteButtonDown
+{
+    [self.chatBox deleteButtonDown];
+}
+
+- (void) chatBoxFaceViewSendButtonDown
+{
+    [self.chatBox sendCurrentMessage];
+}
+
+#pragma mark - TLChatBoxMoreViewDelegate
+- (void) chatBoxMoreView:(TLChatBoxMoreView *)chatBoxMoreView didSelectItemIndex:(int)index
+{
+    NSLog(@"ChatView MoreView did Selected: %d", index);
+}
+
 #pragma mark - Private Methods
 - (void)keyboardWillHide:(NSNotification *)notification{
     self.keyboardFrame = CGRectZero;
@@ -194,6 +218,8 @@
 {
     if (_chatBoxMoreView == nil) {
         _chatBoxMoreView = [[TLChatBoxMoreView alloc] initWithFrame:CGRectMake(0, HEIGHT_TABBAR, WIDTH_SCREEN, HEIGHT_CHATBOXVIEW)];
+        [_chatBoxMoreView setDelegate:self];
+        
         TLChatBoxMoreItem *photosItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"照片"
                                                                                 imageName:@"sharemore_pic"];
         TLChatBoxMoreItem *takePictureItem = [TLChatBoxMoreItem createChatBoxMoreItemWithTitle:@"拍摄"
@@ -227,6 +253,7 @@
 {
     if (_chatBoxFaceView == nil) {
         _chatBoxFaceView = [[TLChatBoxFaceView alloc] initWithFrame:CGRectMake(0, HEIGHT_TABBAR, WIDTH_SCREEN, HEIGHT_CHATBOXVIEW)];
+        [_chatBoxFaceView setDelegate:self];
     }
     return _chatBoxFaceView;
 }
