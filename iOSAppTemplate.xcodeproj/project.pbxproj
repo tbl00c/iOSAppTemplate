@@ -14,7 +14,7 @@
 		C20675461BD5588D00BA60EA /* TLChatHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C20675451BD5588D00BA60EA /* TLChatHelper.m */; };
 		C26267F91BD4872B0021760F /* TLChatBoxFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26267F81BD4872B0021760F /* TLChatBoxFaceView.m */; };
 		C26267FC1BD4CE190021760F /* TLUserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C26267FB1BD4CE190021760F /* TLUserHelper.m */; };
-		C26267FF1BD4D9480021760F /* TLChatBoxFaceGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26267FE1BD4D9480021760F /* TLChatBoxFaceGroupView.m */; };
+		C26267FF1BD4D9480021760F /* TLChatBoxFaceMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26267FE1BD4D9480021760F /* TLChatBoxFaceMenuView.m */; };
 		C26268021BD4DAE90021760F /* TLFace.m in Sources */ = {isa = PBXBuildFile; fileRef = C26268011BD4DAE90021760F /* TLFace.m */; };
 		C26268061BD4E3010021760F /* normal_face.plist in Resources */ = {isa = PBXBuildFile; fileRef = C26268051BD4E3010021760F /* normal_face.plist */; };
 		C262680A1BD4E35B0021760F /* TLFaceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C26268091BD4E35B0021760F /* TLFaceHelper.m */; };
@@ -85,6 +85,7 @@
 		C2706FD81BD21DE40085C2FA /* TLChatBoxMoreItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C2706FD71BD21DE40085C2FA /* TLChatBoxMoreItem.m */; };
 		C27AA8B31BD10B39009C0B51 /* 1001.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C27AA8B21BD10B39009C0B51 /* 1001.jpg */; };
 		C27AA8B51BD10DBE009C0B51 /* 1000.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C27AA8B41BD10DBE009C0B51 /* 1000.jpg */; };
+		C2AF4A9A1BD5DD2E00EA008D /* TLChatBoxFacePageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AF4A991BD5DD2E00EA008D /* TLChatBoxFacePageView.m */; settings = {ASSET_TAGS = (); }; };
 		C2E0B6311BD13A9900823528 /* TLChatBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E0B6301BD13A9900823528 /* TLChatBoxViewController.m */; };
 		C2E0B6341BD13AAC00823528 /* TLChatBox.m in Sources */ = {isa = PBXBuildFile; fileRef = C2E0B6331BD13AAC00823528 /* TLChatBox.m */; };
 /* End PBXBuildFile section */
@@ -117,8 +118,8 @@
 		C26267F81BD4872B0021760F /* TLChatBoxFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBoxFaceView.m; sourceTree = "<group>"; };
 		C26267FA1BD4CE190021760F /* TLUserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLUserHelper.h; sourceTree = "<group>"; };
 		C26267FB1BD4CE190021760F /* TLUserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLUserHelper.m; sourceTree = "<group>"; };
-		C26267FD1BD4D9480021760F /* TLChatBoxFaceGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBoxFaceGroupView.h; sourceTree = "<group>"; };
-		C26267FE1BD4D9480021760F /* TLChatBoxFaceGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBoxFaceGroupView.m; sourceTree = "<group>"; };
+		C26267FD1BD4D9480021760F /* TLChatBoxFaceMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBoxFaceMenuView.h; sourceTree = "<group>"; };
+		C26267FE1BD4D9480021760F /* TLChatBoxFaceMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBoxFaceMenuView.m; sourceTree = "<group>"; };
 		C26268001BD4DAE90021760F /* TLFace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLFace.h; sourceTree = "<group>"; };
 		C26268011BD4DAE90021760F /* TLFace.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFace.m; sourceTree = "<group>"; };
 		C26268051BD4E3010021760F /* normal_face.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = normal_face.plist; sourceTree = "<group>"; };
@@ -241,6 +242,8 @@
 		C2706FD71BD21DE40085C2FA /* TLChatBoxMoreItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBoxMoreItem.m; sourceTree = "<group>"; };
 		C27AA8B21BD10B39009C0B51 /* 1001.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1001.jpg; sourceTree = "<group>"; };
 		C27AA8B41BD10DBE009C0B51 /* 1000.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1000.jpg; sourceTree = "<group>"; };
+		C2AF4A981BD5DD2E00EA008D /* TLChatBoxFacePageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBoxFacePageView.h; sourceTree = "<group>"; };
+		C2AF4A991BD5DD2E00EA008D /* TLChatBoxFacePageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBoxFacePageView.m; sourceTree = "<group>"; };
 		C2E0B62F1BD13A9900823528 /* TLChatBoxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBoxViewController.h; sourceTree = "<group>"; };
 		C2E0B6301BD13A9900823528 /* TLChatBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBoxViewController.m; sourceTree = "<group>"; };
 		C2E0B6321BD13AAC00823528 /* TLChatBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBox.h; sourceTree = "<group>"; };
@@ -820,8 +823,10 @@
 				C2706FD71BD21DE40085C2FA /* TLChatBoxMoreItem.m */,
 				C26267F71BD4872B0021760F /* TLChatBoxFaceView.h */,
 				C26267F81BD4872B0021760F /* TLChatBoxFaceView.m */,
-				C26267FD1BD4D9480021760F /* TLChatBoxFaceGroupView.h */,
-				C26267FE1BD4D9480021760F /* TLChatBoxFaceGroupView.m */,
+				C2AF4A981BD5DD2E00EA008D /* TLChatBoxFacePageView.h */,
+				C2AF4A991BD5DD2E00EA008D /* TLChatBoxFacePageView.m */,
+				C26267FD1BD4D9480021760F /* TLChatBoxFaceMenuView.h */,
+				C26267FE1BD4D9480021760F /* TLChatBoxFaceMenuView.m */,
 			);
 			name = InputBox;
 			sourceTree = "<group>";
@@ -996,6 +1001,7 @@
 				C265A7661BCDFB4000079AD9 /* UIImage+TL.m in Sources */,
 				2D1BA7151BA578D2009BB687 /* AppDelegate.m in Sources */,
 				C265A7B01BCDFB4E00079AD9 /* TLDetailsViewController.m in Sources */,
+				C2AF4A9A1BD5DD2E00EA008D /* TLChatBoxFacePageView.m in Sources */,
 				C2E0B6341BD13AAC00823528 /* TLChatBox.m in Sources */,
 				C265A7BA1BCDFB4E00079AD9 /* TLFriendCell.m in Sources */,
 				C26268021BD4DAE90021760F /* TLFace.m in Sources */,
@@ -1015,7 +1021,7 @@
 				C265A7C41BCDFB4E00079AD9 /* TLRootViewController.m in Sources */,
 				C20675461BD5588D00BA60EA /* TLChatHelper.m in Sources */,
 				2D1BA7121BA578D2009BB687 /* main.m in Sources */,
-				C26267FF1BD4D9480021760F /* TLChatBoxFaceGroupView.m in Sources */,
+				C26267FF1BD4D9480021760F /* TLChatBoxFaceMenuView.m in Sources */,
 				C265A8051BCDFD3900079AD9 /* TLSetting.m in Sources */,
 				C265A7AA1BCDFB4E00079AD9 /* TLChatViewController.m in Sources */,
 				C265A7B81BCDFB4E00079AD9 /* TLShoppingViewController.m in Sources */,

@@ -89,7 +89,7 @@
     message3.messageType = TLMessageTypeText;
     message3.ownerTyper = TLMessageOwnerTypeSelf;
     message3.date = [NSDate date];
-    message3.text = @"有天小侄子问我：“啥时候我才能长大？”\n我问他：“当你看电视看到女主角快被糟蹋的时候，心里想的是什么？”\n“当然是希望男主角快点出现来救女主角啊。”\n“我跟你恰恰相反，这就是小屁孩跟大人的区别。”";
+    message3.text = @"一留学生在美国考驾照，前方路标提示左转，他不是很确定,问考官：“turn left?” \n答：“right” \n于是……挂了..";
     [_chatMessageVC addNewMessage:message3];
     
     TLMessage *message4 = [[TLMessage alloc] init];

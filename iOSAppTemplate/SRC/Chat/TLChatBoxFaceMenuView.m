@@ -1,23 +1,23 @@
 //
-//  TLChatBoxFaceGroupView.m
+//  TLChatBoxFaceMenuView.m
 //  iOSAppTemplate
 //
 //  Created by 李伯坤 on 15/10/19.
 //  Copyright © 2015年 lbk. All rights reserved.
 //
 
-#import "TLChatBoxFaceGroupView.h"
+#import "TLChatBoxFaceMenuView.h"
 
-@interface TLChatBoxFaceGroupView ()
+@interface TLChatBoxFaceMenuView ()
 
 @property (nonatomic, strong) UIButton *addButton;
 @property (nonatomic, strong) UIButton *sendButton;
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) NSMutableArray *faceGroupViewArray;
+@property (nonatomic, strong) NSMutableArray *faceMenuViewArray;
 
 @end
 
-@implementation TLChatBoxFaceGroupView
+@implementation TLChatBoxFaceMenuView
 
 - (id) initWithFrame:(CGRect)frame
 {
@@ -50,31 +50,31 @@
         [button setImage:[UIImage imageNamed:group.groupImageName] forState:UIControlStateNormal];
         [button setTag:i ++];
         [button addTarget:self action:@selector(buttonDown:) forControlEvents:UIControlEventTouchDown];
-        [self.faceGroupViewArray addObject:button];
+        [self.faceMenuViewArray addObject:button];
         [self.scrollView addSubview:button];
         UIView *line = [[UIView alloc] initWithFrame:CGRectMake(button.originX + button.frameWidth, 6, 0.5, self.frameHeight - 12)];
         [line setBackgroundColor:DEFAULT_LINE_GRAY_COLOR];
         [self.scrollView addSubview:line];
         x += button.frameWidth + 0.5;
     }
-    [self buttonDown:[self.faceGroupViewArray firstObject]];
+    [self buttonDown:[self.faceMenuViewArray firstObject]];
 }
 
 #pragma mark - Event Response
 - (void) buttonDown:(UIButton *)sender
 {
     if (sender.tag == -1) {
-        if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceGroupViewAddButtonDown)]) {
-            [_delegate chatBoxFaceGroupViewAddButtonDown];
+        if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceMenuViewAddButtonDown)]) {
+            [_delegate chatBoxFaceMenuViewAddButtonDown];
         }
     }
     else if (sender.tag == -2) {
-        if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceGroupViewSendButtonDown)]) {
-            [_delegate chatBoxFaceGroupViewSendButtonDown];
+        if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceMenuViewSendButtonDown)]) {
+            [_delegate chatBoxFaceMenuViewSendButtonDown];
         }
     }
     else {
-        for (UIButton *button in self.faceGroupViewArray) {
+        for (UIButton *button in self.faceMenuViewArray) {
             [button setBackgroundColor:[UIColor whiteColor]];
         }
         [sender setBackgroundColor:DEFAULT_CHATBOX_COLOR];
@@ -86,8 +86,8 @@
             [self.sendButton removeFromSuperview];
             [self.scrollView setFrameWidth:self.frameWidth - self.addButton.frameWidth - 0.5];
         }
-        if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceGroupView:didSelectedFaceGroupIndex:)]) {
-            [_delegate chatBoxFaceGroupView:self didSelectedFaceGroupIndex:sender.tag];
+        if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceMenuView:didSelectedFaceMenuIndex:)]) {
+            [_delegate chatBoxFaceMenuView:self didSelectedFaceMenuIndex:sender.tag];
         }
     }
 }
@@ -128,12 +128,12 @@
     return _scrollView;
 }
 
-- (NSMutableArray *) faceGroupViewArray
+- (NSMutableArray *) faceMenuViewArray
 {
-    if (_faceGroupViewArray == nil) {
-        _faceGroupViewArray = [[NSMutableArray alloc] init];
+    if (_faceMenuViewArray == nil) {
+        _faceMenuViewArray = [[NSMutableArray alloc] init];
     }
-    return _faceGroupViewArray;
+    return _faceMenuViewArray;
 }
 
 @end

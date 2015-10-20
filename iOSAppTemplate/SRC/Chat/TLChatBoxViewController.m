@@ -49,13 +49,14 @@
 - (BOOL) resignFirstResponder
 {
     if (self.chatBox.status != TLChatBoxStatusNothing && self.chatBox.status != TLChatBoxStatusShowVoice) {
-        [self.chatBoxFaceView removeFromSuperview];
-        [self.chatBoxMoreView removeFromSuperview];
         [self.chatBox resignFirstResponder];
         self.chatBox.status = (self.chatBox.status == TLChatBoxStatusShowVoice ? self.chatBox.status : TLChatBoxStatusNothing);
         if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
             [UIView animateWithDuration:0.3 animations:^{
                 [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR];
+            } completion:^(BOOL finished) {
+                [self.chatBoxFaceView removeFromSuperview];
+                [self.chatBoxMoreView removeFromSuperview];
             }];
         }
     }
@@ -177,7 +178,8 @@
 #pragma mark - TLChatBoxMoreViewDelegate
 - (void) chatBoxMoreView:(TLChatBoxMoreView *)chatBoxMoreView didSelectItemIndex:(int)index
 {
-    NSLog(@"ChatView MoreView did Selected: %d", index);
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"Did Selected Index Of ChatBoxMoreView: %d", index] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alert show];
 }
 
 #pragma mark - Private Methods

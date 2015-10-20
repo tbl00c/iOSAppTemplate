@@ -7,19 +7,22 @@
 //
 
 #import "TLChatBoxFaceView.h"
-#import "TLChatBoxFaceGroupView.h"
+#import "TLChatBoxFaceMenuView.h"
+#import "TLChatBoxFacePageView.h"
 #import "TLFaceHelper.h"
 
 #define     HEIGHT_BOTTOM_VIEW          36.0f
 
-@interface TLChatBoxFaceView () <TLChatBoxFaceGroupViewDelegate, UIScrollViewDelegate>
+@interface TLChatBoxFaceView () <TLChatBoxFaceMenuViewDelegate, UIScrollViewDelegate>
+
+@property (nonatomic, strong) TLFaceGroup *curGroup;
+@property (nonatomic, assign) int curPage;
 
 @property (nonatomic, strong) UIView *topLine;
-@property (nonatomic, strong) TLFaceGroup *curGroup;
 @property (nonatomic, strong) UIPageControl *pageControl;
-@property (nonatomic, strong) TLChatBoxFaceGroupView *faceGroupView;
+@property (nonatomic, strong) TLChatBoxFaceMenuView *faceMenuView;
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) NSMutableArray *faceViewArray;
+@property (nonatomic, strong) NSMutableArray *facePageViewArray;
 
 @end
 
@@ -30,7 +33,7 @@
     if (self = [super initWithFrame:frame]) {
         [self setBackgroundColor:DEFAULT_CHATBOX_COLOR];
         [self addSubview:self.topLine];
-        [self addSubview:self.faceGroupView];
+        [self addSubview:self.faceMenuView];
         [self addSubview:self.scrollView];
         [self addSubview:self.pageControl];
     }
@@ -42,10 +45,13 @@
     [super setFrame:frame];
     [self.scrollView setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height - HEIGHT_BOTTOM_VIEW - 18)];
     [self.pageControl setFrame:CGRectMake(0, self.scrollView.frameHeight + 3, frame.size.width, 8)];
+    for (TLChatBoxFacePageView *pageView in self.facePageViewArray) {
+        [self.scrollView addSubview:pageView];
+    }
 }
 
-#pragma mark - TLChatBoxFaceGroupViewDelegate
-- (void) chatBoxFaceGroupView:(TLChatBoxFaceGroupView *)chatBoxFaceGroupView didSelectedFaceGroupIndex:(NSInteger)index
+#pragma mark - TLChatBoxFaceMenuViewDelegate
+- (void) chatBoxFaceMenuView:(TLChatBoxFaceMenuView *)chatBoxFaceMenuView didSelectedFaceMenuIndex:(NSInteger)index
 {
     _curGroup = [[[TLFaceHelper sharedFaceHelper] faceGroupArray] objectAtIndex:index];
     if (_curGroup.facesArray == nil) {
@@ -54,14 +60,14 @@
     [self reloadScrollView];
 }
 
-- (void) chatBoxFaceGroupViewSendButtonDown
+- (void) chatBoxFaceMenuViewSendButtonDown
 {
     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceViewDeleteButtonDown)]) {
         [_delegate chatBoxFaceViewSendButtonDown];
     }
 }
 
-- (void) chatBoxFaceGroupViewAddButtonDown
+- (void) chatBoxFaceMenuViewAddButtonDown
 {
     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceViewSendButtonDown)]) {
         [_delegate chatBoxFaceViewSendButtonDown];
@@ -69,78 +75,88 @@
 }
 
 #pragma mark - UIScrollViewDelegate
-- (void) scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView
 {
     int page = scrollView.contentOffset.x / self.frameWidth;
-    [_pageControl setCurrentPage:page];
+    if (page > _curPage && (page * WIDTH_SCREEN - scrollView.contentOffset.x) < WIDTH_SCREEN * 0.2) {       // 向右翻
+        [self showFaceFageAtIndex:page];
+    }
+    else if (page < _curPage && (scrollView.contentOffset.x - page * WIDTH_SCREEN) < WIDTH_SCREEN * 0.2) {
+        [self showFaceFageAtIndex:page];
+    }
 }
 
 #pragma mark - Event Response
 - (void) didSelectedFace:(UIButton *)sender
 {
-    TLFace *face = [_curGroup.facesArray objectAtIndex:sender.tag];
-    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceViewDidSelectedFace:type:)]) {
-        [_delegate chatBoxFaceViewDidSelectedFace:face type:_curGroup.faceType];
-    }
-}
-
-- (void) deleteButtonDown
-{
-    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceViewDeleteButtonDown)]) {
-        [_delegate chatBoxFaceViewDeleteButtonDown];
-    }
-}
-
-#pragma mark - Private Methods
-- (void) reloadScrollView
-{
-    for (UIButton *button in self.faceViewArray) {
-        [button removeFromSuperview];
-    }
-    [self.faceViewArray removeAllObjects];
-    int page = (int)(self.curGroup.facesArray.count / (self.curGroup.faceType == TLFaceTypeEmoji ? 20 : 8)) + (int)(self.curGroup.facesArray.count % (self.curGroup.faceType == TLFaceTypeEmoji ? 20 : 8));
-    [self.pageControl setNumberOfPages:page];
-    [self.scrollView setContentSize:CGSizeMake(WIDTH_SCREEN * page, self.scrollView.frameHeight)];
-    
-    float spaceX = 12;
-    float spaceY = 10;
-    float w =  (WIDTH_SCREEN - spaceX * 2) / (_curGroup.faceType == TLFaceTypeEmoji ? 7 : 4);
-    float h = _curGroup.faceType == TLFaceTypeEmoji ? (self.scrollView.frameHeight - spaceY * 2) / 3 : w * 1.2;
-    float x = spaceX;
-    float y = spaceY;
-   
-    int index = 0, curPage = 0;
-    for (int i = 0; i < _curGroup.facesArray.count; i ++) {
-        TLFace *face = [_curGroup.facesArray objectAtIndex:i];
-        if (_curGroup.faceType == TLFaceTypeEmoji) {
-            UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
-            if (++index % 21 == 0) {
-                [button setImage:[UIImage imageNamed:@"DeleteEmoticonBtn"] forState:UIControlStateNormal];
-                [button addTarget:self action:@selector(deleteButtonDown) forControlEvents:UIControlEventTouchUpInside];
-                i --;
-            }
-            else {
-                button.tag = i;
-                [button setImage:[UIImage imageNamed:face.faceName] forState:UIControlStateNormal];
-                [button addTarget:self action:@selector(didSelectedFace:) forControlEvents:UIControlEventTouchUpInside];
-            }
-            [self.scrollView addSubview:button];
-            curPage = (index % 21 == 0 ? curPage + 1 : curPage);
-            x = (index % 7 == 0 ? curPage * WIDTH_SCREEN + spaceX: x + w);
-            y = (index % 7 == 0 ?  (index % 21 == 0 ? spaceY : y + h) : y);
+    if (sender.tag == -1) {
+        if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceViewDeleteButtonDown)]) {
+            [_delegate chatBoxFaceViewDeleteButtonDown];
         }
     }
-    if (_curGroup.facesArray.count % 20 != 0) {
-        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(x, y, w, h)];
-        [button setImage:[UIImage imageNamed:@"DeleteEmoticonBtn"] forState:UIControlStateNormal];
-        [button addTarget:self action:@selector(deleteButtonDown) forControlEvents:UIControlEventTouchUpInside];
-        [self.scrollView addSubview:button];
+    else {
+        TLFace *face = [_curGroup.facesArray objectAtIndex:sender.tag];
+        if (_delegate && [_delegate respondsToSelector:@selector(chatBoxFaceViewDidSelectedFace:type:)]) {
+            [_delegate chatBoxFaceViewDidSelectedFace:face type:_curGroup.faceType];
+        }
     }
 }
 
 - (void) pageControlClicked:(UIPageControl *)pageControl
 {
+    [self showFaceFageAtIndex:pageControl.currentPage];
     [self.scrollView scrollRectToVisible:CGRectMake(pageControl.currentPage * WIDTH_SCREEN, 0, WIDTH_SCREEN, self.scrollView.frameHeight) animated:YES];
+}
+
+#pragma mark - Private Methods
+- (void) reloadScrollView
+{
+    int page = (int)(self.curGroup.facesArray.count / (self.curGroup.faceType == TLFaceTypeEmoji ? 20 : 8)) + (int)(self.curGroup.facesArray.count % (self.curGroup.faceType == TLFaceTypeEmoji ? 20 : 8));
+    [self.pageControl setNumberOfPages:page];
+    [self.scrollView setContentSize:CGSizeMake(WIDTH_SCREEN * page, self.scrollView.frameHeight)];
+    [self.scrollView scrollRectToVisible:CGRectMake(0, 0, WIDTH_SCREEN, self.scrollView.frameHeight) animated:NO];
+    _curPage = -1;
+    [self showFaceFageAtIndex:0];
+}
+
+- (void) showFaceFageAtIndex:(NSUInteger)index
+{
+    if (index == _curPage) {
+        return;
+    }
+    [self.pageControl setCurrentPage:index];
+    int count = _curGroup.faceType == TLFaceTypeEmoji ? 20 : 8;
+    if (_curPage == -1) {
+        TLChatBoxFacePageView *pageView1 = [self.facePageViewArray objectAtIndex:0];
+        [pageView1 showFaceGroup:_curGroup formIndex:0 count:0];
+        [pageView1 setOrigin:CGPointMake(-WIDTH_SCREEN, 0)];
+        [pageView1 addTarget:self action:@selector(didSelectedFace:) forControlEvents:UIControlEventTouchUpInside];
+        TLChatBoxFacePageView *pageView2 = [self.facePageViewArray objectAtIndex:1];
+        [pageView2 showFaceGroup:_curGroup formIndex:0 count:count];
+        [pageView2 setOrigin:CGPointMake(0, 0)];
+        [pageView2 addTarget:self action:@selector(didSelectedFace:) forControlEvents:UIControlEventTouchUpInside];
+        TLChatBoxFacePageView *pageView3 = [self.facePageViewArray objectAtIndex:2];
+        [pageView3 showFaceGroup:_curGroup formIndex:count count:count];
+        [pageView3 addTarget:self action:@selector(didSelectedFace:) forControlEvents:UIControlEventTouchUpInside];
+        [pageView3 setOrigin:CGPointMake(WIDTH_SCREEN, 0)];
+    }
+    else {
+        if (_curPage < index) {
+            TLChatBoxFacePageView *pageView1 = [self.facePageViewArray objectAtIndex:0];
+            [pageView1 showFaceGroup:_curGroup formIndex:(int)(index + 1) * count count:count];
+            [pageView1 setOrigin:CGPointMake((index + 1) * WIDTH_SCREEN, 0)];
+            [self.facePageViewArray removeObjectAtIndex:0];
+            [self.facePageViewArray addObject:pageView1];
+        }
+        else {
+            TLChatBoxFacePageView *pageView3 = [self.facePageViewArray objectAtIndex:2];
+            [pageView3 showFaceGroup:_curGroup formIndex:(int)(index - 1) * count count:count];
+            [pageView3 setOrigin:CGPointMake((index - 1) * WIDTH_SCREEN, 0)];
+            [self.facePageViewArray removeObjectAtIndex:2];
+            [self.facePageViewArray insertObject:pageView3 atIndex:0];
+        }
+    }
+    _curPage = (int)index;
 }
 
 #pragma mark - Getter
@@ -153,14 +169,14 @@
     return _topLine;
 }
 
-- (TLChatBoxFaceGroupView *) faceGroupView
+- (TLChatBoxFaceMenuView *) faceMenuView
 {
-    if (_faceGroupView == nil) {
-        _faceGroupView = [[TLChatBoxFaceGroupView alloc] initWithFrame:CGRectMake(0, self.frameHeight - HEIGHT_BOTTOM_VIEW, WIDTH_SCREEN, HEIGHT_BOTTOM_VIEW)];
-        [_faceGroupView setDelegate:self];
-        [_faceGroupView setFaceGroupArray:[[TLFaceHelper sharedFaceHelper] faceGroupArray]];
+    if (_faceMenuView == nil) {
+        _faceMenuView = [[TLChatBoxFaceMenuView alloc] initWithFrame:CGRectMake(0, self.frameHeight - HEIGHT_BOTTOM_VIEW, WIDTH_SCREEN, HEIGHT_BOTTOM_VIEW)];
+        [_faceMenuView setDelegate:self];
+        [_faceMenuView setFaceGroupArray:[[TLFaceHelper sharedFaceHelper] faceGroupArray]];
     }
-    return _faceGroupView;
+    return _faceMenuView;
 }
 
 - (UIPageControl *) pageControl
@@ -187,12 +203,16 @@
     return _scrollView;
 }
 
-- (NSMutableArray *) faceViewArray
+- (NSMutableArray *) facePageViewArray
 {
-    if (_faceViewArray == nil) {
-        _faceViewArray = [[NSMutableArray alloc] init];
+    if (_facePageViewArray == nil) {
+        _facePageViewArray = [[NSMutableArray alloc] initWithCapacity:3];
+        for (int i = 0; i < 3; i ++) {
+            TLChatBoxFacePageView *view = [[TLChatBoxFacePageView alloc] initWithFrame:self.scrollView.bounds];
+            [_facePageViewArray addObject:view];
+        }
     }
-    return _faceViewArray;
+    return _facePageViewArray;
 }
 
 @end
