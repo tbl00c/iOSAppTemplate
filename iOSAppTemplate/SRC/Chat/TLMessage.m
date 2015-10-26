@@ -63,10 +63,18 @@ static UIImage *image = nil;
             _messageSize = [label sizeThatFits:CGSizeMake(WIDTH_SCREEN * 0.6, MAXFLOAT)];
             break;
         case TLMessageTypeImage:
-            image = [UIImage imageNamed:self.imagePath];
-            _messageSize = (image.size.width > WIDTH_SCREEN * 0.5 ? CGSizeMake(WIDTH_SCREEN * 0.5, WIDTH_SCREEN * 0.5 / image.size.width * image.size.height) : image.size);
-            _messageSize = (_messageSize.height > 60 ? _messageSize : CGSizeMake(60.0 / _messageSize.height * _messageSize.width, 60));
+        {
+            NSString *path = [NSString stringWithFormat:@"%@/%@", PATH_CHATREC_IMAGE, self.imagePath];
+            image = [[UIImage alloc] initWithContentsOfFile:path];
+            if (image != nil) {
+                _messageSize = (image.size.width > WIDTH_SCREEN * 0.5 ? CGSizeMake(WIDTH_SCREEN * 0.5, WIDTH_SCREEN * 0.5 / image.size.width * image.size.height) : image.size);
+                _messageSize = (_messageSize.height > 60 ? (_messageSize.height < 200 ? _messageSize : CGSizeMake(_messageSize.width, 200)) : CGSizeMake(60.0 / _messageSize.height * _messageSize.width, 60));
+            }
+            else {
+                _messageSize = CGSizeMake(0, 0);
+            }
             break;
+        }
         case TLMessageTypeVoice:
 
             break;

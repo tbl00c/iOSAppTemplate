@@ -39,7 +39,14 @@
 {
     [super setMessage:message];
     if(message.imagePath != nil) {
-        [self.messageImageView setImage:[UIImage imageNamed:message.imagePath]];
+        if (message.imagePath.length > 0) {
+            NSString *path = [NSString stringWithFormat:@"%@/%@", PATH_CHATREC_IMAGE, message.imagePath];
+            [self.messageImageView setImage:[UIImage imageWithContentsOfFile:path]];
+        }
+        else {
+            // network Image
+        }
+        
         [self.messageImageView setSize:CGSizeMake(message.messageSize.width + 10, message.messageSize.height + 10)];
     }
     switch (self.message.ownerTyper) {
@@ -58,6 +65,8 @@
 {
     if (_messageImageView == nil) {
         _messageImageView = [[UIImageView alloc] init];
+        [_messageImageView setContentMode:UIViewContentModeScaleAspectFill];
+        [_messageImageView setClipsToBounds:YES];
     }
     return _messageImageView;
 }

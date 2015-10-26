@@ -10,7 +10,7 @@
 
 @interface common : NSObject
 
-void WBLogError(id className, id funcName, NSError *error);
-void WBLogWarning(id className, id funcName, NSString *format,...);
+void TLLogError(id className, id funcName, NSError *error);
+void TLLogWarning(id className, id funcName, NSString *format,...);
 
 @end

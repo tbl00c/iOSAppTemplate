@@ -9,9 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "TLChatBoxMoreItem.h"
 
+typedef NS_ENUM(NSInteger, TLChatBoxItem) {
+    TLChatBoxItemAlbum = 0,
+    TLChatBoxItemCamera,
+};
+
+
 @class TLChatBoxMoreView;
 @protocol TLChatBoxMoreViewDelegate <NSObject>
-- (void)chatBoxMoreView:(TLChatBoxMoreView *)chatBoxMoreView didSelectItemIndex:(int)index;
+- (void)chatBoxMoreView:(TLChatBoxMoreView *)chatBoxMoreView didSelectItemIndex:(TLChatBoxItem)itemType;
 @end
 
 @interface TLChatBoxMoreView : UIView

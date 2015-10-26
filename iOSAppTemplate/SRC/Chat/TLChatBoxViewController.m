@@ -11,7 +11,7 @@
 #import "TLChatBoxMoreView.h"
 #import "TLChatBoxFaceView.h"
 
-@interface TLChatBoxViewController () <TLChatBoxDelegate, TLChatBoxFaceViewDelegate, TLChatBoxMoreViewDelegate>
+@interface TLChatBoxViewController () <TLChatBoxDelegate, TLChatBoxFaceViewDelegate, TLChatBoxMoreViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, assign) CGRect keyboardFrame;
 
@@ -176,11 +176,66 @@
 }
 
 #pragma mark - TLChatBoxMoreViewDelegate
-- (void) chatBoxMoreView:(TLChatBoxMoreView *)chatBoxMoreView didSelectItemIndex:(int)index
+- (void) chatBoxMoreView:(TLChatBoxMoreView *)chatBoxMoreView didSelectItemIndex:(TLChatBoxItem)itemType
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"Did Selected Index Of ChatBoxMoreView: %d", index] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    [alert show];
+    if (itemType == TLChatBoxItemAlbum) {            // 相册
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        [imagePicker setDelegate:self];
+        [self presentViewController:imagePicker animated:YES completion:^{
+            
+        }];
+    }
+    else if (itemType == TLChatBoxItemCamera) {       // 拍摄
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];//初始化
+            [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+            [imagePicker setDelegate:self];
+            [self presentViewController:imagePicker animated:YES completion:^{
+                
+            }];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前设备不支持拍照。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"Did Selected Index Of ChatBoxMoreView: %d", (int)itemType] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
 }
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    NSString *imageName = [NSString stringWithFormat:@"%lf", [[NSDate date]timeIntervalSince1970]];
+    NSString *imagePath = [NSString stringWithFormat:@"%@/%@", PATH_CHATREC_IMAGE, imageName];
+    NSData *imageData = (UIImagePNGRepresentation(image) == nil ? UIImageJPEGRepresentation(image, 1) : UIImagePNGRepresentation(image));
+    [[NSFileManager defaultManager] createFileAtPath:imagePath contents:imageData attributes:nil];
+    
+    TLMessage *message = [[TLMessage alloc] init];
+    message.messageType = TLMessageTypeImage;
+    message.ownerTyper = TLMessageOwnerTypeSelf;
+    message.date = [NSDate date];
+    message.imagePath = imageName;
+    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
+        [_delegate chatBoxViewController:self sendMessage:message];
+    }
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 
 #pragma mark - Private Methods
 - (void)keyboardWillHide:(NSNotification *)notification{
