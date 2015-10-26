@@ -99,7 +99,7 @@
         [self sendCurrentMessage];
         return NO;
     }
-    else if ([text isEqualToString:@""]) {       // delete
+    else if (textView.text.length > 0 && [text isEqualToString:@""]) {       // delete
         if ([textView.text characterAtIndex:range.location] == ']') {
             NSUInteger location = range.location;
             NSUInteger length = range.length;

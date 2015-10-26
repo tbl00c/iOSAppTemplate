@@ -30,7 +30,9 @@ static UIImage *image = nil;
 - (void) setText:(NSString *)text
 {
     _text = text;
-    _attrText = [TLChatHelper formatMessageString:text];
+    if (text.length > 0) {
+        _attrText = [TLChatHelper formatMessageString:text];
+    }
 }
 
 #pragma mark - Getter
@@ -60,7 +62,7 @@ static UIImage *image = nil;
     switch (self.messageType) {
         case TLMessageTypeText:
             [label setAttributedText:self.attrText];
-            _messageSize = [label sizeThatFits:CGSizeMake(WIDTH_SCREEN * 0.6, MAXFLOAT)];
+            _messageSize = [label sizeThatFits:CGSizeMake(WIDTH_SCREEN * 0.58, MAXFLOAT)];
             break;
         case TLMessageTypeImage:
         {

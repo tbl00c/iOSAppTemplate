@@ -41,7 +41,7 @@
     if(message.imagePath != nil) {
         if (message.imagePath.length > 0) {
             NSString *path = [NSString stringWithFormat:@"%@/%@", PATH_CHATREC_IMAGE, message.imagePath];
-            [self.messageImageView setImage:[UIImage imageWithContentsOfFile:path]];
+            [self.messageImageView setImage:[UIImage imageNamed:path]];
         }
         else {
             // network Image

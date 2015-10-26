@@ -46,6 +46,16 @@
 {
     message.from = [TLUserHelper sharedUserHelper].user;
     [self.chatMessageVC addNewMessage:message];
+    
+    TLMessage *recMessage = [[TLMessage alloc] init];
+    recMessage.messageType = message.messageType;
+    recMessage.ownerTyper = TLMessageOwnerTypeOther;
+    recMessage.date = [NSDate date];
+    recMessage.text = message.text;
+    recMessage.imagePath = message.imagePath;
+    recMessage.from = message.from;
+    [self.chatMessageVC addNewMessage:recMessage];
+    
     [self.chatMessageVC scrollToBottom];
 }
 
