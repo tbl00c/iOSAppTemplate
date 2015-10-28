@@ -75,8 +75,8 @@
 
 - (void) didSelectedItem:(TLChatBoxMoreItem *)sender
 {
-    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxMoreView:didSelectItemIndex:)]) {
-        [_delegate chatBoxMoreView:self didSelectItemIndex:(int)sender.tag];
+    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxMoreView:didSelectItem:)]) {
+        [_delegate chatBoxMoreView:self didSelectItem:(int)sender.tag];
     }
 }
 

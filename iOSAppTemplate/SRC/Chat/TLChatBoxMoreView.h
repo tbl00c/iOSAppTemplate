@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger, TLChatBoxItem) {
 
 @class TLChatBoxMoreView;
 @protocol TLChatBoxMoreViewDelegate <NSObject>
-- (void)chatBoxMoreView:(TLChatBoxMoreView *)chatBoxMoreView didSelectItemIndex:(TLChatBoxItem)itemType;
+- (void)chatBoxMoreView:(TLChatBoxMoreView *)chatBoxMoreView didSelectItem:(TLChatBoxItem)itemType;
 @end
 
 @interface TLChatBoxMoreView : UIView

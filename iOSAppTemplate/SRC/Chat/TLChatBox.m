@@ -9,6 +9,7 @@
 #import "TLChatBox.h"
 
 #define     CHATBOX_BUTTON_WIDTH        37
+#define     HEIGHT_TEXTVIEW             HEIGHT_TABBAR * 0.74
 
 
 @interface TLChatBox () <UITextViewDelegate>
@@ -67,7 +68,6 @@
         if (_delegate && [_delegate respondsToSelector:@selector(chatBox:sendTextMessage:)]) {
             [_delegate chatBox:self sendTextMessage:self.textView.text];
         }
-        self.textView.text = @"";
     }
 }
 
@@ -94,9 +94,27 @@
     }
 }
 
+- (void) textViewDidChange:(UITextView *)textView
+{
+    CGFloat height = [textView sizeThatFits:CGSizeMake(self.textView.frameWidth, MAXFLOAT)].height;
+    height = height > HEIGHT_TEXTVIEW ? height : HEIGHT_TEXTVIEW;
+    height = height < 16 * 4 + 40 ? height : textView.frameHeight;
+    
+    if (height != textView.frameHeight) {
+        [textView setFrameHeight:height];
+        if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeTextViewHeight:)]) {
+            [UIView animateWithDuration:0.05 animations:^{
+                [_delegate chatBox:self changeTextViewHeight:height];
+            }];
+        }
+    }
+}
+
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@"\n"]){
         [self sendCurrentMessage];
+        [textView setText:@""];
+        [self textViewDidChange:textView];
         return NO;
     }
     else if (textView.text.length > 0 && [text isEqualToString:@""]) {       // delete
@@ -308,7 +326,7 @@
 - (UIButton *) talkButton
 {
     if (_talkButton == nil) {
-        _talkButton = [[UIButton alloc] initWithFrame:CGRectMake(self.voiceButton.originX + self.voiceButton.frameWidth + 4, self.frameHeight * 0.13, self.faceButton.originX - self.voiceButton.originX - self.voiceButton.frameWidth - 8, self.frameHeight * 0.74)];
+        _talkButton = [[UIButton alloc] initWithFrame:CGRectMake(self.voiceButton.originX + self.voiceButton.frameWidth + 4, self.frameHeight * 0.13, self.faceButton.originX - self.voiceButton.originX - self.voiceButton.frameWidth - 8, HEIGHT_TEXTVIEW)];
         [_talkButton setTitle:@"按住 说话" forState:UIControlStateNormal];
         [_talkButton setTitle:@"松开 结束" forState:UIControlStateHighlighted];
         [_talkButton setTitleColor:[UIColor colorWithRed:0.3 green:0.3 blue:0.3 alpha:1.0] forState:UIControlStateNormal];

@@ -10,7 +10,6 @@
 #import "TLChatHelper.h"
 
 static UILabel *label = nil;
-static UIImage *image = nil;
 
 @implementation TLMessage
 
@@ -67,9 +66,9 @@ static UIImage *image = nil;
         case TLMessageTypeImage:
         {
             NSString *path = [NSString stringWithFormat:@"%@/%@", PATH_CHATREC_IMAGE, self.imagePath];
-            image = [[UIImage alloc] initWithContentsOfFile:path];
-            if (image != nil) {
-                _messageSize = (image.size.width > WIDTH_SCREEN * 0.5 ? CGSizeMake(WIDTH_SCREEN * 0.5, WIDTH_SCREEN * 0.5 / image.size.width * image.size.height) : image.size);
+            _image = [UIImage imageNamed:path];
+            if (_image != nil) {
+                _messageSize = (_image.size.width > WIDTH_SCREEN * 0.5 ? CGSizeMake(WIDTH_SCREEN * 0.5, WIDTH_SCREEN * 0.5 / _image.size.width * _image.size.height) : _image.size);
                 _messageSize = (_messageSize.height > 60 ? (_messageSize.height < 200 ? _messageSize : CGSizeMake(_messageSize.width, 200)) : CGSizeMake(60.0 / _messageSize.height * _messageSize.width, 60));
             }
             else {

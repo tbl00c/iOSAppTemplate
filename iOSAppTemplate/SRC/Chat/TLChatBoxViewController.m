@@ -76,6 +76,13 @@
     }
 }
 
+- (void)chatBox:(TLChatBox *)chatBox changeTextViewHeight:(CGFloat)height
+{
+    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
+        [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + height - HEIGHT_TABBAR * 0.74];
+    }
+}
+
 - (void) chatBox:(TLChatBox *)chatBox changeStatusForm:(TLChatBoxStatus)fromStatus to:(TLChatBoxStatus)toStatus
 {
     if (toStatus == TLChatBoxStatusShowKeyboard) {      // 显示键盘
@@ -176,7 +183,7 @@
 }
 
 #pragma mark - TLChatBoxMoreViewDelegate
-- (void) chatBoxMoreView:(TLChatBoxMoreView *)chatBoxMoreView didSelectItemIndex:(TLChatBoxItem)itemType
+- (void) chatBoxMoreView:(TLChatBoxMoreView *)chatBoxMoreView didSelectItem:(TLChatBoxItem)itemType
 {
     if (itemType == TLChatBoxItemAlbum) {            // 相册
         UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
