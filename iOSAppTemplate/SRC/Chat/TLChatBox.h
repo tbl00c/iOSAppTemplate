@@ -29,6 +29,8 @@ typedef NS_ENUM(NSInteger, TLChatBoxStatus) {
 @property (nonatomic, assign) id<TLChatBoxDelegate>delegate;
 @property (nonatomic, assign) TLChatBoxStatus status;
 
+@property (nonatomic, assign) CGFloat curHeight;
+
 - (void) addEmojiFace:(TLFace *)face;
 - (void) sendCurrentMessage;
 - (void) deleteButtonDown;

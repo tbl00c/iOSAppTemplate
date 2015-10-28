@@ -28,6 +28,7 @@
 - (id) initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        _curHeight = frame.size.height;
         [self setBackgroundColor:DEFAULT_CHATBOX_COLOR];
         [self addSubview:self.topLine];
         [self addSubview:self.voiceButton];
@@ -101,6 +102,7 @@
     height = height < 16 * 4 + 40 ? height : textView.frameHeight;
     
     if (height != textView.frameHeight) {
+        _curHeight = HEIGHT_TABBAR - HEIGHT_TEXTVIEW + height;
         [textView setFrameHeight:height];
         if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeTextViewHeight:)]) {
             [UIView animateWithDuration:0.05 animations:^{

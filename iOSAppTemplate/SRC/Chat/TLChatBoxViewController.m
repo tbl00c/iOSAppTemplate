@@ -53,7 +53,7 @@
         self.chatBox.status = (self.chatBox.status == TLChatBoxStatusShowVoice ? self.chatBox.status : TLChatBoxStatusNothing);
         if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
             [UIView animateWithDuration:0.3 animations:^{
-                [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR];
+                [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.chatBox.curHeight];
             } completion:^(BOOL finished) {
                 [self.chatBoxFaceView removeFromSuperview];
                 [self.chatBoxMoreView removeFromSuperview];
@@ -78,8 +78,9 @@
 
 - (void)chatBox:(TLChatBox *)chatBox changeTextViewHeight:(CGFloat)height
 {
+    [self.chatBox setFrameHeight:self.chatBox.curHeight];
     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-        [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + height - HEIGHT_TABBAR * 0.74];
+        [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.keyboardFrame.size.height + self.chatBox.curHeight];
     }
 }
 
@@ -104,23 +105,30 @@
                 [self.chatBoxMoreView removeFromSuperview];
             }];
         }
+        else {
+            [UIView animateWithDuration:0.1 animations:^{
+                if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
+                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR];
+                }
+            }];
+        }
     }
     else if (toStatus == TLChatBoxStatusShowFace) {     // 显示表情面板
         if (fromStatus == TLChatBoxStatusShowVoice || fromStatus == TLChatBoxStatusNothing) {
-            [self.chatBoxFaceView setOriginY:HEIGHT_TABBAR];
+            [self.chatBoxFaceView setOriginY:self.chatBox.curHeight];
             [self.view addSubview:self.chatBoxFaceView];
             [UIView animateWithDuration:0.3 animations:^{
                 if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW];
+                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.chatBox.curHeight + HEIGHT_CHATBOXVIEW];
                 }
             }];
         }
         else {
             // 表情高度变化
-            self.chatBoxFaceView.originY = HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW;
+            self.chatBoxFaceView.originY = self.chatBox.curHeight + HEIGHT_CHATBOXVIEW;
             [self.view addSubview:self.chatBoxFaceView];
             [UIView animateWithDuration:0.3 animations:^{
-                self.chatBoxFaceView.originY = HEIGHT_TABBAR;
+                self.chatBoxFaceView.originY = self.chatBox.curHeight;
             } completion:^(BOOL finished) {
                 [self.chatBoxMoreView removeFromSuperview];
             }];
@@ -128,7 +136,7 @@
             if (fromStatus != TLChatBoxStatusShowMore) {
                 [UIView animateWithDuration:0.2 animations:^{
                     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                        [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW];
+                        [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.chatBox.curHeight + HEIGHT_CHATBOXVIEW];
                     }
                 }];
             }
@@ -136,19 +144,19 @@
     }
     else if (toStatus == TLChatBoxStatusShowMore) {     // 显示更多面板
         if (fromStatus == TLChatBoxStatusShowVoice || fromStatus == TLChatBoxStatusNothing) {
-            [self.chatBoxMoreView setOriginY:HEIGHT_TABBAR];
+            [self.chatBoxMoreView setOriginY:self.chatBox.curHeight];
             [self.view addSubview:self.chatBoxMoreView];
             [UIView animateWithDuration:0.3 animations:^{
                 if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW];
+                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.chatBox.curHeight + HEIGHT_CHATBOXVIEW];
                 }
             }];
         }
         else {
-            self.chatBoxMoreView.originY = HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW;
+            self.chatBoxMoreView.originY = self.chatBox.curHeight + HEIGHT_CHATBOXVIEW;
             [self.view addSubview:self.chatBoxMoreView];
             [UIView animateWithDuration:0.3 animations:^{
-                self.chatBoxMoreView.originY = HEIGHT_TABBAR;
+                self.chatBoxMoreView.originY = self.chatBox.curHeight;
             } completion:^(BOOL finished) {
                 [self.chatBoxFaceView removeFromSuperview];
             }];
@@ -156,7 +164,7 @@
             if (fromStatus != TLChatBoxStatusShowFace) {
                 [UIView animateWithDuration:0.2 animations:^{
                     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                        [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW];
+                        [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.chatBox.curHeight + HEIGHT_CHATBOXVIEW];
                     }
                 }];
             }
@@ -251,7 +259,7 @@
         return;
     }
     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-        [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR];
+        [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.chatBox.curHeight];
     }
 }
 
@@ -264,7 +272,7 @@
         return;
     }
     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-        [_delegate chatBoxViewController:self didChangeChatBoxHeight: self.keyboardFrame.size.height + HEIGHT_TABBAR];
+        [_delegate chatBoxViewController:self didChangeChatBoxHeight: self.keyboardFrame.size.height + self.chatBox.curHeight];
     }
 }
 
