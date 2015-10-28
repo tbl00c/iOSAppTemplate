@@ -76,11 +76,13 @@
     }
 }
 
-- (void)chatBox:(TLChatBox *)chatBox changeTextViewHeight:(CGFloat)height
+- (void)chatBox:(TLChatBox *)chatBox changeChatBoxHeight:(CGFloat)height
 {
-    [self.chatBox setFrameHeight:self.chatBox.curHeight];
+    self.chatBoxFaceView.originY = height;
+    self.chatBoxMoreView.originY = height;
     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-        [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.keyboardFrame.size.height + self.chatBox.curHeight];
+        float h = (self.chatBox.status == TLChatBoxStatusShowFace ? HEIGHT_CHATBOXVIEW : self.keyboardFrame.size.height ) + height;
+        [_delegate chatBoxViewController:self didChangeChatBoxHeight: h];
     }
 }
 

@@ -10,6 +10,7 @@
 
 #define     CHATBOX_BUTTON_WIDTH        37
 #define     HEIGHT_TEXTVIEW             HEIGHT_TABBAR * 0.74
+#define     MAX_TEXTVIEW_HEIGHT         104
 
 
 @interface TLChatBox () <UITextViewDelegate>
@@ -45,6 +46,15 @@
 {
     [super setFrame:frame];
     [self.topLine setFrameWidth:self.frameWidth];
+    
+    float y = self.frameHeight - self.voiceButton.frameHeight - (HEIGHT_TABBAR - CHATBOX_BUTTON_WIDTH) / 2;
+    if (self.voiceButton.originY != y) {
+        [UIView animateWithDuration:0.1 animations:^{
+            [self.voiceButton setOriginY:y];
+            [self.faceButton setOriginY:self.voiceButton.originY];
+            [self.moreButton setOriginY:self.voiceButton.originY];
+        }];
+    }
 }
 
 #pragma Public Methods
@@ -61,6 +71,12 @@
 - (void) addEmojiFace:(TLFace *)face
 {
     [self.textView setText:[self.textView.text stringByAppendingString:face.faceName]];
+    if (MAX_TEXTVIEW_HEIGHT < self.textView.contentSize.height) {
+        float y = self.textView.contentSize.height - self.textView.frameHeight;
+        y = y < 0 ? 0 : y;
+        [self.textView scrollRectToVisible:CGRectMake(0, y, self.textView.frameWidth, self.textView.frameHeight) animated:YES];
+    }
+    [self textViewDidChange:self.textView];
 }
 
 - (void) sendCurrentMessage
@@ -70,11 +86,14 @@
             [_delegate chatBox:self sendTextMessage:self.textView.text];
         }
     }
+    [self.textView setText:@""];
+    [self textViewDidChange:self.textView];
 }
 
 - (void) deleteButtonDown
 {
     [self textView:self.textView shouldChangeTextInRange:NSMakeRange(self.textView.text.length - 1, 1) replacementText:@""];
+    [self textViewDidChange:self.textView];
 }
 
 #pragma mark - UITextViewDelegate
@@ -99,24 +118,27 @@
 {
     CGFloat height = [textView sizeThatFits:CGSizeMake(self.textView.frameWidth, MAXFLOAT)].height;
     height = height > HEIGHT_TEXTVIEW ? height : HEIGHT_TEXTVIEW;
-    height = height < 16 * 4 + 40 ? height : textView.frameHeight;
-    
-    if (height != textView.frameHeight) {
-        _curHeight = HEIGHT_TABBAR - HEIGHT_TEXTVIEW + height;
-        [textView setFrameHeight:height];
-        if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeTextViewHeight:)]) {
-            [UIView animateWithDuration:0.05 animations:^{
-                [_delegate chatBox:self changeTextViewHeight:height];
-            }];
-        }
+    height = height < MAX_TEXTVIEW_HEIGHT ? height : textView.frameHeight;
+    _curHeight = height + HEIGHT_TABBAR - HEIGHT_TEXTVIEW;
+    if (_curHeight != self.frameHeight) {
+        [UIView animateWithDuration:0.05 animations:^{
+            [self setFrameHeight:_curHeight];
+            if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeChatBoxHeight:)]) {
+                [_delegate chatBox:self changeChatBoxHeight:_curHeight];
+            }
+        }];
     }
+    if (height != textView.frameHeight) {
+        [UIView animateWithDuration:0.05 animations:^{
+            [textView setFrameHeight:height];
+        }];
+    }
+    
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     if ([text isEqualToString:@"\n"]){
         [self sendCurrentMessage];
-        [textView setText:@""];
-        [self textViewDidChange:textView];
         return NO;
     }
     else if (textView.text.length > 0 && [text isEqualToString:@""]) {       // delete
@@ -152,11 +174,15 @@
         [self.textView becomeFirstResponder];
         [_voiceButton setImage:[UIImage imageNamed:@"ToolViewInputVoice"] forState:UIControlStateNormal];
         [_voiceButton setImage:[UIImage imageNamed:@"ToolViewInputVoiceHL"] forState:UIControlStateHighlighted];
+        
+        [self textViewDidChange:self.textView];
         if (_delegate && [_delegate respondsToSelector:@selector(chatBox:changeStatusForm:to:)]) {
             [_delegate chatBox:self changeStatusForm:lastStatus to:self.status];
         }
     }
     else {          // 显示talkButton
+        self.curHeight = HEIGHT_TABBAR;
+        [self setFrameHeight:self.curHeight];
         self.status = TLChatBoxStatusShowVoice;
         [self.textView resignFirstResponder];
         [self.textView setHidden:YES];
@@ -295,7 +321,6 @@
         [_textView.layer setCornerRadius:4.0f];
         [_textView.layer setBorderWidth:0.5f];
         [_textView.layer setBorderColor:self.topLine.backgroundColor.CGColor];
-        [_textView setShowsVerticalScrollIndicator:NO];
         [_textView setScrollsToTop:NO];
         [_textView setReturnKeyType:UIReturnKeySend];
         [_textView setDelegate:self];
