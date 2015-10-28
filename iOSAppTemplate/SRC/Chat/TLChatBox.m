@@ -228,6 +228,7 @@
             [_voiceButton setImage:[UIImage imageNamed:@"ToolViewInputVoiceHL"] forState:UIControlStateHighlighted];
             [_talkButton setHidden:YES];
             [_textView setHidden:NO];
+            [self textViewDidChange:self.textView];
         }
         else if (lastStatus == TLChatBoxStatusShowKeyboard) {
             [self.textView resignFirstResponder];
@@ -263,6 +264,7 @@
             [_voiceButton setImage:[UIImage imageNamed:@"ToolViewInputVoiceHL"] forState:UIControlStateHighlighted];
             [_talkButton setHidden:YES];
             [_textView setHidden:NO];
+            [self textViewDidChange:self.textView];
         }
         else if (lastStatus == TLChatBoxStatusShowKeyboard) {
             [self.textView resignFirstResponder];
