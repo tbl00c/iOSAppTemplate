@@ -15,6 +15,7 @@
 #import "TLDetailsViewController.h"
 
 #import "TLFriendCell.h"
+#import "TLFriendHeaderView.h"
 
 @interface TLFriendsViewController () <UISearchBarDelegate>
 
@@ -45,9 +46,11 @@
     
     // SubViews
     [self.tableView registerClass:[TLFriendCell class] forCellReuseIdentifier:@"FriendCell"];
-    [self.navigationItem setRightBarButtonItem:self.addFriendButton];
+    [self.tableView registerClass:[TLFriendHeaderView class] forHeaderFooterViewReuseIdentifier:@"WBFriendHeaderView"];
     [self.tableView setTableHeaderView:self.searchController.searchBar];
     [self.tableView setTableFooterView:self.footerLabel];
+    
+    [self.navigationItem setRightBarButtonItem:self.addFriendButton];
     
     // 测试
     [self initTestData];
@@ -80,15 +83,9 @@
     if (section == 0) {
         return nil;
     }
-    id label = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"headerView"];
-    if (label == nil) {
-        label = [[UILabel alloc] init];
-        [label setFont:[UIFont systemFontOfSize:14.5f]];
-        [label setTextColor:[UIColor grayColor]];
-        [label setBackgroundColor:DEFAULT_BACKGROUND_COLOR];
-    }
-    [label setText:[NSString stringWithFormat:@"  %@", [_section objectAtIndex:section]]];
-    return label;
+    TLFriendHeaderView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"WBFriendHeaderView"];
+    [view setTitle:[self.section objectAtIndex:section]];
+    return view;
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
