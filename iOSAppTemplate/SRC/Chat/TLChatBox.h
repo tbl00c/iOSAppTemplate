@@ -21,12 +21,15 @@ typedef NS_ENUM(NSInteger, TLChatBoxStatus) {
 @protocol TLChatBoxDelegate <NSObject>
 - (void)chatBox:(TLChatBox *)chatBox changeStatusForm:(TLChatBoxStatus)fromStatus to:(TLChatBoxStatus)toStatus;
 - (void)chatBox:(TLChatBox *)chatBox sendTextMessage:(NSString *)textMessage;
+- (void)chatBox:(TLChatBox *)chatBox changeChatBoxHeight:(CGFloat)height;
 @end
 
 @interface TLChatBox : UIView
 
 @property (nonatomic, assign) id<TLChatBoxDelegate>delegate;
 @property (nonatomic, assign) TLChatBoxStatus status;
+
+@property (nonatomic, assign) CGFloat curHeight;
 
 - (void) addEmojiFace:(TLFace *)face;
 - (void) sendCurrentMessage;

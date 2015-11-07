@@ -10,12 +10,12 @@
 
 @implementation common
 
-void WBLogError(NSString *className, NSString *funcName, NSError *error)
+void TLLogError(NSString *className, NSString *funcName, NSError *error)
 {
     NSLog(@"ERROR\nClass: %@\nFunc: %@\nInfo: %@", className, funcName, error);
 }
 
-void WBLogWarning(id className, id funcName, NSString *format,...)
+void TLLogWarning(id className, id funcName, NSString *format,...)
 {
     va_list args;
     va_start(args, format);

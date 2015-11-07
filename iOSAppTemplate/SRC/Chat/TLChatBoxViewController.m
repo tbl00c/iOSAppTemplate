@@ -11,7 +11,7 @@
 #import "TLChatBoxMoreView.h"
 #import "TLChatBoxFaceView.h"
 
-@interface TLChatBoxViewController () <TLChatBoxDelegate, TLChatBoxFaceViewDelegate, TLChatBoxMoreViewDelegate>
+@interface TLChatBoxViewController () <TLChatBoxDelegate, TLChatBoxFaceViewDelegate, TLChatBoxMoreViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (nonatomic, assign) CGRect keyboardFrame;
 
@@ -53,7 +53,7 @@
         self.chatBox.status = (self.chatBox.status == TLChatBoxStatusShowVoice ? self.chatBox.status : TLChatBoxStatusNothing);
         if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
             [UIView animateWithDuration:0.3 animations:^{
-                [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR];
+                [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.chatBox.curHeight];
             } completion:^(BOOL finished) {
                 [self.chatBoxFaceView removeFromSuperview];
                 [self.chatBoxMoreView removeFromSuperview];
@@ -73,6 +73,16 @@
     message.date = [NSDate date];
     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController: sendMessage:)]) {
         [_delegate chatBoxViewController:self sendMessage:message];
+    }
+}
+
+- (void)chatBox:(TLChatBox *)chatBox changeChatBoxHeight:(CGFloat)height
+{
+    self.chatBoxFaceView.originY = height;
+    self.chatBoxMoreView.originY = height;
+    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
+        float h = (self.chatBox.status == TLChatBoxStatusShowFace ? HEIGHT_CHATBOXVIEW : self.keyboardFrame.size.height ) + height;
+        [_delegate chatBoxViewController:self didChangeChatBoxHeight: h];
     }
 }
 
@@ -97,23 +107,30 @@
                 [self.chatBoxMoreView removeFromSuperview];
             }];
         }
+        else {
+            [UIView animateWithDuration:0.1 animations:^{
+                if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
+                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR];
+                }
+            }];
+        }
     }
     else if (toStatus == TLChatBoxStatusShowFace) {     // 显示表情面板
         if (fromStatus == TLChatBoxStatusShowVoice || fromStatus == TLChatBoxStatusNothing) {
-            [self.chatBoxFaceView setOriginY:HEIGHT_TABBAR];
+            [self.chatBoxFaceView setOriginY:self.chatBox.curHeight];
             [self.view addSubview:self.chatBoxFaceView];
             [UIView animateWithDuration:0.3 animations:^{
                 if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW];
+                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.chatBox.curHeight + HEIGHT_CHATBOXVIEW];
                 }
             }];
         }
         else {
             // 表情高度变化
-            self.chatBoxFaceView.originY = HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW;
+            self.chatBoxFaceView.originY = self.chatBox.curHeight + HEIGHT_CHATBOXVIEW;
             [self.view addSubview:self.chatBoxFaceView];
             [UIView animateWithDuration:0.3 animations:^{
-                self.chatBoxFaceView.originY = HEIGHT_TABBAR;
+                self.chatBoxFaceView.originY = self.chatBox.curHeight;
             } completion:^(BOOL finished) {
                 [self.chatBoxMoreView removeFromSuperview];
             }];
@@ -121,7 +138,7 @@
             if (fromStatus != TLChatBoxStatusShowMore) {
                 [UIView animateWithDuration:0.2 animations:^{
                     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                        [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW];
+                        [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.chatBox.curHeight + HEIGHT_CHATBOXVIEW];
                     }
                 }];
             }
@@ -129,19 +146,19 @@
     }
     else if (toStatus == TLChatBoxStatusShowMore) {     // 显示更多面板
         if (fromStatus == TLChatBoxStatusShowVoice || fromStatus == TLChatBoxStatusNothing) {
-            [self.chatBoxMoreView setOriginY:HEIGHT_TABBAR];
+            [self.chatBoxMoreView setOriginY:self.chatBox.curHeight];
             [self.view addSubview:self.chatBoxMoreView];
             [UIView animateWithDuration:0.3 animations:^{
                 if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW];
+                    [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.chatBox.curHeight + HEIGHT_CHATBOXVIEW];
                 }
             }];
         }
         else {
-            self.chatBoxMoreView.originY = HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW;
+            self.chatBoxMoreView.originY = self.chatBox.curHeight + HEIGHT_CHATBOXVIEW;
             [self.view addSubview:self.chatBoxMoreView];
             [UIView animateWithDuration:0.3 animations:^{
-                self.chatBoxMoreView.originY = HEIGHT_TABBAR;
+                self.chatBoxMoreView.originY = self.chatBox.curHeight;
             } completion:^(BOOL finished) {
                 [self.chatBoxFaceView removeFromSuperview];
             }];
@@ -149,7 +166,7 @@
             if (fromStatus != TLChatBoxStatusShowFace) {
                 [UIView animateWithDuration:0.2 animations:^{
                     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-                        [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR + HEIGHT_CHATBOXVIEW];
+                        [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.chatBox.curHeight + HEIGHT_CHATBOXVIEW];
                     }
                 }];
             }
@@ -176,11 +193,66 @@
 }
 
 #pragma mark - TLChatBoxMoreViewDelegate
-- (void) chatBoxMoreView:(TLChatBoxMoreView *)chatBoxMoreView didSelectItemIndex:(int)index
+- (void) chatBoxMoreView:(TLChatBoxMoreView *)chatBoxMoreView didSelectItem:(TLChatBoxItem)itemType
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"Did Selected Index Of ChatBoxMoreView: %d", index] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
-    [alert show];
+    if (itemType == TLChatBoxItemAlbum) {            // 相册
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        [imagePicker setDelegate:self];
+        [self presentViewController:imagePicker animated:YES completion:^{
+            
+        }];
+    }
+    else if (itemType == TLChatBoxItemCamera) {       // 拍摄
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];//初始化
+            [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+            imagePicker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+            [imagePicker setDelegate:self];
+            [self presentViewController:imagePicker animated:YES completion:^{
+                
+            }];
+        }
+        else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"当前设备不支持拍照。" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            [alert show];
+        }
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"Did Selected Index Of ChatBoxMoreView: %d", (int)itemType] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [alert show];
+    }
 }
+
+#pragma mark - UIImagePickerControllerDelegate
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info
+{
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    NSString *imageName = [NSString stringWithFormat:@"%lf", [[NSDate date]timeIntervalSince1970]];
+    NSString *imagePath = [NSString stringWithFormat:@"%@/%@", PATH_CHATREC_IMAGE, imageName];
+    NSData *imageData = (UIImagePNGRepresentation(image) == nil ? UIImageJPEGRepresentation(image, 1) : UIImagePNGRepresentation(image));
+    [[NSFileManager defaultManager] createFileAtPath:imagePath contents:imageData attributes:nil];
+    
+    TLMessage *message = [[TLMessage alloc] init];
+    message.messageType = TLMessageTypeImage;
+    message.ownerTyper = TLMessageOwnerTypeSelf;
+    message.date = [NSDate date];
+    message.imagePath = imageName;
+    if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:sendMessage:)]) {
+        [_delegate chatBoxViewController:self sendMessage:message];
+    }
+    
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
+    [picker dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
 
 #pragma mark - Private Methods
 - (void)keyboardWillHide:(NSNotification *)notification{
@@ -189,7 +261,7 @@
         return;
     }
     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-        [_delegate chatBoxViewController:self didChangeChatBoxHeight:HEIGHT_TABBAR];
+        [_delegate chatBoxViewController:self didChangeChatBoxHeight:self.chatBox.curHeight];
     }
 }
 
@@ -202,7 +274,7 @@
         return;
     }
     if (_delegate && [_delegate respondsToSelector:@selector(chatBoxViewController:didChangeChatBoxHeight:)]) {
-        [_delegate chatBoxViewController:self didChangeChatBoxHeight: self.keyboardFrame.size.height + HEIGHT_TABBAR];
+        [_delegate chatBoxViewController:self didChangeChatBoxHeight: self.keyboardFrame.size.height + self.chatBox.curHeight];
     }
 }
 

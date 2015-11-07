@@ -71,6 +71,7 @@ typedef NS_ENUM(NSUInteger, TLMessageReadState) {
 
 #pragma mark - 图片消息
 @property (nonatomic, strong) NSString *imagePath;                  // 本地图片Path
+@property (nonatomic, strong) UIImage *image;                       // 图片缓存
 @property (nonatomic, strong) NSString *imageURL;                   // 网络图片URL
 
 #pragma mark - 位置消息

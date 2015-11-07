@@ -18,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [self createDefaultDocumentIfNeed];
+    
     
     TLRootViewController *rootVC = [[TLRootViewController alloc] init];
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -120,6 +122,19 @@
             // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
             NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
             abort();
+        }
+    }
+}
+
+#pragma mark - Private Methods
+- (void) createDefaultDocumentIfNeed
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSError *error = nil;
+    if (![fileManager isExecutableFileAtPath:PATH_CHATREC_IMAGE]) {
+        [fileManager createDirectoryAtPath:PATH_CHATREC_IMAGE withIntermediateDirectories:YES attributes:nil error:&error];
+        if (error) {
+            TLLogError([self class], @"createDefaultDocumentIfNeed", error);
         }
     }
 }
