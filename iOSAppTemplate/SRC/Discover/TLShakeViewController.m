@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
     [self.navigationItem setTitle:@"摇一摇"];
-    [self.view setBackgroundColor:[UIColor colorWithRed:42.0/255.0 green:45.0/255.0 blue:46.0/255.0 alpha:1.0]];
+    [self.view setBackgroundColor:WBColor(42, 45, 46, 1.0)];
     
     [self.navigationItem setRightBarButtonItem:self.rightBarButtonItem];
     

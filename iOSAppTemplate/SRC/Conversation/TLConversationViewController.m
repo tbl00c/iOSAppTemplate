@@ -174,7 +174,7 @@
         [_searchController.searchBar sizeToFit];
         [_searchController.searchBar setDelegate:self];
         [_searchController.searchBar.layer setBorderWidth:0.5f];
-        [_searchController.searchBar.layer setBorderColor:[UIColor colorWithRed:220.0/255.0 green:220.0/255.0 blue:220.0/255.0 alpha:1.0].CGColor];
+        [_searchController.searchBar.layer setBorderColor:WBColor(220, 220, 220, 1.0).CGColor];
     }
     return _searchController;
 }

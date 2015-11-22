@@ -9,7 +9,8 @@
 #ifndef iOSAppTemplate_macros_h
 #define iOSAppTemplate_macros_h
 
-#define APPDELEGETE 	((AppDelegate*)[[UIApplication sharedApplication] delegate])
+#define APPDELEGETE         ((AppDelegate*)[[UIApplication sharedApplication] delegate])
+#define WBColor(r, g, b, a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:a]
 
 #pragma mark - Frame
 #define WIDTH_SCREEN        [UIScreen mainScreen].bounds.size.width
@@ -20,15 +21,15 @@
 #define HEIGHT_CHATBOXVIEW  215
 
 #pragma mark - Color
-#define     DEFAULT_NAVBAR_COLOR            [UIColor colorWithRed:20.0/255.0 green:20.0/255.0 blue:20.0/255.0 alpha:0.9]
-#define     DEFAULT_BACKGROUND_COLOR        [UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:244.0/255.0 alpha:1.0]
+#define     DEFAULT_NAVBAR_COLOR             WBColor(20.0, 20.0, 20.0, 0.9)
+#define     DEFAULT_BACKGROUND_COLOR         WBColor(239.0, 239.0, 244.0, 1.0)
 
-#define     DEFAULT_CHAT_BACKGROUND_COLOR   [UIColor colorWithRed:235.0/255.0 green:235.0/255.0 blue:235.0/255.0 alpha:1.0]
-#define     DEFAULT_CHATBOX_COLOR           [UIColor colorWithRed:244.0/255.0 green:244.0/255.0 blue:246.0/255.0 alpha:1.0]
-#define     DEFAULT_SEARCHBAR_COLOR         [UIColor colorWithRed:239.0/255.0 green:239.0/255.0 blue:244.0/255.0 alpha:1.0]
-#define     DEFAULT_GREEN_COLOR             [UIColor colorWithRed:2.0/255 green:187.0/255  blue:0.0/255 alpha:1.0f]
+#define     DEFAULT_CHAT_BACKGROUND_COLOR    WBColor(235.0, 235.0, 235.0, 1.0)
+#define     DEFAULT_CHATBOX_COLOR            WBColor(244.0, 244.0, 246.0, 1.0)
+#define     DEFAULT_SEARCHBAR_COLOR          WBColor(239.0, 239.0, 244.0, 1.0)
+#define     DEFAULT_GREEN_COLOR              WBColor(2.0, 187.0, 0.0, 1.0f)
 #define     DEFAULT_TEXT_GRAY_COLOR         [UIColor grayColor]
-#define     DEFAULT_LINE_GRAY_COLOR         [UIColor colorWithRed:188.0/255 green:188.0/255  blue:188.0/255 alpha:0.6f]
+#define     DEFAULT_LINE_GRAY_COLOR          WBColor(188.0, 188.0, 188.0, 0.6f)
 
 #pragma mark - Path
 #define     PATH_DOCUMENT                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
