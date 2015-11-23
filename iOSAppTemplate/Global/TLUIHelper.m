@@ -150,15 +150,19 @@
     [items addObject:group2];
     
     TLSettingItem *starFriend = [TLSettingItem createWithTitle:@"把它设为星标朋友"];
+    starFriend.type = TLSettingItemTypeSwitch;
     TLSettingGrounp *group3 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:starFriend, nil];
     [items addObject:group3];
     
     TLSettingItem *prohibit = [TLSettingItem createWithTitle:@"不让他看我的朋友圈"];
+    prohibit.type = TLSettingItemTypeSwitch;
     TLSettingItem *ignore = [TLSettingItem createWithTitle:@"不看他的朋友圈"];
+    ignore.type = TLSettingItemTypeSwitch;
     TLSettingGrounp *group4 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:prohibit, ignore, nil];
     [items addObject:group4];
     
     TLSettingItem *addBlacklist = [TLSettingItem createWithTitle:@"加入黑名单"];
+    addBlacklist.type = TLSettingItemTypeSwitch;
     TLSettingItem *report = [TLSettingItem createWithTitle: @"举报"];
     TLSettingGrounp *group5 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:addBlacklist, report, nil];
     [items addObject:group5];
@@ -179,6 +183,7 @@
     [items addObject:group1];
 
     TLSettingItem *showDetail = [TLSettingItem createWithTitle:@"通知显示详情信息"];
+    showDetail.type = TLSettingItemTypeSwitch;
     TLSettingGrounp *group2 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:@"关闭后，当收到微信消息时，通知提示将不显示发信人和内容摘要。" settingItems:showDetail, nil];
     [items addObject:group2];
     
@@ -187,11 +192,14 @@
     [items addObject:group3];
 
     TLSettingItem *voice = [TLSettingItem createWithTitle:@"声音"];
+    voice.type = TLSettingItemTypeSwitch;
     TLSettingItem *shake = [TLSettingItem createWithTitle:@"震动"];
+    shake.type = TLSettingItemTypeSwitch;
     TLSettingGrounp *group4 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:@"当微信在运行时，你可以设置是否需要声音或者振动。" settingItems:voice, shake, nil];
     [items addObject:group4];
 
     TLSettingItem *friends = [TLSettingItem createWithTitle:@"朋友圈照片更新"];
+    friends.type = TLSettingItemTypeSwitch;
     TLSettingGrounp *group5 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:@"关闭后，有朋友更新照片时，界面下面的“发现”切换按钮上不再出现红点提示。" settingItems:friends, nil];
     [items addObject:group5];
 

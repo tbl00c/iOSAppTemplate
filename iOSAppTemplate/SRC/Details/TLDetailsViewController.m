@@ -86,9 +86,16 @@
     else if ([item.title isEqualToString:@"个人相册"]) {
         return 86.0f;
     }
-    return 43.0f;
+    return [super tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section - 1]];
 }
 
+- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return [super tableView:tableView heightForFooterInSection:0];
+    }
+    return [super tableView:tableView heightForFooterInSection:section - 1];
+}
 
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

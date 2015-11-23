@@ -72,6 +72,14 @@
     }
 }
 
+- (void) setType:(TLSettingItemType)type
+{
+    _type = type;
+    if (type == TLSettingItemTypeSwitch) {
+        self.accessoryType = UITableViewCellAccessoryNone;
+    }
+}
+
 @end
 
 

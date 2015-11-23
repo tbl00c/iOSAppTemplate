@@ -17,6 +17,8 @@
 @property (nonatomic, strong) UIImageView *middleImageView;
 @property (nonatomic, strong) UIImageView *rightImageView;
 
+@property (nonatomic, strong) UISwitch *cSwitch;
+
 @property (nonatomic, strong) NSMutableArray *subImageArray;
 
 @end
@@ -32,6 +34,8 @@
         [self addSubview:self.mainImageView];
         [self addSubview:self.middleImageView];
         [self addSubview:self.rightImageView];
+
+        [self addSubview:self.cSwitch];
     }
     return self;
 }
@@ -66,7 +70,14 @@
     }
     
     if (self.item.alignment == TLSettingItemAlignmentRight) {
-        float rx = self.frameWidth - (self.item.accessoryType == UITableViewCellAccessoryDisclosureIndicator ? 35 : 0);
+        float rx = self.frameWidth - (self.item.accessoryType == UITableViewCellAccessoryDisclosureIndicator ? 35 : 10);
+        
+        if (self.item.type == TLSettingItemTypeSwitch) {
+            float cx = rx - self.cSwitch.frameWidth / 1.7;
+            [self.cSwitch setCenter:CGPointMake(cx, self.frameHeight / 2.0)];
+            rx -= self.cSwitch.frameWidth - 5;
+        }
+        
         if (self.item.rightImageName) {
             float mh = self.frameHeight * self.item.rightImageHeightOfCell;
             float my = (self.frameHeight - mh) / 2;
@@ -126,23 +137,36 @@
     
     if (item.imageName) {
         [self.mainImageView setImage:[UIImage imageNamed:item.imageName]];
+        [self.mainImageView setHidden:NO];
     }
     else {
         [self.middleImageView setImage:nil];
+        [self.mainImageView setHidden:YES];
     }
     
     if (item.middleImageName) {
         [self.middleImageView setImage:[UIImage imageNamed:item.middleImageName]];
+        [self.middleImageView setHidden:NO];
     }
     else {
         [self.middleImageView setImage:nil];
+        [self.middleImageView setHidden:YES];
     }
     
     if (item.rightImageName) {
         [self.rightImageView setImage:[UIImage imageNamed:item.rightImageName]];
+        [self.rightImageView setHidden:NO];
     }
     else {
         [self.rightImageView setImage:nil];
+        [self.rightImageView setHidden:YES];
+    }
+    
+    if (item.type == TLSettingItemTypeSwitch) {
+        [self.cSwitch setHidden:NO];
+    }
+    else {
+        [self.cSwitch setHidden:YES];
     }
     
     if (item.subImages) {
@@ -235,6 +259,14 @@
         _subImageArray = [[NSMutableArray alloc] init];
     }
     return _subImageArray;
+}
+
+- (UISwitch *) cSwitch
+{
+    if (_cSwitch == nil) {
+        _cSwitch = [[UISwitch alloc] init];
+    }
+    return _cSwitch;
 }
 
 @end

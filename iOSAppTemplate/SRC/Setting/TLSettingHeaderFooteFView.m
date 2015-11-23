@@ -51,7 +51,7 @@ static UILabel *hLabel = nil;
     }
     [hLabel setText:text];
     float w = WIDTH_SCREEN * 0.92;
-    return [hLabel sizeThatFits:CGSizeMake(w, MAXFLOAT)].height + 16;
+    return [hLabel sizeThatFits:CGSizeMake(w, MAXFLOAT)].height + 14;
 }
 
 #pragma mark - Getter

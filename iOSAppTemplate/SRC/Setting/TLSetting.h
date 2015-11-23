@@ -8,6 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, TLSettingItemAlignment) {
+    TLSettingItemAlignmentLeft,
+    TLSettingItemAlignmentRight,
+    TLSettingItemAlignmentMiddle,
+};
+
+typedef NS_ENUM(NSInteger, TLSettingItemType) {
+    TLSettingItemTypeDefault,       // image, title, rightTitle, rightImage
+    TLSettingItemTypeButton,        // button
+    TLSettingItemTypeSwitch,        // title， Switch
+};
+
 #pragma mark - TLSettingItem
 @interface TLSettingItem : NSObject
 

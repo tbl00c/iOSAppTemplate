@@ -15,12 +15,12 @@
 - (void) viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 20)]];
+
     [self.tableView registerClass:[TLSettingCell class] forCellReuseIdentifier:@"TLSettingCell"];
     [self.tableView registerClass:[TLSettingHeaderFooteFView class] forHeaderFooterViewReuseIdentifier:@"TLSettingHeaderFooteFView"];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)];
-    [self.tableView setTableHeaderView:view];
 }
 
 #pragma mark - UITableViewDataSource
@@ -85,20 +85,23 @@
     if (_data && _data.count > section) {
         TLSettingGrounp *group = [_data objectAtIndex:section];
         if (group.headerTitle == nil) {
-            return 0.0f;
+            return section == 0 ? 15.0f : 10.0f;
         }
         return [TLSettingHeaderFooteFView getHeightForText:group.headerTitle];
     }
-    return 0.0f;
+    return 10.0f;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (_data && _data.count > section) {
         TLSettingGrounp *group = [_data objectAtIndex:section];
+        if (group.footerTitle == nil) {
+            return section == _data.count - 1 ? 30.0f : 10.0f;
+        }
         return [TLSettingHeaderFooteFView getHeightForText:group.footerTitle];
     }
-    return 0.0f;
+    return 10.0f;
 }
 
 
