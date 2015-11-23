@@ -78,6 +78,7 @@
     position.alignment = TLSettingItemAlignmentLeft;
     TLSettingItem *album = [TLSettingItem createWithTitle:@"个人相册"];
     album.subImages = @[@"1.jpg", @"2.jpg", @"8.jpg", @"0.jpg"];
+    album.alignment = TLSettingItemAlignmentLeft;
     TLSettingItem *more = [TLSettingItem createWithTitle:@"更多"];
     TLSettingGrounp *group2 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:position, album, more, nil];
     [items addObject:group2];

@@ -87,9 +87,31 @@
             [self.middleImageView setFrame:CGRectMake(rx, my, mh, mh)];
             rx -= mh * 0.15;
         }
-
     }
-   
+    else if (self.item.alignment == TLSettingItemAlignmentLeft) {
+        float lx = (x < self.frameWidth * 0.32 ? self.frameWidth * 0.32 : x);
+        if (self.item.subTitle) {
+            size = [self.subTitleLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
+            [self.subTitleLabel setFrame:CGRectMake(lx, y - 0.5, size.width, h)];
+            lx += size.width + 5;
+        }
+        else if (self.item.subImages && self.item.subImages.count > 0) {
+            float imageWidth = self.frameHeight * 0.65;
+            float width = self.frameWidth * 0.89 - lx;
+            float space = 0;
+            NSUInteger count = width / imageWidth * 1.1;
+            count = count < self.subImageArray.count ? count : self.subImageArray.count;
+            for (int i = 0; i < count; i ++) {
+                UIButton *iV = [self.subImageArray objectAtIndex:i];
+                [iV setFrame:CGRectMake(lx + (imageWidth + space) * i, (self.frameHeight - imageWidth) / 2, imageWidth, imageWidth)];
+                space = imageWidth * 0.1;
+            }
+            for (int i = (int)count; i < self.item.subImages.count; i ++) {
+                UIButton *iV = [self.subImageArray objectAtIndex:i];
+                [iV removeFromSuperview];
+            }
+        }
+    }
     
 }
 
@@ -154,6 +176,8 @@
     
     [self.subTitleLabel setFont:item.subTitleFont];
     [self.subTitleLabel setTextColor:item.subTitleColor];
+    
+    [self layoutSubviews];
 }
 
 + (CGFloat) getHeightForText:(TLSettingItem *)item
