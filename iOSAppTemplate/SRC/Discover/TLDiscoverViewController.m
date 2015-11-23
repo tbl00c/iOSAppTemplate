@@ -11,7 +11,6 @@
 #import "TLShoppingViewController.h"
 #import "TLShakeViewController.h"
 
-#import "TLFounctionCell.h"
 #import "TLUIHelper.h"
 
 @interface TLDiscoverViewController ()
@@ -30,14 +29,8 @@
     [super viewDidLoad];
     [self setHidesBottomBarWhenPushed:NO];
     [self.navigationItem setTitle:@"发现"];
-    [self.tableView setSeparatorStyle: UITableViewCellSeparatorStyleNone];
     
-    // SubViews
-    [self.tableView setTableHeaderView:[[UIView alloc] initWithFrame:CGRectMake(0, 0, WIDTH_SCREEN, 15.0f)]];
-    [self.tableView registerClass:[TLFounctionCell class] forCellReuseIdentifier:@"FunctionCell"];
-    
-    // Data
-    _data = [TLUIHelper getDiscoverItems];
+    self.data = [TLUIHelper getDiscoverItems];
 }
 
 - (void) viewDidDisappear:(BOOL)animated
@@ -47,58 +40,10 @@
     [self setHidesBottomBarWhenPushed:NO];
 }
 
-#pragma mark - UITableViewDataSource
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return _data.count;
-}
-
-- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    TLSettingGrounp *group = [_data objectAtIndex:section];
-    return group.itemsCount;
-}
-
-- (UIView *) tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    UITableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"FotterView"];
-    if (view == nil) {
-        view = [[UITableViewHeaderFooterView alloc] initWithReuseIdentifier:@"FotterView"];
-        [view setBackgroundView:[UIView new]];
-    }
-    return view;
-}
-
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    TLSettingGrounp *group = [_data objectAtIndex:indexPath.section];
-    TLSettingItem *item = [group itemAtIndex:indexPath.row];
-    
-    TLFounctionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FunctionCell"];
-    [cell setItem:item];
-    [cell setUserInteractionEnabled:YES];
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    
-    indexPath.row == 0 ? [cell setTopLineStyle:CellLineStyleFill] :[cell setTopLineStyle:CellLineStyleNone];
-    indexPath.row == group.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleFill] : [cell setBottomLineStyle:CellLineStyleDefault];
-    
-    return cell;
-}
-
 #pragma mark - UITableViewDelegate
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 45.0f;
-}
-
-- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 20.0f;
-}
-
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    TLSettingGrounp *group = [_data objectAtIndex:indexPath.section];
+    TLSettingGrounp *group = [self.data objectAtIndex:indexPath.section];
     TLSettingItem *item = [group itemAtIndex:indexPath.row];
     
     id vc;

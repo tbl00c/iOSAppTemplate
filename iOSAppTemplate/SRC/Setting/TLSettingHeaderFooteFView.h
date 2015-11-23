@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TLTableHeadFooterView : UITableViewHeaderFooterView
+@interface TLSettingHeaderFooteFView : UITableViewHeaderFooterView
 
 @property (nonatomic, strong) NSString *text;
 
-@property (nonatomic, strong) UITextView *textView;
+@property (nonatomic, strong) UILabel *titleLabel;
 
-+ (CGFloat) heightForTextToFitView:(NSString *)text;
++ (CGFloat) getHeightForText:(NSString *)text;
 
 @end

@@ -10,76 +10,66 @@
 
 @implementation TLSettingItem
 
-- (id) initWithTitle:(NSString *)title
-{
-    return [self initWithTitle:title subTitle:nil imageName:nil subImageName:nil type:TLSettingItemTypeDefault];
-}
-
-- (id) initWithTitle:(NSString *)title subImageName:(NSString *)subImageName
-{
-return [self initWithTitle:title subTitle:nil imageName:nil subImageName:subImageName type:TLSettingItemTypeDefault];
-}
-
-- (id) initWithTitle:(NSString *)title type:(TLSettingItemType)type
-{
-    return [self initWithTitle:title subTitle:nil imageName:nil subImageName:nil type:type];
-}
-
-- (id) initWithTitle:(NSString *)title subImages:(NSMutableArray *)subImages
-{
-    _subImages = subImages;
-    return [self initWithTitle:title type:TLSettingItemTypeLeft];
-}
-
-- (id) initWithTitle:(NSString *)title imageName:(NSString *)imageName
-{
-    return [self initWithTitle:title subTitle:nil imageName:imageName subImageName:nil type:TLSettingItemTypeDefault];
-}
-
-- (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle
-{
-    return [self initWithTitle:title subTitle:subTitle imageName:nil subImageName:nil type:TLSettingItemTypeDefault];
-}
-
-- (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle type:(TLSettingItemType)type
-{
-    return [self initWithTitle:title subTitle:subTitle imageName:nil subImageName:nil type:type];
-}
-
-- (id) initWithTitle:(NSString *)title subImageName:(NSString *)subImageName type:(TLSettingItemType)type
-{
-    return [self initWithTitle:title subTitle:nil imageName:nil subImageName:subImageName type:type];
-}
-
-- (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle imageName:(NSString *)imageName subImageName:(NSString *)subImageName
-{
-    return [self initWithTitle:title subTitle:subTitle imageName:imageName subImageName:subImageName type:TLSettingItemTypeDefault];
-}
-
-- (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle imageName:(NSString *)imageName subImageName:(NSString *)subImageName type:(TLSettingItemType)type
+- (id) init
 {
     if (self = [super init]) {
-        _title = title;
-        _subTitle = subTitle;
-        _imageName = imageName;
-        _subImageName = subImageName;
-        _subImageURL = nil;
-        _type = type;
+        self.alignment = TLSettingItemAlignmentRight;
+        
+        self.bgColor = [UIColor whiteColor];
+        self.titleColor = [UIColor blackColor];
+        self.titleFont = [UIFont systemFontOfSize:15.5f];
+        self.subTitleColor = [UIColor grayColor];
+        self.subTitleFont = [UIFont systemFontOfSize:15.0f];
+        
+        self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        self.rightImageHeightOfCell = 0.72;
+        self.middleImageHeightOfCell = 0.35;
     }
     return self;
 }
 
-- (id) initWithTitle:(NSString *)title subTitle:(NSString *)subTitle imageName:(NSString *)imageName subImageURL:(NSURL *)subImageURL type:(TLSettingItemType)type
++ (TLSettingItem *) createWithTitle:(NSString *)title
 {
-    if (self = [super init]) {
-        _title = title;
-        _subTitle = subTitle;
-        _imageName = imageName;
-        _subImageName = nil;
-        _subImageURL = subImageURL;
-        _type = type;
+    return [TLSettingItem createWithImageName:nil title:title];
+}
+
++ (TLSettingItem *) createWithImageName:(NSString *)imageName title:(NSString *)title
+{
+    return [TLSettingItem createWithImageName:imageName title:title subTitle:nil rightImageName:nil];
+}
+
++ (TLSettingItem *) createWithTitle:(NSString *)title subTitle:(NSString *)subTitle
+{
+    return [TLSettingItem createWithImageName:nil title:title subTitle:subTitle rightImageName:nil];
+}
+
++ (TLSettingItem *) createWithImageName:(NSString *)imageName title:(NSString *)title middleImageName:(NSString *)middleImageName subTitle:(NSString *)subTitle
+{
+    return [TLSettingItem createWithImageName:imageName title:title middleImageName:middleImageName subTitle:subTitle rightImageName:nil];
+}
+
++ (TLSettingItem *) createWithImageName:(NSString *)imageName title:(NSString *)title subTitle:(NSString *)subTitle rightImageName:(NSString *)rightImageName
+{
+    return [TLSettingItem createWithImageName:imageName title:title middleImageName:nil subTitle:subTitle rightImageName:rightImageName];
+}
+
++ (TLSettingItem *) createWithImageName:(NSString *)imageName title:(NSString *)title middleImageName:(NSString *)middleImageName subTitle:(NSString *)subTitle rightImageName:(NSString *)rightImageName
+{
+    TLSettingItem *item = [[TLSettingItem alloc] init];
+    item.imageName = imageName;
+    item.middleImageName = middleImageName;
+    item.rightImageName = rightImageName;
+    item.title = title;
+    item.subTitle = subTitle;
+    return item;
+}
+
+- (void) setAlignment:(TLSettingItemAlignment)alignment
+{
+    _alignment = alignment;
+    if (alignment == TLSettingItemAlignmentMiddle) {
+        self.accessoryType = UITableViewCellAccessoryNone;
     }
-    return self;
 }
 
 @end
@@ -112,9 +102,14 @@ return [self initWithTitle:title subTitle:nil imageName:nil subImageName:subImag
     return [_items objectAtIndex:index];
 }
 
+- (NSUInteger) indexOfItem:(TLSettingItem *)item
+{
+    return [_items indexOfObject:item];
+}
+
 - (NSUInteger) itemsCount
 {
-    return _itemsCount = _items.count;
+    return self.items.count;
 }
 
 @end

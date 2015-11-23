@@ -86,7 +86,7 @@
     return _usernameLabel;
 }
 
-- (UILabel *) detailTextLabel
+- (UILabel *) dateLabel
 {
     if (_dateLabel == nil) {
         _dateLabel = [[UILabel alloc] init];

@@ -6,10 +6,9 @@
 //  Copyright (c) 2015年 lbk. All rights reserved.
 //
 
-#import "CommonTableViewController.h"
+#import "TLSettingBaseViewController.h"
 
-@interface TLDiscoverViewController : CommonTableViewController
+@interface TLDiscoverViewController : TLSettingBaseViewController
 
-@property (nonatomic, strong) NSMutableArray *data;
 
 @end

@@ -10,13 +10,17 @@
 #define iOSAppTemplate_enumerate_h
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSInteger, TLSettingItemAlignment) {
+    TLSettingItemAlignmentLeft,
+    TLSettingItemAlignmentRight,
+    TLSettingItemAlignmentMiddle,
+};
+
+
 typedef NS_ENUM(NSInteger, TLSettingItemType) {
     TLSettingItemTypeDefault,       // image, title, rightTitle, rightImage
-    TLSettingItemTypeDefaultL,      // image, title, leftImage, rightTitle
-    TLSettingItemTypeLeft,          // image, title, leftTitle, leftImage
     TLSettingItemTypeButton,        // button
     TLSettingItemTypeAvatar,        // title, avatar
-    TLSettingItemTypeMidTitle,      // title
     TLSettingItemTypeSwitch,        // title， Switch
 };
 

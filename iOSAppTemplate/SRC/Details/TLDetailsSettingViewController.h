@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 lbk. All rights reserved.
 //
 
-#import "CommonTableViewController.h"
+#import "TLSettingBaseViewController.h"
 
-@interface TLDetailsSettingViewController : CommonTableViewController
+@interface TLDetailsSettingViewController : TLSettingBaseViewController
 
 @end

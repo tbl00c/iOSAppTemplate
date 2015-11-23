@@ -6,11 +6,11 @@
 //  Copyright (c) 2015年 lbk. All rights reserved.
 //
 
-#import "CommonTableViewController.h"
+#import "TLSettingBaseViewController.h"
 
 @class TLUser;
 
-@interface TLDetailsViewController : CommonTableViewController
+@interface TLDetailsViewController : TLSettingBaseViewController
 
 @property (nonatomic, strong) TLUser *user;
 

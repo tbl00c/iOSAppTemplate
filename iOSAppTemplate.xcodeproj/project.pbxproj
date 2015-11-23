@@ -12,6 +12,9 @@
 		2D1BA72F1BA578D2009BB687 /* iOSAppTemplateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BA72E1BA578D2009BB687 /* iOSAppTemplateTests.m */; };
 		7F9BFFFCBF4DB85D4C25D242 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431F7BA1B753F37D7C06FD /* libPods.a */; };
 		C20675461BD5588D00BA60EA /* TLChatHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C20675451BD5588D00BA60EA /* TLChatHelper.m */; };
+		C25278721C01F4460097FCF1 /* TLSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C25278711C01F4460097FCF1 /* TLSettingCell.m */; settings = {ASSET_TAGS = (); }; };
+		C25278761C01F84F0097FCF1 /* TLSettingBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25278751C01F84F0097FCF1 /* TLSettingBaseViewController.m */; settings = {ASSET_TAGS = (); }; };
+		C25278791C020C280097FCF1 /* TLSettingHeaderFooteFView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25278781C020C280097FCF1 /* TLSettingHeaderFooteFView.m */; settings = {ASSET_TAGS = (); }; };
 		C26267F91BD4872B0021760F /* TLChatBoxFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26267F81BD4872B0021760F /* TLChatBoxFaceView.m */; };
 		C26267FC1BD4CE190021760F /* TLUserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C26267FB1BD4CE190021760F /* TLUserHelper.m */; };
 		C26267FF1BD4D9480021760F /* TLChatBoxFaceMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26267FE1BD4D9480021760F /* TLChatBoxFaceMenuView.m */; };
@@ -25,7 +28,6 @@
 		C265A75F1BCDFB4000079AD9 /* CommonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7481BCDFB4000079AD9 /* CommonTableViewController.m */; };
 		C265A7601BCDFB4000079AD9 /* CommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A74A1BCDFB4000079AD9 /* CommonViewController.m */; };
 		C265A7611BCDFB4000079AD9 /* TLNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A74C1BCDFB4000079AD9 /* TLNavigationController.m */; };
-		C265A7621BCDFB4000079AD9 /* TLTableHeadFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A74E1BCDFB4000079AD9 /* TLTableHeadFooterView.m */; };
 		C265A7631BCDFB4000079AD9 /* TLWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7501BCDFB4000079AD9 /* TLWebViewController.m */; };
 		C265A7641BCDFB4000079AD9 /* NSString+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7541BCDFB4000079AD9 /* NSString+TL.m */; };
 		C265A7651BCDFB4000079AD9 /* UIDevice+TL.m in Sources */ = {isa = PBXBuildFile; fileRef = C265A7561BCDFB4000079AD9 /* UIDevice+TL.m */; };
@@ -115,6 +117,12 @@
 		C20675451BD5588D00BA60EA /* TLChatHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatHelper.m; sourceTree = "<group>"; };
 		C20675471BD5589300BA60EA /* TLChatHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TLChatHelper.h; sourceTree = "<group>"; };
 		C24769761BA96652007DC0ED /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		C25278701C01F4460097FCF1 /* TLSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSettingCell.h; sourceTree = "<group>"; };
+		C25278711C01F4460097FCF1 /* TLSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSettingCell.m; sourceTree = "<group>"; };
+		C25278741C01F84F0097FCF1 /* TLSettingBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSettingBaseViewController.h; sourceTree = "<group>"; };
+		C25278751C01F84F0097FCF1 /* TLSettingBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSettingBaseViewController.m; sourceTree = "<group>"; };
+		C25278771C020C280097FCF1 /* TLSettingHeaderFooteFView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLSettingHeaderFooteFView.h; sourceTree = "<group>"; };
+		C25278781C020C280097FCF1 /* TLSettingHeaderFooteFView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLSettingHeaderFooteFView.m; sourceTree = "<group>"; };
 		C26267F71BD4872B0021760F /* TLChatBoxFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLChatBoxFaceView.h; sourceTree = "<group>"; };
 		C26267F81BD4872B0021760F /* TLChatBoxFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLChatBoxFaceView.m; sourceTree = "<group>"; };
 		C26267FA1BD4CE190021760F /* TLUserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLUserHelper.h; sourceTree = "<group>"; };
@@ -142,8 +150,6 @@
 		C265A74A1BCDFB4000079AD9 /* CommonViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonViewController.m; sourceTree = "<group>"; };
 		C265A74B1BCDFB4000079AD9 /* TLNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLNavigationController.h; sourceTree = "<group>"; };
 		C265A74C1BCDFB4000079AD9 /* TLNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLNavigationController.m; sourceTree = "<group>"; };
-		C265A74D1BCDFB4000079AD9 /* TLTableHeadFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableHeadFooterView.h; sourceTree = "<group>"; };
-		C265A74E1BCDFB4000079AD9 /* TLTableHeadFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableHeadFooterView.m; sourceTree = "<group>"; };
 		C265A74F1BCDFB4000079AD9 /* TLWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLWebViewController.h; sourceTree = "<group>"; };
 		C265A7501BCDFB4000079AD9 /* TLWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLWebViewController.m; sourceTree = "<group>"; };
 		C265A7531BCDFB4000079AD9 /* NSString+TL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+TL.h"; sourceTree = "<group>"; };
@@ -352,6 +358,45 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C25278731C01F8270097FCF1 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				C252787A1C020DC20097FCF1 /* Models */,
+				C252787C1C020DD80097FCF1 /* Controllers */,
+				C252787B1C020DCE0097FCF1 /* Views */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		C252787A1C020DC20097FCF1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C265A8001BCDFD3900079AD9 /* TLSetting.h */,
+				C265A8011BCDFD3900079AD9 /* TLSetting.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		C252787B1C020DCE0097FCF1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C25278771C020C280097FCF1 /* TLSettingHeaderFooteFView.h */,
+				C25278781C020C280097FCF1 /* TLSettingHeaderFooteFView.m */,
+				C25278701C01F4460097FCF1 /* TLSettingCell.h */,
+				C25278711C01F4460097FCF1 /* TLSettingCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		C252787C1C020DD80097FCF1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C25278741C01F84F0097FCF1 /* TLSettingBaseViewController.h */,
+				C25278751C01F84F0097FCF1 /* TLSettingBaseViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		C26268071BD4E34D0021760F /* Helper */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,7 +432,6 @@
 				C265A7EC1BCDFC0200079AD9 /* TableViewController */,
 				C265A7EB1BCDFBEE00079AD9 /* WebViewController */,
 				C265A7E91BCDFBD000079AD9 /* NavgitionController */,
-				C265A7EA1BCDFBDF00079AD9 /* TableHeaderFooterView */,
 				C265A7E81BCDFBBC00079AD9 /* TableViewCell */,
 			);
 			path = Common;
@@ -564,15 +608,6 @@
 			name = NavgitionController;
 			sourceTree = "<group>";
 		};
-		C265A7EA1BCDFBDF00079AD9 /* TableHeaderFooterView */ = {
-			isa = PBXGroup;
-			children = (
-				C265A74D1BCDFB4000079AD9 /* TLTableHeadFooterView.h */,
-				C265A74E1BCDFB4000079AD9 /* TLTableHeadFooterView.m */,
-			);
-			name = TableHeaderFooterView;
-			sourceTree = "<group>";
-		};
 		C265A7EB1BCDFBEE00079AD9 /* WebViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -744,20 +779,11 @@
 		C265A7FD1BCDFD3900079AD9 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
-				C265A8071BCDFD7300079AD9 /* Models */,
+				C25278731C01F8270097FCF1 /* Base */,
 				C265A8081BCDFD7A00079AD9 /* Controllers */,
 				C265A8091BCDFD8400079AD9 /* Views */,
 			);
 			path = Setting;
-			sourceTree = "<group>";
-		};
-		C265A8071BCDFD7300079AD9 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				C265A8001BCDFD3900079AD9 /* TLSetting.h */,
-				C265A8011BCDFD3900079AD9 /* TLSetting.m */,
-			);
-			name = Models;
 			sourceTree = "<group>";
 		};
 		C265A8081BCDFD7A00079AD9 /* Controllers */ = {
@@ -1000,7 +1026,6 @@
 				C265A8061BCDFD3900079AD9 /* TLSettingViewController.m in Sources */,
 				C265A7401BCDF88D00079AD9 /* common.m in Sources */,
 				C265A7AE1BCDFB4E00079AD9 /* TLConversationViewController.m in Sources */,
-				C265A7621BCDFB4000079AD9 /* TLTableHeadFooterView.m in Sources */,
 				C26267F91BD4872B0021760F /* TLChatBoxFaceView.m in Sources */,
 				C265A7611BCDFB4000079AD9 /* TLNavigationController.m in Sources */,
 				C265A7661BCDFB4000079AD9 /* UIImage+TL.m in Sources */,
@@ -1012,6 +1037,7 @@
 				C26268021BD4DAE90021760F /* TLFace.m in Sources */,
 				C26F8D631BD0D96F0096A3EB /* TLSystemMessageCell.m in Sources */,
 				C265A7A91BCDFB4E00079AD9 /* TLChatMessageViewContrller.m in Sources */,
+				C25278761C01F84F0097FCF1 /* TLSettingBaseViewController.m in Sources */,
 				C265A7651BCDFB4000079AD9 /* UIDevice+TL.m in Sources */,
 				C26F8D5A1BD0D9230096A3EB /* TLImageMessageCell.m in Sources */,
 				C265A75E1BCDFB4000079AD9 /* CommonTableViewCell.m in Sources */,
@@ -1048,6 +1074,8 @@
 				C265A7BC1BCDFB4E00079AD9 /* TLFriendsViewController.m in Sources */,
 				C265A7641BCDFB4000079AD9 /* NSString+TL.m in Sources */,
 				C265A7B11BCDFB4E00079AD9 /* TLUserDetailCell.m in Sources */,
+				C25278721C01F4460097FCF1 /* TLSettingCell.m in Sources */,
+				C25278791C020C280097FCF1 /* TLSettingHeaderFooteFView.m in Sources */,
 				C265A7B91BCDFB4E00079AD9 /* TLAddFriendViewController.m in Sources */,
 				C262680A1BD4E35B0021760F /* TLFaceHelper.m in Sources */,
 				C26F8D5D1BD0D9310096A3EB /* TLVoiceMessageCell.m in Sources */,
