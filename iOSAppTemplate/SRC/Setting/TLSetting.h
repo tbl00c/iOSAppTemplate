@@ -67,8 +67,11 @@ typedef NS_ENUM(NSInteger, TLSettingItemType) {
 
 /************************ 样式 ************************/
 @property (nonatomic, assign) UITableViewCellAccessoryType accessoryType;
+@property (nonatomic, assign) UITableViewCellSelectionStyle selectionStyle;
 
 @property (nonatomic, strong) UIColor *bgColor;
+@property (nonatomic, strong) UIColor *btnBGColor;
+@property (nonatomic, strong) UIColor *btnTitleColor;
 
 @property (nonatomic, strong) UIColor *titleColor;
 @property (nonatomic, strong) UIFont *titleFont;

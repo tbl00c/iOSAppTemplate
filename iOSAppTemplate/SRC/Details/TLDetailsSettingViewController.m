@@ -7,8 +7,6 @@
 //
 
 #import "TLDetailsSettingViewController.h"
-
-#import "TLFounctionCell.h"
 #import "TLUIHelper.h"
 
 @implementation TLDetailsSettingViewController

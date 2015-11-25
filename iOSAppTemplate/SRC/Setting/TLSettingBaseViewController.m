@@ -43,8 +43,14 @@
     [cell setItem:item];
     
     // cell分割线
-    indexPath.row == 0 ? [cell setTopLineStyle:CellLineStyleFill] : [cell setTopLineStyle:CellLineStyleNone];
-    indexPath.row == group.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleFill] : [cell setBottomLineStyle:CellLineStyleDefault];
+    if (item.type != TLSettingItemTypeButton) {
+        indexPath.row == 0 ? [cell setTopLineStyle:CellLineStyleFill] : [cell setTopLineStyle:CellLineStyleNone];
+        indexPath.row == group.itemsCount - 1 ? [cell setBottomLineStyle:CellLineStyleFill] : [cell setBottomLineStyle:CellLineStyleDefault];
+    }
+    else {
+        [cell setTopLineStyle:CellLineStyleNone];
+        [cell setBottomLineStyle:CellLineStyleNone];
+    }
     
     return cell;
 }

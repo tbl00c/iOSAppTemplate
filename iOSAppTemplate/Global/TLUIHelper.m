@@ -83,10 +83,14 @@
     TLSettingGrounp *group2 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:position, album, more, nil];
     [items addObject:group2];
 
-//    TLSettingItem *chatButton = [[TLSettingItem alloc] initWithTitle:@"发消息"  type:TLSettingItemTypeButton];
-//    TLSettingItem *videoButton = [[TLSettingItem alloc] initWithTitle:@"视频聊天"  type:TLSettingItemTypeButton];
-//    TLSettingGrounp *group3 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:chatButton, videoButton, nil];
-//    [items addObject:group3];
+    TLSettingItem *chatButton = [TLSettingItem createWithTitle:@"发消息"];
+    chatButton.type = TLSettingItemTypeButton;
+    TLSettingItem *videoButton = [TLSettingItem createWithTitle:@"视频聊天"];
+    videoButton.type = TLSettingItemTypeButton;
+    videoButton.btnBGColor = [UIColor whiteColor];
+    videoButton.btnTitleColor = [UIColor blackColor];
+    TLSettingGrounp *group3 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:chatButton, videoButton, nil];
+    [items addObject:group3];
     
     return items;
 }
@@ -167,9 +171,10 @@
     TLSettingGrounp *group5 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:addBlacklist, report, nil];
     [items addObject:group5];
 
-//    TLSettingItem *delete = [[TLSettingItem alloc] initWithTitle:@"删除好友" type:TLSettingItemTypeButton];
-//    TLSettingGrounp *group6 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:delete, nil];
-//    [items addObject:group6];
+    TLSettingItem *delete = [TLSettingItem createWithTitle:@"删除好友"];
+    delete.type = TLSettingItemTypeButton;
+    TLSettingGrounp *group6 = [[TLSettingGrounp alloc] initWithHeaderTitle:nil footerTitle:nil settingItems:delete, nil];
+    [items addObject:group6];
 
     return items;
 }

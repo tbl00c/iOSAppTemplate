@@ -22,6 +22,7 @@
         self.subTitleFont = [UIFont systemFontOfSize:15.0f];
         
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        self.selectionStyle = UITableViewCellSelectionStyleDefault;
         self.rightImageHeightOfCell = 0.72;
         self.middleImageHeightOfCell = 0.35;
     }
@@ -77,6 +78,14 @@
     _type = type;
     if (type == TLSettingItemTypeSwitch) {
         self.accessoryType = UITableViewCellAccessoryNone;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    else if (type == TLSettingItemTypeButton) {
+        self.btnBGColor = DEFAULT_GREEN_COLOR;
+        self.btnTitleColor = [UIColor whiteColor];
+        self.accessoryType = UITableViewCellAccessoryNone;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.bgColor = [UIColor clearColor];
     }
 }
 

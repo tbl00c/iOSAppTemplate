@@ -10,13 +10,9 @@
 #import "TLDetailsSettingViewController.h"
 
 #import "TLUserDetailCell.h"
-#import "TLFounctionCell.h"
-
 #import "TLUIHelper.h"
 
 @interface TLDetailsViewController ()
-
-@property (nonatomic, strong) NSMutableArray *data;
 
 @property (nonatomic, strong) TLDetailsSettingViewController *detailSettingVC;
 
@@ -76,15 +72,6 @@
 {
     if (indexPath.section == 0) {
         return 90.0f;
-    }
-    
-    TLSettingGrounp *group = [self.data objectAtIndex:indexPath.section - 1];
-    TLSettingItem *item = [group itemAtIndex:indexPath.row];
-    if (item.type == TLSettingItemTypeButton) {
-        return 50.0f;
-    }
-    else if ([item.title isEqualToString:@"个人相册"]) {
-        return 86.0f;
     }
     return [super tableView:tableView heightForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section - 1]];
 }

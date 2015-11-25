@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIImageView *rightImageView;
 
 @property (nonatomic, strong) UISwitch *cSwitch;
+@property (nonatomic, strong) UIButton *cButton;
 
 @property (nonatomic, strong) NSMutableArray *subImageArray;
 
@@ -36,6 +37,7 @@
         [self addSubview:self.rightImageView];
 
         [self addSubview:self.cSwitch];
+        [self addSubview:self.cButton];
     }
     return self;
 }
@@ -46,6 +48,15 @@
     [super layoutSubviews];
 
     float spaceX = self.leftFreeSpace;
+    
+    if (self.item.type == TLSettingItemTypeButton) {
+        float buttonX = self.frameWidth * 0.04;
+        float buttonY = self.frameHeight * 0.09;
+        float buttonWidth = self.frameWidth - buttonX * 2;
+        float buttonHeight = self.frameHeight - buttonY * 2;
+        [self.cButton setFrame:CGRectMake(buttonX, 0, buttonWidth, buttonHeight)];
+        return;
+    }
     
     float x = spaceX;
     float y = self.frameHeight * 0.22;
@@ -100,7 +111,11 @@
         }
     }
     else if (self.item.alignment == TLSettingItemAlignmentLeft) {
-        float lx = (x < self.frameWidth * 0.32 ? self.frameWidth * 0.32 : x);
+        float t = 105;
+        if ([UIDevice deviceVerType] == DeviceVer6P) {
+            t = 120;
+        }
+        float lx = (x < t ? t : x);
         if (self.item.subTitle) {
             size = [self.subTitleLabel sizeThatFits:CGSizeMake(MAXFLOAT, MAXFLOAT)];
             [self.subTitleLabel setFrame:CGRectMake(lx, y - 0.5, size.width, h)];
@@ -132,8 +147,27 @@
     _item = item;
     
 // 设置数据
-    [self.titleLabel setText:item.title];
-    [self.subTitleLabel setText:item.subTitle];
+    if (item.type == TLSettingItemTypeButton) {
+        [self.cButton setTitle:item.title forState:UIControlStateNormal];
+        [self.cButton setBackgroundColor:item.btnBGColor];
+        [self.cButton setTitleColor:item.btnTitleColor forState:UIControlStateNormal];
+        [self.cButton setHidden:NO];
+        [self.titleLabel setHidden:YES];
+    }
+    else {
+        [self.cButton setHidden:YES];
+        [self.titleLabel setText:item.title];
+        [self.titleLabel setHidden:NO];
+    }
+
+    if (item.subTitle) {
+        [self.subTitleLabel setText:item.subTitle];
+        [self.subTitleLabel setHidden:NO];
+    }
+    else {
+        [self.subTitleLabel setHidden:YES];
+    }
+    
     
     if (item.imageName) {
         [self.mainImageView setImage:[UIImage imageNamed:item.imageName]];
@@ -194,6 +228,7 @@
 // 设置样式
     [self setBackgroundColor:item.bgColor];
     [self setAccessoryType:item.accessoryType];
+    [self setSelectionStyle:item.selectionStyle];
     
     [self.titleLabel setFont:item.titleFont];
     [self.titleLabel setTextColor:item.titleColor];
@@ -206,6 +241,12 @@
 
 + (CGFloat) getHeightForText:(TLSettingItem *)item
 {
+    if (item.type == TLSettingItemTypeButton) {
+        return 50.0f;
+    }
+    else if (item.subImages && item.subImages.count > 0) {
+        return 86.0f;
+    }
     return 43.0f;
 }
 
@@ -267,6 +308,19 @@
         _cSwitch = [[UISwitch alloc] init];
     }
     return _cSwitch;
+}
+
+- (UIButton *) cButton
+{
+    if (_cButton == nil) {
+        _cButton = [[UIButton alloc] init];
+        [_cButton.titleLabel setFont:[UIFont systemFontOfSize:16.0f]];
+        [_cButton.layer setMasksToBounds:YES];
+        [_cButton.layer setCornerRadius:4.0f];
+        [_cButton.layer setBorderColor:DEFAULT_LINE_GRAY_COLOR.CGColor];
+        [_cButton.layer setBorderWidth:0.5f];
+    }
+    return _cButton;
 }
 
 @end
