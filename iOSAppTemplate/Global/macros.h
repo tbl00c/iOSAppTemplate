@@ -35,4 +35,7 @@
 #define     PATH_DOCUMENT                   [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
 #define     PATH_CHATREC_IMAGE              [PATH_DOCUMENT stringByAppendingPathComponent:@"ChatRec/Images"]
 
+#define mark - Key
+#define UMENG_KEY   @"56d2b08c67e58e2f54000b07"
+
 #endif

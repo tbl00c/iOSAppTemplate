@@ -7,6 +7,7 @@
 //
 
 #import "CommonViewController.h"
+#import <MobClick.h>
 
 @interface CommonViewController ()
 
@@ -26,6 +27,13 @@
     [super viewWillAppear:animated];
     
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [MobClick beginLogPageView:self.navigationItem.title];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:self.navigationItem.title];
 }
 
 @end

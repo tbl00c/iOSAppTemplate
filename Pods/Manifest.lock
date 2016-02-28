@@ -1,10 +1,13 @@
 PODS:
-  - MBProgressHUD (0.9.1)
+  - MBProgressHUD (0.9.2)
+  - UMengAnalytics (3.6.6)
 
 DEPENDENCIES:
   - MBProgressHUD (~> 0.9.1)
+  - UMengAnalytics (~> 3.6.6)
 
 SPEC CHECKSUMS:
-  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  UMengAnalytics: 4bf831415146b9c57cb10be65fbd43462ef8cf65
 
 COCOAPODS: 0.38.2

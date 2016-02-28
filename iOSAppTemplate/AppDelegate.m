@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "TLRootViewController.h"
+#import <MobClick.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +18,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    [MobClick startWithAppkey:UMENG_KEY reportPolicy:BATCH channelId:@"Github"];
+    
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     [self createDefaultDocumentIfNeed];
     

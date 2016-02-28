@@ -7,6 +7,7 @@
 //
 
 #import "TLWebViewController.h"
+#import <MobClick.h>
 
 @interface TLWebViewController () <UIWebViewDelegate>
 
@@ -30,6 +31,13 @@
     [super viewWillAppear:animated];
     
     [_webView setFrame:CGRectMake(0, 0, self.view.frameWidth, self.view.frameHeight)];
+    [MobClick beginLogPageView:@"WebView"];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"WebView"];
 }
 
 - (void) setUrlString:(NSString *)urlString

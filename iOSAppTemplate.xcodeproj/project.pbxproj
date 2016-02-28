@@ -12,9 +12,9 @@
 		2D1BA72F1BA578D2009BB687 /* iOSAppTemplateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D1BA72E1BA578D2009BB687 /* iOSAppTemplateTests.m */; };
 		7F9BFFFCBF4DB85D4C25D242 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38431F7BA1B753F37D7C06FD /* libPods.a */; };
 		C20675461BD5588D00BA60EA /* TLChatHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C20675451BD5588D00BA60EA /* TLChatHelper.m */; };
-		C25278721C01F4460097FCF1 /* TLSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C25278711C01F4460097FCF1 /* TLSettingCell.m */; settings = {ASSET_TAGS = (); }; };
-		C25278761C01F84F0097FCF1 /* TLSettingBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25278751C01F84F0097FCF1 /* TLSettingBaseViewController.m */; settings = {ASSET_TAGS = (); }; };
-		C25278791C020C280097FCF1 /* TLSettingHeaderFooteFView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25278781C020C280097FCF1 /* TLSettingHeaderFooteFView.m */; settings = {ASSET_TAGS = (); }; };
+		C25278721C01F4460097FCF1 /* TLSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C25278711C01F4460097FCF1 /* TLSettingCell.m */; };
+		C25278761C01F84F0097FCF1 /* TLSettingBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C25278751C01F84F0097FCF1 /* TLSettingBaseViewController.m */; };
+		C25278791C020C280097FCF1 /* TLSettingHeaderFooteFView.m in Sources */ = {isa = PBXBuildFile; fileRef = C25278781C020C280097FCF1 /* TLSettingHeaderFooteFView.m */; };
 		C26267F91BD4872B0021760F /* TLChatBoxFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26267F81BD4872B0021760F /* TLChatBoxFaceView.m */; };
 		C26267FC1BD4CE190021760F /* TLUserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C26267FB1BD4CE190021760F /* TLUserHelper.m */; };
 		C26267FF1BD4D9480021760F /* TLChatBoxFaceMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = C26267FE1BD4D9480021760F /* TLChatBoxFaceMenuView.m */; };

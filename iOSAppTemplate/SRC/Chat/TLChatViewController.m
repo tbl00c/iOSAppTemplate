@@ -10,6 +10,7 @@
 #import "TLChatMessageViewContrller.h"
 #import "TLChatBoxViewController.h"
 #import "TLUserHelper.h"
+#import <MobClick.h>
 
 @interface TLChatViewController () <TLChatMessageViewControllerDelegate, TLChatBoxViewControllerDelegate>
 {
@@ -27,12 +28,29 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
+    [self.view setBackgroundColor:DEFAULT_BACKGROUND_COLOR];
+    [self setHidesBottomBarWhenPushed:YES];
+    
     viewHeight = HEIGHT_SCREEN - HEIGHT_NAVBAR - HEIGHT_STATUSBAR;
     
     [self.view addSubview:self.chatMessageVC.view];
     [self addChildViewController:self.chatMessageVC];
     [self.view addSubview:self.chatBoxVC.view];
     [self addChildViewController:self.chatBoxVC];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [MobClick beginLogPageView:self.navigationItem.title];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:self.navigationItem.title];
 }
 
 #pragma mark - TLChatMessageViewControllerDelegate

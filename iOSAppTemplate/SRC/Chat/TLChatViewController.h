@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 lbk. All rights reserved.
 //
 
-#import "CommonViewController.h"
+#import <UIKit/UIKit.h>
 #import "TLUser.h"
 
-@interface TLChatViewController : CommonViewController
+@interface TLChatViewController : UIViewController
 
 @property (nonatomic, strong) TLUser *user;
 
