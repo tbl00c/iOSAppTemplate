@@ -30,6 +30,9 @@
     [self.window addSubview:rootVC.view];
     [self.window makeKeyAndVisible];
     
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"作者留" message:@"谢谢大家对这个项目的关注。现在此项目已经不再维护了。与此同时，此项目的重构版TLChat仍在不定时更新，新项目在架构和代码质量方面都有许多改进和提升，希望大家一起进步。（新入门童鞋仍建议先浏览此版本代码哈）" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    [alertView show];
+    
     return YES;
 }
 
